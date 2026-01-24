@@ -9,7 +9,7 @@ var map = L.map('map', {
     center: [-7.159, -34.855],
     zoom: 18,
     minZoom: 17,
-    maxZoom: 19,
+    maxZoom: 20,
     maxBounds: limitesDoCampus, 
     maxBoundsViscosity: 1.0
 });
@@ -17,18 +17,10 @@ var map = L.map('map', {
 // Adiciona imagem base do mapa (Tiles locais)
 L.tileLayer('tiles/png/{z}/{x}/{y}.png', {
     minZoom: 17,
-    maxZoom: 19,
+    maxZoom: 20,
     tms: false,
     attribution: 'Mapa UNIPE'
 }).addTo(map);
-
-// Adiciona os caminhos visuais ao mapa
-// L.geoJSON(caminhosCampus, {
-//     style: function(feature) {
-//         return { color: "#f5f542", weight: 1, dashArray: '5, 5' }; // Estilo visual das ruas
-//     }
-// }).addTo(map);
-
 
 // --- LÓGICA DE ROTEAMENTO (GraphHopper) ---
 var camadaRota = L.layerGroup().addTo(map);

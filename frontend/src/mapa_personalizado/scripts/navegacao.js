@@ -4,15 +4,6 @@ var posicaoUsuario = null;  // {lat, lng} atual
 var posicaoDestino = null;  // {lat, lng} do destino
 var ultimaPosicaoCalc = null;
 
-// --- CONFIGURAÇÕES VISUAIS (GEOJSON) --- 
-var caminhosCampus = {
-    "type": "FeatureCollection",
-    "name": "campus_universidade",
-    "features": [
-        { "type": "Feature", "properties": { "id": 2, "penalty": 1.0, "tipo_via": "calcada", "layer": "calcadas_unipe", "path": "../caminhos_unipe.geojson" }, "geometry": { "type": "MultiLineString", "coordinates": [ ] } },
-    ]
-};
-
 // --- ÍCONE DO USUÁRIO ---
 var iconGPS = L.divIcon({
     className: 'css-icon',
@@ -24,8 +15,14 @@ var iconGPS = L.divIcon({
 // --- CHAMADA DA API JAVA ---
 function calcularRota(pontoA, pontoB) {
     // URL da API local do GraphHopper
+    let modoAtual = 'pedestrian'
     const baseUrl = "/graphhopper/api"
-    var url = `${baseUrl}?point=${pontoA.lat},${pontoA.lng}&point=${pontoB.lat},${pontoB.lng}&profile=foot&points_encoded=false`;
+
+    var url =   `${baseUrl}?` +
+                `point=${pontoA.lat},${pontoA.lng}` +
+                `&point=${pontoB.lat},${pontoB.lng}` +
+                `&profile=${modoAtual}` +
+                `&points_encoded=false`;
 
     fetch(url)
         .then(response => response.json())
@@ -89,94 +86,111 @@ function encerrarNavegacao() {
 }
 
 // --- MONITORAMENTO GPS ---
-if (navigator.geolocation) {
-    navigator.geolocation.watchPosition(
-        function(pos){
-            var lat = pos.coords.latitude;
-            var lng = pos.coords.longitude;
-            posicaoUsuario = L.latLng(lat, lng);
+// if (navigator.geolocation) {
+//     navigator.geolocation.watchPosition(
+//         function(pos){
+//             var lat = pos.coords.latitude;
+//             var lng = pos.coords.longitude;
+//             posicaoUsuario = L.latLng(lat, lng);
 
-            // Cria ou atualiza o ícone do usuário no mapa
-            if (!userMarker) {
-                userMarker = L.marker(posicaoUsuario, {icon: iconGPS, zIndexOffset: 1000}).addTo(map);
-                map.setView(posicaoUsuario, 18);
-            } else {
-                userMarker.setLatLng(posicaoUsuario);
-            }
+//             // Cria ou atualiza o ícone do usuário no mapa
+//             if (!userMarker) {
+//                 userMarker = L.marker(posicaoUsuario, {icon: iconGPS, zIndexOffset: 1000}).addTo(map);
+//                 map.setView(posicaoUsuario, 18);
+//             } else {
+//                 userMarker.setLatLng(posicaoUsuario);
+//             }
 
-            // Se já existe um destino, atualiza a rota automaticamente
-            if (posicaoDestino) {
-                // Calcula distância desde o último cálculo
-                var dist = 0;
-                if (ultimaPosicaoCalc) {
-                    dist = posicaoUsuario.distanceTo(ultimaPosicaoCalc);
-                }
-                // Só recalcula se andou mais de 5 metros ou se é a primeira vez
-                if (!ultimaPosicaoCalc || dist > 5) {
-                    calcularRota(posicaoUsuario, posicaoDestino);
-                    ultimaPosicaoCalc = posicaoUsuario; // Atualiza a referência
-                }
-            }
-        },
-        function(err) {
-            console.error("Erro GPS:", err);
-        },
-        { enableHighAccuracy: true, maximumAge: 1000, timeout: 5000 }
-    );
-}
-else {
-    alert("Seu navegador não suporta GPS.");
-}
+//             // Se já existe um destino, atualiza a rota automaticamente
+//             if (posicaoDestino) {
+//                 // Calcula distância desde o último cálculo
+//                 var dist = 0;
+//                 if (ultimaPosicaoCalc) {
+//                     dist = posicaoUsuario.distanceTo(ultimaPosicaoCalc);
+//                 }
+//                 // Só recalcula se andou mais de 5 metros ou se é a primeira vez
+//                 if (!ultimaPosicaoCalc || dist > 5) {
+//                     calcularRota(posicaoUsuario, posicaoDestino);
+//                     ultimaPosicaoCalc = posicaoUsuario; // Atualiza a referência
+//                 }
+//             }
+//         },
+//         function(err) {
+//             console.error("Erro GPS:", err);
+//         },
+//         { enableHighAccuracy: true, maximumAge: 1000, timeout: 5000 }
+//     );
+// }
+// else {
+//     alert("Seu navegador não suporta GPS.");
+// }
+
+var definindoOrigem = true;
 
 // --- INTERAÇÃO COM USUÁRIO ---
 map.on('click', function(e) {
-    // Verifica a posição do usuário dentro do CAMPUS
-    if (!posicaoUsuario) {
-        alert("Aguardando sinal de GPS... Por favor, espere um momento.");
-        return;
+    if(definindoOrigem){
+        // Limpa a rota anteriormente feita
+        if(typeof camadaRota !== 'undefined'){
+            camadaRota.clearLayers();
+        }
+
+        posicaoUsuario = e.latlng;
+
+        // Atualiza o marcador do usuário
+        if (!userMarker) {
+            userMarker = L.marker(posicaoUsuario, {icon: iconGPS, zIndexOffset: 1000}).addTo(map);
+        } else {
+            userMarker.setLatLng(posicaoUsuario);
+        }
+
+        definindoOrigem = false;
     }
+    else {
+        // Recebe o destino do usuário por meio do click
+        posicaoDestino = e.latlng;
 
-    // Recebe o destino do usuário por meio do click
-    posicaoDestino = e.latlng;
-    
-    // Confirmação de destino
-    var conteudoPopup = `
-        <div style="text-align: center;">
-            <p style="margin: 5px 0;">Navegar até aqui?</p>
-            <button class="btn-ir" onclick="confirmarNavegacao()">IR</button>
-        </div>
-        <style>
-            .btn-ir {
-                background-color: #3553C1; /* Verde */
-                border: none;
-                color: white;
-                padding: 8px 20px;
-                text-align: center;
-                text-decoration: none;
-                display: inline-block;
-                font-size: 14px;
-                margin: 4px 2px;
-                cursor: pointer;
-                border-radius: 4px;
-                font-weight: bold;
-            }
-        </style>
-        
-        `;
+        // Confirmação de destino
+        var conteudoPopup = `
+            <div style="text-align: center;">
+                <p style="margin: 5px 0;">Navegar até aqui?</p>
+                <button class="btn-ir" onclick="confirmarNavegacao()">IR</button>
+            </div>
+            <style>
+                .btn-ir {
+                    background-color: #3553C1; /* Verde */
+                    border: none;
+                    color: white;
+                    padding: 8px 20px;
+                    text-align: center;
+                    text-decoration: none;
+                    display: inline-block;
+                    font-size: 14px;
+                    margin: 4px 2px;
+                    cursor: pointer;
+                    border-radius: 4px;
+                    font-weight: bold;
+                }
+            </style>
+            
+            `;
 
-    L.popup()
-        .setLatLng(posicaoDestino)
-        .setContent(conteudoPopup)
-        .openOn(map);
+        L.popup()
+            .setLatLng(posicaoDestino)
+            .setContent(conteudoPopup)
+            .openOn(map);
 
-    // Window para o html do popup
-    window.confirmarNavegacao = function() {
-        // Fecha o popup
-        map.closePopup();
+        // Window para o html do popup
+        window.confirmarNavegacao = function() {
+            // Fecha o popup
+            map.closePopup();
 
-        // Adiciona um marcador no destino
-        L.marker(posicaoDestino).addTo(camadaRota);
+            // Adiciona um marcador no destino
+            L.marker(posicaoDestino).addTo(camadaRota);
 
-        calcularRota(posicaoUsuario, posicaoDestino);
+            calcularRota(posicaoUsuario, posicaoDestino);
+
+            definindoOrigem = true;
+        }
     }
 });
