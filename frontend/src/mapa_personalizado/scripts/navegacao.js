@@ -1,10 +1,9 @@
-// --- VARIÁVEIS DE CONTROLE ---
 var userMarker = null;      // Marcador do usuário
 var posicaoUsuario = null;  // {lat, lng} atual
 var posicaoDestino = null;  // {lat, lng} do destino
 var ultimaPosicaoCalc = null;
 
-// --- ÍCONE DO USUÁRIO ---
+// Icon do usuário
 var iconGPS = L.divIcon({
     className: 'css-icon',
     html: '<div class="gps-ring"></div><div class="gps-marker" style="width:10px;height:10px;"></div>',
@@ -12,7 +11,34 @@ var iconGPS = L.divIcon({
     iconAnchor: [10, 10]
 });
 
-// --- CHAMADA DA API JAVA ---
+// API java
+function desenharRota(ghaphResponse, pontoB){
+    // Limpa rota anterior
+    camadaRota.clearLayers();
+
+    var caminhos = ghaphResponse.paths[0];
+    var coordenadas = caminhos.points.coordinates;
+
+    // Converter coordenadas do graphhopper para leaflet
+    const latLngs = coordenadas.map(coord => [coord[1], coord[0]]);
+
+    // Desenha a rota
+    var desenhoRota = L.polyline(latLngs, {
+        color: '#3553C1', 
+        weight: 4,
+        opacity: 1,
+        lineJoin: 'round'
+    }).addTo(camadaRota);
+
+    // Adiciona marcador final fixo no final da rota
+    if (pontoB) L.marker(pontoB).addTo(camadaRota);
+
+    // map.fitBounds(desenhoRota.getBounds(), {
+    //     padding: [50, 50],
+    //     maxZoom: 20
+    // });
+}
+
 function calcularRota(pontoA, pontoB) {
     // URL da API local do GraphHopper
     let modoAtual = 'pedestrian'
@@ -22,29 +48,20 @@ function calcularRota(pontoA, pontoB) {
                 `point=${pontoA.lat},${pontoA.lng}` +
                 `&point=${pontoB.lat},${pontoB.lng}` +
                 `&profile=${modoAtual}` +
-                `&points_encoded=false`;
+                `&points_encoded=false` +
+                `&locale=pt_BR`;
 
     fetch(url)
         .then(response => response.json())
         .then(data => {
-            // Limpa rota anterior
-            camadaRota.clearLayers();
-
             if (!data.paths || data.paths.length === 0) {
                 console.error("Nenhuma rota encontrada.");
                 return;
             }
 
-            var caminho = data.paths[0].points.coordinates;
-            var latlngs = caminho.map(coord => [coord[1], coord[0]]);
+            desenharRota(data, pontoB);
+
             var distanciaMetros = data.paths[0].distance;
-
-            // Desenha a rota
-            L.polyline(latlngs, {color: 'blue', weight: 4}).addTo(camadaRota);
-
-            // Adiciona marcador final fixo na rota
-            L.marker(pontoB).addTo(camadaRota);
-            
             painelDinamico(distanciaMetros);
             console.log(`Distância: ${Math.round(distanciaMetros)} metros`);
         })
@@ -70,7 +87,7 @@ function painelDinamico(metros) {
             textoDistancia.innerText = Math.round(metros) + " m";
         }
         else {
-            texto.innerText = (metros / 1000).toFixed(1) + " km";
+            textoDistancia.innerText = (metros / 1000).toFixed(1) + " km";
         }
     }
 }
@@ -127,7 +144,7 @@ function encerrarNavegacao() {
 
 var definindoOrigem = true;
 
-// --- INTERAÇÃO COM USUÁRIO ---
+// DEV 
 map.on('click', function(e) {
     if(definindoOrigem){
         // Limpa a rota anteriormente feita
@@ -194,3 +211,68 @@ map.on('click', function(e) {
         }
     }
 });
+
+// --- MEXER COM O TECLADO ---
+const passoMovimento = 0.00002; 
+const teclasPressionadas = {};
+
+document.addEventListener('keydown', function(event) {
+    teclasPressionadas[event.key] = true;
+});
+
+document.addEventListener('keyup', function(event) {
+    teclasPressionadas[event.key] = false;
+});
+
+setInterval(function() {
+    if (!posicaoUsuario || !userMarker) return;
+
+    let novaLat = posicaoUsuario.lat;
+    let novaLng = posicaoUsuario.lng;
+    let moveu = false;
+    
+    // Cima
+    if (teclasPressionadas['ArrowUp'] || teclasPressionadas['w'] || teclasPressionadas['W']) {
+        novaLat += passoMovimento;
+        moveu = true;
+    }
+    // Baixo
+    if (teclasPressionadas['ArrowDown'] || teclasPressionadas['s'] || teclasPressionadas['S']) {
+        novaLat -= passoMovimento;
+        moveu = true;
+    }
+    // Esquerda
+    if (teclasPressionadas['ArrowLeft'] || teclasPressionadas['a'] || teclasPressionadas['A']) {
+        novaLng -= passoMovimento;
+        moveu = true;
+    }
+    // Direita
+    if (teclasPressionadas['ArrowRight'] || teclasPressionadas['d'] || teclasPressionadas['D']) {
+        novaLng += passoMovimento;
+        moveu = true;
+    }
+
+    if (moveu) {
+        posicaoUsuario = L.latLng(novaLat, novaLng);
+        userMarker.setLatLng(posicaoUsuario);
+        
+        map.panTo(posicaoUsuario); 
+
+        if (posicaoDestino) {
+            var dist = 0;
+            if (ultimaPosicaoCalc) {
+                dist = posicaoUsuario.distanceTo(ultimaPosicaoCalc);
+            }
+
+            if (!ultimaPosicaoCalc || dist > 10) {
+                calcularRota(posicaoUsuario, posicaoDestino);
+                ultimaPosicaoCalc = posicaoUsuario; 
+            } else {
+                // Apenas atualiza o painel
+                let distDestino = posicaoUsuario.distanceTo(posicaoDestino);
+                painelDinamico(distDestino);
+            }
+        }
+    }
+
+}, 50);

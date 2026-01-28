@@ -14,14 +14,45 @@ var map = L.map('map', {
     maxBoundsViscosity: 1.0
 });
 
-// Adiciona imagem base do mapa (Tiles locais)
-L.tileLayer('tiles/png/{z}/{x}/{y}.png', {
+// Camadas
+L.tileLayer('documents/tiles/level_0/base/{z}/{x}/{y}.png', {
     minZoom: 17,
     maxZoom: 20,
     tms: false,
     attribution: 'Mapa UNIPE'
 }).addTo(map);
 
-// --- LÓGICA DE ROTEAMENTO (GraphHopper) ---
+var camadasIndoor = {
+    0: L.tileLayer('documents/tiles/level_0/{z}/{x}/{y}.png', { 
+        minZoom: 17, maxZoom: 20, tms: false, 
+        opacity: 1, maxBounds: limitesDoCampus, maxBoundsViscosity: 1.0
+    }),
+    1: L.tileLayer('documents/tiles/level_1/{z}/{x}/{y}.png', { 
+        minZoom: 17, maxZoom: 20, tms: false, 
+        opacity: 1, maxBounds: limitesDoCampus, maxBoundsViscosity: 1.0
+    }),
+    2: L.tileLayer('documents/tiles/level_2/{z}/{x}/{y}.png', { 
+        minZoom: 17, maxZoom: 20, tms: false, 
+        opacity: 1, maxBounds: limitesDoCampus, maxBoundsViscosity: 1.0
+    }),
+};
+
+// Roteamento
 var camadaRota = L.layerGroup().addTo(map);
 var pontos = [];
+
+function mudarAndar(andar){
+
+    if(!camadasIndoor[andar]) return;
+    console.log(`Mudando visualização para o andar: ${andar}`);
+
+    Object.values(camadasIndoor).forEach(camada => {
+        if (map.hasLayer(camada)) {
+            map.removeLayer(camada);
+        }
+    });
+
+    camadasIndoor[andar].addTo(map);
+
+    andarAtual = andar;
+}
