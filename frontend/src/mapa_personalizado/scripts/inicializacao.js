@@ -1,10 +1,12 @@
 // --- DADOS E CONFIGURAÇÕES ---
 var limitesDoCampus = L.latLngBounds(
-    [-7.16353530137493, -34.85958937363623], // Canto Inferior Esquerdo
-    [-7.155443330743842, -34.84868800422955]  // Canto Superior Direito
+    // Canto Inferior Esquerdo
+    [-7.16353530137493, -34.85958937363623],
+    // Canto Superior Direito
+    [-7.155443330743842, -34.84868800422955]  
 );
 
-// --- INICIALIZAÇÃO DO MAPA ---
+// Inicialização do mapa
 var map = L.map('map', {
     center: [-7.159, -34.855],
     zoom: 18,
@@ -14,16 +16,17 @@ var map = L.map('map', {
     maxBoundsViscosity: 1.0
 });
 
-// Camadas
+// Renderização do mapa
 L.tileLayer('documents/tiles/level_0/base/{z}/{x}/{y}.png', {
     minZoom: 17,
     maxZoom: 20,
     tms: false,
-    attribution: 'Mapa UNIPE'
+    attribution: '© Unitech - Mapa UNIPÊ'
 }).addTo(map);
 
+// Camadas
 var camadasIndoor = {
-    0: L.tileLayer('documents/tiles/level_0/{z}/{x}/{y}.png', { 
+    0: L.tileLayer('documents/tiles/level_0/classes/{z}/{x}/{y}.png', { 
         minZoom: 17, maxZoom: 20, tms: false, 
         opacity: 1, maxBounds: limitesDoCampus, maxBoundsViscosity: 1.0
     }),
@@ -37,12 +40,10 @@ var camadasIndoor = {
     }),
 };
 
-// Roteamento
 var camadaRota = L.layerGroup().addTo(map);
-var pontos = [];
 
+var andarAtual = 0;
 function mudarAndar(andar){
-
     if(!camadasIndoor[andar]) return;
     console.log(`Mudando visualização para o andar: ${andar}`);
 
@@ -56,3 +57,12 @@ function mudarAndar(andar){
 
     andarAtual = andar;
 }
+
+var locais = [];
+
+fetch('documents/data/pontos_unipe.geojson')
+    .then(response => response.json())
+    .then(data => {
+        locais = data.features;
+        console.log("Destinos carregados:", locais.length);
+    }).catch(err => console.error("Erro ao carregar destinos:", err));

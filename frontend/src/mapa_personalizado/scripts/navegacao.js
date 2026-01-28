@@ -16,11 +16,11 @@ function desenharRota(ghaphResponse, pontoB){
     // Limpa rota anterior
     camadaRota.clearLayers();
 
-    var caminhos = ghaphResponse.paths[0];
-    var coordenadas = caminhos.points.coordinates;
+    var paths = ghaphResponse.paths[0];
+    var coordinates = paths.points.coordinates;
 
     // Converter coordenadas do graphhopper para leaflet
-    const latLngs = coordenadas.map(coord => [coord[1], coord[0]]);
+    const latLngs = coordinates.map(coord => [coord[1], coord[0]]);
 
     // Desenha a rota
     var desenhoRota = L.polyline(latLngs, {
@@ -30,13 +30,15 @@ function desenharRota(ghaphResponse, pontoB){
         lineJoin: 'round'
     }).addTo(camadaRota);
 
+    if (!ultimaPosicaoCalc) {
+        map.fitBounds(desenhoRota.getBounds(), {
+            padding: [50, 50],
+            maxZoom: 19
+        });
+    }
+
     // Adiciona marcador final fixo no final da rota
     if (pontoB) L.marker(pontoB).addTo(camadaRota);
-
-    // map.fitBounds(desenhoRota.getBounds(), {
-    //     padding: [50, 50],
-    //     maxZoom: 20
-    // });
 }
 
 function calcularRota(pontoA, pontoB) {
@@ -102,54 +104,48 @@ function encerrarNavegacao() {
     ultimaPosicaoCalc = null;
 }
 
-// --- MONITORAMENTO GPS ---
-// if (navigator.geolocation) {
-//     navigator.geolocation.watchPosition(
-//         function(pos){
-//             var lat = pos.coords.latitude;
-//             var lng = pos.coords.longitude;
-//             posicaoUsuario = L.latLng(lat, lng);
+// Pontos de destino
+function selecionarLocal(termoBusca){
+    const localEncontrado = locais.find(feature => 
+        feature.properties.nome.toLowerCase() === termoBusca.toLowerCase()
+    );
 
-//             // Cria ou atualiza o ícone do usuário no mapa
-//             if (!userMarker) {
-//                 userMarker = L.marker(posicaoUsuario, {icon: iconGPS, zIndexOffset: 1000}).addTo(map);
-//                 map.setView(posicaoUsuario, 18);
-//             } else {
-//                 userMarker.setLatLng(posicaoUsuario);
-//             }
+    if (!localEncontrado) {
+        alert("Local não encontrado!");
+        return;
+    }
 
-//             // Se já existe um destino, atualiza a rota automaticamente
-//             if (posicaoDestino) {
-//                 // Calcula distância desde o último cálculo
-//                 var dist = 0;
-//                 if (ultimaPosicaoCalc) {
-//                     dist = posicaoUsuario.distanceTo(ultimaPosicaoCalc);
-//                 }
-//                 // Só recalcula se andou mais de 5 metros ou se é a primeira vez
-//                 if (!ultimaPosicaoCalc || dist > 5) {
-//                     calcularRota(posicaoUsuario, posicaoDestino);
-//                     ultimaPosicaoCalc = posicaoUsuario; // Atualiza a referência
-//                 }
-//             }
-//         },
-//         function(err) {
-//             console.error("Erro GPS:", err);
-//         },
-//         { enableHighAccuracy: true, maximumAge: 1000, timeout: 5000 }
-//     );
-// }
-// else {
-//     alert("Seu navegador não suporta GPS.");
-// }
+    const coordenadas = localEncontrado.geometry.coordinates;
+    const latLngDestino = L.latLng(coordenadas[1], coordenadas[0]); 
+    const andarDestino = localEncontrado.properties.level;
 
+    if(andarDestino !== andarAtual) mudarAndar(andarDestino);
+
+    posicaoDestino = latLngDestino;
+
+    L.marker(posicaoDestino)
+        .bindPopup(`<b>${localEncontrado.properties.nome}</b><br>Andar: ${andarDestino}`)
+        .addTo(camadaRota)
+        .openPopup();
+
+    if (posicaoUsuario) {
+        calcularRota(posicaoUsuario, posicaoDestino);
+    } else {
+        alert("Aguardando localização GPS...");
+    }
+}
+
+
+
+
+// DEV - TESTES
 var definindoOrigem = true;
-
-// DEV 
 map.on('click', function(e) {
     if(definindoOrigem){
         // Limpa a rota anteriormente feita
         if(typeof camadaRota !== 'undefined'){
             camadaRota.clearLayers();
+            encerrarNavegacao();
         }
 
         posicaoUsuario = e.latlng;
@@ -202,11 +198,7 @@ map.on('click', function(e) {
             // Fecha o popup
             map.closePopup();
 
-            // Adiciona um marcador no destino
-            L.marker(posicaoDestino).addTo(camadaRota);
-
             calcularRota(posicaoUsuario, posicaoDestino);
-
             definindoOrigem = true;
         }
     }
@@ -267,12 +259,48 @@ setInterval(function() {
             if (!ultimaPosicaoCalc || dist > 10) {
                 calcularRota(posicaoUsuario, posicaoDestino);
                 ultimaPosicaoCalc = posicaoUsuario; 
-            } else {
-                // Apenas atualiza o painel
-                let distDestino = posicaoUsuario.distanceTo(posicaoDestino);
-                painelDinamico(distDestino);
             }
         }
     }
 
 }, 50);
+
+// --- MONITORAMENTO GPS ---
+// if (navigator.geolocation) {
+//     navigator.geolocation.watchPosition(
+//         function(pos){
+//             var lat = pos.coords.latitude;
+//             var lng = pos.coords.longitude;
+//             posicaoUsuario = L.latLng(lat, lng);
+
+//             // Cria ou atualiza o ícone do usuário no mapa
+//             if (!userMarker) {
+//                 userMarker = L.marker(posicaoUsuario, {icon: iconGPS, zIndexOffset: 1000}).addTo(map);
+//                 map.setView(posicaoUsuario, 18);
+//             } else {
+//                 userMarker.setLatLng(posicaoUsuario);
+//             }
+
+//             // Se já existe um destino, atualiza a rota automaticamente
+//             if (posicaoDestino) {
+//                 // Calcula distância desde o último cálculo
+//                 var dist = 0;
+//                 if (ultimaPosicaoCalc) {
+//                     dist = posicaoUsuario.distanceTo(ultimaPosicaoCalc);
+//                 }
+//                 // Só recalcula se andou mais de 5 metros ou se é a primeira vez
+//                 if (!ultimaPosicaoCalc || dist > 5) {
+//                     calcularRota(posicaoUsuario, posicaoDestino);
+//                     ultimaPosicaoCalc = posicaoUsuario; // Atualiza a referência
+//                 }
+//             }
+//         },
+//         function(err) {
+//             console.error("Erro GPS:", err);
+//         },
+//         { enableHighAccuracy: true, maximumAge: 1000, timeout: 5000 }
+//     );
+// }
+// else {
+//     alert("Seu navegador não suporta GPS.");
+// }
