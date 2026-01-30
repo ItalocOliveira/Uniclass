@@ -82,14 +82,14 @@ fetch('documents/data/pontos_unipe.geojson')
     .then(response => response.json())
     .then(data => {
         locais = data.features;
-        criarLabelsNoMapa(locais);
+        gerarLabelsNoMapa(locais);
         mudarAndar(andarAtual);
 
         console.log("Sistema de locais inicializado.");
 
     }).catch(err => console.error("Erro ao carregar destinos:", err));
 
-function criarLabelsNoMapa(features) {
+function gerarLabelsNoMapa(features) {
     features.forEach(local => {
         // Retirando informações do geojson
         var coords = local.geometry.coordinates; 

@@ -136,7 +136,9 @@ function selecionarLocal(termoBusca){
 }
 
 
-
+map.on('zoomend', function() {
+    mudarAndar(andarAtual);
+});
 
 // DEV - TESTES
 var definindoOrigem = true;
