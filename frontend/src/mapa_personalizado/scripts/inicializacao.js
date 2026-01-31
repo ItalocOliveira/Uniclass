@@ -41,15 +41,16 @@ var camadasIndoor = {
         opacity: 1, maxBounds: limitesDoCampus, maxBoundsViscosity: 1.0
     }),
 };
-
 var camadasLabels = {
     0: L.layerGroup(), 
     1: L.layerGroup(),
     2: L.layerGroup()
 };
 
+var camadaComercios = L.layerGroup();
 var camadaRota = L.layerGroup().addTo(map);
 
+// Lógica de andar
 var andarAtual = 0;
 function mudarAndar(andar){
     andarAtual = andar;
@@ -60,10 +61,14 @@ function mudarAndar(andar){
     Object.values(camadasLabels).forEach(layer => {
         if (map.hasLayer(layer)) map.removeLayer(layer);
     });
+    if (map.hasLayer(camadaComercios)) map.removeLayer(camadaComercios);
 
+    if (map.getZoom() >= 17) {
+        camadaComercios.addTo(map);
+    }
     if (map.getZoom() < 19) {
-        console.log("Zoom insuficiente para mostrar detalhes internos.");
-        return;
+        console.log("Zoom insuficiente para detalhes internos, mantendo apenas gerais.");
+        return; 
     }
 
     if (camadasIndoor[andar]) {
@@ -73,23 +78,51 @@ function mudarAndar(andar){
         camadasLabels[andar].addTo(map);
     }
 
-    console.log(`Visualização atualizada para Andar ${andar} (Com Zoom Máximo)`);
+    console.log(`Visualização completa: Andar ${andar}`);
 }
 
 var locais = [];
+const detalhesComercios = {
+    "Cantina_CT": {
+        img: "documents/imgs/cantina-ct-icon.jpg",
+        desc: "Salgados variados, sucos naturais e café. Aberto das 07h às 22h."
+    },
+    "Tapiocabana": {
+        img: "documents/imgs/tapiocabana-icon.jpg",
+        desc: "Salgados variados, sucos naturais e café. Aberto das 07h às 22h."
+    },
+    "Restaurante - Piscina": {
+        img: "documents/imgs/restaurante-piscina-icon.png",
+        desc: "Salgados variados, sucos naturais e café. Aberto das 07h às 22h."
+    },
+    "Minaçaí": {
+        img: "minacai-icon.jpg",
+        desc: "Salgados variados, sucos naturais e café. Aberto das 07h às 22h."
+    },
+    "Pizzaria": {
+        img: "documents/imgs/pizzaria-icon.png",
+        desc: "Salgados variados, sucos naturais e café. Aberto das 07h às 22h."
+    },
+    "Comércio - Museu": {
+        img: "documents/imgs/comercio-museu-icon.jpg",
+        desc: "Salgados variados, sucos naturais e café. Aberto das 07h às 22h."
+    }
+};
 
 fetch('documents/data/pontos_unipe.geojson')
     .then(response => response.json())
     .then(data => {
-        locais = data.features;
-        criarLabelsNoMapa(locais);
-        mudarAndar(andarAtual);
+        locais = data.features; 
 
-        console.log("Sistema de locais inicializado.");
+        gerarLabelsNoMapa(locais);
+        
+        mudarAndar(andarAtual); 
+        
+        console.log(`Carregados ${locais.length} locais.`);
+    })
+    .catch(err => console.error("Erro ao carregar locais:", err));
 
-    }).catch(err => console.error("Erro ao carregar destinos:", err));
-
-function criarLabelsNoMapa(features) {
+function gerarLabelsNoMapa(features) {
     features.forEach(local => {
         // Retirando informações do geojson
         var coords = local.geometry.coordinates; 
@@ -113,9 +146,26 @@ function criarLabelsNoMapa(features) {
             interactive: false
         });
 
+        var isComercio = (props.tipo && props.tipo.toLowerCase() === "comercio") || (props.layer && props.layer === "predios_comerciais");
+
         // Adiciona o mark na camada devida
-        if (camadasLabels[andar]) {
-            camadasLabels[andar].addLayer(labelMarker);
+        if (isComercio) {
+            labelMarker = L.marker(latLng, {
+                icon: L.icon({
+                    iconUrl: 'documents/assets/comercio-icon.png',
+                    iconSize: [32, 32], 
+                    iconAnchor: [16, 30],
+                    popupAnchor: [0, -32]
+                }),
+                interactive: true // Permite clicar na imagem para ver o nome
+            });
+            labelMarker.bindPopup(`<b>${props.nome}</b>`);
+            camadaComercios.addLayer(labelMarker);
+        }
+        else {
+            if (camadasLabels[andar]) {
+                camadasLabels[andar].addLayer(labelMarker);
+            }
         }
     });
 }

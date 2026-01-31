@@ -3,6 +3,34 @@
     width: 100%; 
 }
 
+/* Estilo do conteúdo do Popup */
+.popup-comercio {
+    text-align: center;
+    width: 200px; /* Largura fixa para o balão */
+}
+
+.popup-comercio h3 {
+    margin: 0 0 5px 0;
+    color: #3553C1;
+    font-size: 16px;
+}
+
+.popup-comercio img {
+    width: 100%;       /* Ocupa toda a largura do container */
+    height: 120px;     /* Altura fixa para padronizar */
+    object-fit: cover; /* Corta a imagem para não esticar */
+    border-radius: 4px;
+    margin-bottom: 8px;
+    border: 1px solid #ddd;
+}
+
+.popup-comercio p {
+    font-size: 13px;
+    color: #555;
+    margin: 0;
+    line-height: 1.4;
+}
+
 .label-tooltip {
     background: rgba(255, 255, 255, 0.9);
     border: 1px solid #999;
