@@ -4,75 +4,113 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mapa do Campus - Navegação</title>
-    
+
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    
     <link rel="stylesheet" href="./css/style-map.css">
+
 </head>
+
 <body>
-    
+
+    <!-- Painéis existentes -->
     <div id="painel-distancia">
-        Restam: <span id="distancia-texto"></span>
+        Restam <span id="distancia-texto"></span>
     </div>
+
     <div id="painel-chegada" style="display: none;">
         <div>
-            <span style="font-size: 24px;"></span><br>
             <strong>Você chegou!</strong>
         </div>
-        <button id="painel-chegada-button" onclick="encerrarNavegacao()" style="margin-top:10px; padding:5px 10px; cursor:pointer;">
+        <button onclick="encerrarNavegacao()" style="margin-top:10px; padding:5px 10px; cursor:pointer;">
             Encerrar navegação
         </button>
     </div>
 
-    <div style="position: absolute; top: 10px; left: 50px; z-index: 2000; background: white; padding: 10px; border-radius: 5px; box-shadow: 0 0 10px rgba(0,0,0,0.2);">
-        <h4 style="margin: 0 0 5px 0;">Navegação - TESTE</h4>
-        
-        <select id="seletorLocais" style="padding: 5px; width: 200px;">
+    <!-- BOTÃO NAVEGADOR -->
+    <button id="btnNavegador" onclick="toggleNavegador()">
+        Navegador
+    </button>
+
+    <!-- POP-UP -->
+    <div id="popupNavegador">
+        <h4>Navegação</h4>
+
+        <select id="seletorLocais">
             <option value="">Selecione um destino</option>
         </select>
-        
-        <button onclick="irParaSelecionado()" style="padding: 5px; background: #3553C1; color: white; border: none; cursor: pointer;">IR</button>
-        
-        <hr style="margin: 10px 0;">
-        
+
+        <button class="btn-ir" onclick="irParaSelecionado()">Iniciar Rota</button>
+
+        <hr>
+
         <small>Camadas:</small><br>
         <button onclick="mudarAndar(0)">Térreo</button>
         <button onclick="mudarAndar(1)">1º Andar</button>
         <button onclick="mudarAndar(2)">2º Andar</button>
     </div>
 
+    <!-- INDICADOR DE ANDAR -->
+    <div id="indicadorAndar">
+        Andar: <span id="andarAtualTexto">0</span>
+    </div>
+
+    <!-- MAPA -->
+    <div id="map"></div>
+
+    <!-- SCRIPTS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="./scripts/inicializacao.js"></script>
+    <script src="./scripts/navegacao.js"></script>
+
     <script>
+        function toggleNavegador() {
+            document.getElementById('popupNavegador').classList.toggle('aberto');
+        }
+
         setTimeout(() => {
             const select = document.getElementById('seletorLocais');
-            
-            if(typeof locais !== 'undefined' && locais.length > 0) {
+
+            if (typeof locais !== 'undefined' && locais.length > 0) {
                 locais.forEach(local => {
                     const option = document.createElement('option');
                     option.value = local.properties.nome;
-                    option.text = `${local.properties.nome} (Lvl ${local.properties.level})`;
+                    option.text = `${local.properties.nome} (Andar: ${local.properties.level})`;
                     select.appendChild(option);
                 });
-            } else {
-                console.warn("Ainda não carregou os locais ou variável 'locais' não existe.");
             }
         }, 1000);
 
         function irParaSelecionado() {
-            const nomeSala = document.getElementById('seletorLocais').value;
-            if(nomeSala) {
-                selecionarLocal(nomeSala);
-            } else {
+            const select = document.getElementById('seletorLocais');
+            const nomeSala = select.value;
+
+            if (!nomeSala) {
                 alert("Selecione alguma sala na lista!");
+                return;
+            }
+
+            // Inicia navegação normal
+            selecionarLocal(nomeSala);
+
+            // Fecha menu e esconde botão
+            document.getElementById('popupNavegador').classList.remove('aberto');
+            document.getElementById('btnNavegador').style.display = 'none';
+
+            // Mostra andar atual
+            const local = locais.find(l => l.properties.nome === nomeSala);
+            if (local) {
+                document.getElementById('andarAtualTexto').innerText = local.properties.level;
+                document.getElementById('indicadorAndar').style.display = 'block';
+
+                mudarAndar(parseInt(local.properties.level));
             }
         }
+
+        function encerrarNavegacao() {
+            document.getElementById('indicadorAndar').style.display = 'none';
+            document.getElementById('btnNavegador').style.display = 'block';
+        }
     </script>
-
-    <div id="map"></div>
-
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
-    <script src="./scripts/inicializacao.js"></script>
-    <script src="./scripts/navegacao.js"></script>
 
 </body>
 </html>
