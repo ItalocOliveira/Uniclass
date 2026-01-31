@@ -61,7 +61,7 @@ function mudarAndar(andar){
         if (map.hasLayer(layer)) map.removeLayer(layer);
     });
 
-    if (map.getZoom() < 20) {
+    if (map.getZoom() < 19) {
         console.log("Zoom insuficiente para mostrar detalhes internos.");
         return;
     }

@@ -33,7 +33,8 @@ function desenharRota(ghaphResponse, pontoB){
     if (!ultimaPosicaoCalc) {
         map.fitBounds(desenhoRota.getBounds(), {
             padding: [50, 50],
-            maxZoom: 19
+            maxZoom: 20,
+            animate: true
         });
     }
 
