@@ -3,33 +3,109 @@
     width: 100%; 
 }
 
-/* Estilo do conteúdo do Popup */
+/* ===============================
+   POPUP COMÉRCIO
+   =============================== */
+
 .popup-comercio {
     text-align: center;
-    width: 200px; /* Largura fixa para o balão */
+    width: 230px;
+    font-family: Arial, sans-serif;
 }
 
 .popup-comercio h3 {
-    margin: 0 0 5px 0;
+    margin: 6px 0 8px;
     color: #3553C1;
     font-size: 16px;
 }
 
 .popup-comercio img {
-    width: 100%;       /* Ocupa toda a largura do container */
-    height: 120px;     /* Altura fixa para padronizar */
-    object-fit: cover; /* Corta a imagem para não esticar */
-    border-radius: 4px;
-    margin-bottom: 8px;
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    margin-bottom: 6px;
     border: 1px solid #ddd;
+    border-radius: 12px;
 }
 
-.popup-comercio p {
+/* Lista rica da descrição */
+.popup-lista {
+    list-style: none;
+    padding: 0;
+    margin: 6px 0 10px;
+    text-align: left;
     font-size: 13px;
-    color: #555;
-    margin: 0;
-    line-height: 1.4;
+    color: #444;
 }
+
+.popup-lista li {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 4px;
+}
+
+/* Status aberto / fechado */
+.popup-status {
+    margin: 8px 0;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.popup-status.aberto {
+    background-color: #e6f4ea;
+    color: #137333;
+}
+
+/* Ações do popup */
+.popup-acoes {
+    display: flex;
+    gap: 6px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.popup-acoes button {
+    flex: 1 1 auto;
+    border: none;
+    border-radius: 12px;
+    padding: 6px 8px;
+    font-size: 12px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.btn-primario {
+    background-color: #1a73e8;
+    color: #fff;
+}
+
+.btn-secundario {
+    background-color: #f1f3f4;
+    color: #333;
+}
+
+.btn-primario:hover,
+.btn-secundario:hover {
+    opacity: 0.9;
+}
+
+/* Wrapper do popup Leaflet */
+.leaflet-popup-content-wrapper {
+    border-radius: 18px;
+    padding: 10px;
+}
+
+.leaflet-popup-content {
+    margin: 0;
+}
+
+/* ===============================
+   LABELS E MARCADORES
+   =============================== */
 
 .label-tooltip {
     background: rgba(255, 255, 255, 0.9);
@@ -45,37 +121,45 @@
     background: transparent;
     border: none;
     box-shadow: none;
-    /* Garante que o conteúdo interno possa ser centralizado */
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centraliza horizontalmente */
-    justify-content: flex-end; /* Alinha tudo na parte de baixo */
-    white-space: nowrap; /* Impede que o texto quebre linha */
+    align-items: center;
+    justify-content: flex-end;
+    white-space: nowrap;
 }
 
-/* O texto do rótulo */
 .label-texto {
     color: #333;
     font-weight: bold;
     font-size: 12px;
     font-family: Arial, sans-serif;
-    /* Borda branca para destacar o texto do fundo */
-    text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px #fff, 1px -1px #fff, -1px 1px #fff;
-    margin-bottom: 2px; /* Espaço entre o texto e a bolinha */
+    text-shadow:
+        2px 0 0 #fff,
+        -2px 0 0 #fff,
+        0 2px 0 #fff,
+        0 -2px 0 #fff,
+        1px 1px #fff,
+        -1px -1px #fff,
+        1px -1px #fff,
+        -1px 1px #fff;
+    margin-bottom: 2px;
 }
 
-/* A bolinha indicadora */
 .ponto-interesse {
-    width: 8px;  /* Um pouco maior para melhor visualização */
+    width: 8px;
     height: 8px;
     background-color: #333;
-    border: 2px solid #fff; /* Borda branca para destacar */
+    border: 2px solid #fff;
     border-radius: 50%;
-    box-sizing: border-box; /* Garante que a borda não aumente o tamanho total */
+    box-sizing: border-box;
 }
 
-/* Estilização geral dos paineis*/
-#painel-distancia, #painel-chegada {
+/* ===============================
+   PAINÉIS
+   =============================== */
+
+#painel-distancia,
+#painel-chegada {
     position: fixed;
     bottom: 30px;
     left: 50%;
@@ -89,37 +173,34 @@
     text-align: center;
 }
 
-/* Estilização especifica painel-distancia*/
 #painel-distancia {
     background-color: white;
     color: #333;
     display: none;
 }
 
-/* Estilização especifica painel-chegada*/
 #painel-chegada {
-    background-color: #3553C1; /* Verde Sucesso */
+    background-color: #3553C1;
     color: white;
     min-width: 200px;
     display: none;
 }
 
 #painel-chegada-button {
-    background-color: #1260e0; /* Verde */
+    background-color: #1260e0;
     border: none;
     color: white;
     padding: 8px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
     font-size: 14px;
-    margin: 4px 2px;
     cursor: pointer;
     border-radius: 4px;
     font-weight: bold;
 }
 
-/* Círculo central azul de usuário */
+/* ===============================
+   GPS
+   =============================== */
+
 .gps-marker {
     background-color: #4285F4;
     border: 2px solid white;
@@ -127,27 +208,28 @@
     box-shadow: 0 0 5px rgba(0,0,0,0.3);
 }
 
-/* A animação de pulso ao redor do círculo*/
 .gps-ring {
     border: 3px solid #4285F4;
     border-radius: 30px;
     height: 18px;
     width: 18px;
     position: absolute;
-    left: -5px; /* Ajuste fino para centralizar */
-    top: -5px;  /* Ajuste fino para centralizar */
-    
+    left: -5px;
+    top: -5px;
     animation: pulsate 1s ease-out infinite;
     opacity: 0.0;
 }
 
 @keyframes pulsate {
-    0% { transform: scale(0.1, 0.1); opacity: 0.0; }
+    0% { transform: scale(0.1); opacity: 0.0; }
     50% { opacity: 1.0; }
-    100% { transform: scale(1.2, 1.2); opacity: 0.0; }
+    100% { transform: scale(1.2); opacity: 0.0; }
 }
 
- /* Botões de andar */
+/* ===============================
+   CONTROLE DE ANDARES
+   =============================== */
+
 .floor-control-container {
     background: transparent;
     border: none;
@@ -156,8 +238,8 @@
 
 .floor-btn-group {
     display: flex;
-    flex-direction: column; /* Botões um em cima do outro */
-    gap: 5px; /* Espaço entre eles */
+    flex-direction: column;
+    gap: 5px;
     box-shadow: 0 1px 5px rgba(0,0,0,0.4);
     background: white;
     padding: 5px;
@@ -181,9 +263,8 @@
     background-color: #f0f0f0;
 }
 
-/* Estado Ativo (O andar selecionado fica azul) */
 .floor-btn.active {
-    background-color: #3553C1; /* Azul Uniclass */
+    background-color: #3553C1;
     color: white;
     border-color: #3553C1;
 }
