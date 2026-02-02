@@ -194,8 +194,3 @@ fetch('documents/data/pontos_unipe.geojson')
         console.log(`${locais.length} locais carregados.`);
     })
     .catch(err => console.error("Erro ao carregar locais:", err));
-
-
-
-
-
