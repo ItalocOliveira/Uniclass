@@ -44,6 +44,7 @@ var camadasLabels = {
     1: L.layerGroup(),
     2: L.layerGroup()
 };
+
 const detalhesComercios = {
     "Cantina_CT": {
         img: "documents/imgs/cantina-ct-icon.jpg",
@@ -171,6 +172,7 @@ const detalhesComercios = {
         `
     }
 };
+
 
 
 
