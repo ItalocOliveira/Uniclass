@@ -19,7 +19,7 @@
             <span style="font-size: 24px;"></span><br>
             <strong>Você chegou!</strong>
         </div>
-        <button id="painel-chegada-button" onclick="encerrarNavegacao()" style="margin-top:10px; padding:5px 10px; cursor:pointer;">
+        <button id="painel-chegada-button" onclick="finishNavigation()" style="margin-top:10px; padding:5px 10px; cursor:pointer;">
             Encerrar navegação
         </button>
     </div>
@@ -36,9 +36,9 @@
         <hr style="margin: 10px 0;">
         
         <small>Camadas:</small><br>
-        <button onclick="mudarAndar(0)">Térreo</button>
-        <button onclick="mudarAndar(1)">1º Andar</button>
-        <button onclick="mudarAndar(2)">2º Andar</button>
+        <button onclick="changeFloor(0)">Térreo</button>
+        <button onclick="changeFloor(1)">1º Andar</button>
+        <button onclick="changeFloor(2)">2º Andar</button>
     </div>
 
     <script>
@@ -60,7 +60,7 @@
         function irParaSelecionado() {
             const nomeSala = document.getElementById('seletorLocais').value;
             if(nomeSala) {
-                selecionarLocal(nomeSala);
+                selectLocation(nomeSala);
             } else {
                 alert("Selecione alguma sala na lista!");
             }
@@ -70,9 +70,13 @@
     <div id="map"></div>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
-    <script src="./scripts/inicializacao-teste.js"></script>
-    <script src="./scripts/navegacao.js"></script>
+    <script src="https://unpkg.com/@mapbox/leaflet-pip@latest/leaflet-pip.min.js"></script>
+    
+    <script src="./scripts/functions.js"></script>
+    <script src="./scripts/initializer.js"></script>
+    <script src="./scripts/navigation.js"></script>
+    <script src="./scripts/dev-functions.js"></script>
+    
 
 </body>
 </html>
