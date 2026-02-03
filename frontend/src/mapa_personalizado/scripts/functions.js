@@ -57,8 +57,8 @@ function renderLabels(features) {
             labelMarker = L.marker(latLng, {
                 icon: L.icon({
                     iconUrl: 'documents/imgs/assets/comercio-icon.png', 
-                    iconSize: [32, 32], 
-                    iconAnchor: [16, 32],
+                    iconSize: [44, 44], 
+                    iconAnchor: [24, 38],
                     popupAnchor: [0, -32]
                 }),
                 interactive: true 
