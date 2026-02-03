@@ -44,32 +44,137 @@ var camadasLabels = {
     1: L.layerGroup(),
     2: L.layerGroup()
 };
+
 const detalhesComercios = {
     "Cantina_CT": {
         img: "documents/imgs/cantina-ct-icon.jpg",
-        desc: "Salgados variados, sucos naturais e café. Aberto das 07h às 22h."
+        desc: `
+            <ul class="popup-lista">
+                <li>🥐 Salgados variados</li>
+                <li>🧃 Sucos naturais</li>
+                <li>☕ Café</li>
+            </ul>
+
+            <div class="popup-status aberto">
+                🕒 Aberto agora · 07h–22h
+            </div>
+
+            <div class="popup-acoes">
+                <button class="btn-primario">📍 Como chegar</button>
+                <button class="btn-secundario">📞 Ligar</button>
+                <button class="btn-secundario">⭐ Ver detalhes</button>
+            </div>
+        `
     },
+
     "Tapiocabana": {
         img: "documents/imgs/tapiocabana-icon.jpg",
-        desc: "Salgados variados, sucos naturais e café. Aberto das 07h às 22h."
+        desc: `
+            <ul class="popup-lista">
+                <li>🌮 Tapiocas doces e salgadas</li>
+                <li>🧀 Recheios variados</li>
+                <li>🥤 Bebidas naturais</li>
+            </ul>
+
+            <div class="popup-status aberto">
+                🕒 Aberto agora · 07h–22h
+            </div>
+
+            <div class="popup-acoes">
+                <button class="btn-primario">📍 Como chegar</button>
+                <button class="btn-secundario">📞 Ligar</button>
+                <button class="btn-secundario">⭐ Ver detalhes</button>
+            </div>
+        `
     },
+
     "Restaurante - Piscina": {
         img: "documents/imgs/restaurante-piscina-icon.jpg",
-        desc: "Salgados variados, sucos naturais e café. Aberto das 07h às 22h."
+        desc: `
+            <ul class="popup-lista">
+                <li>🍽️ Pratos executivos</li>
+                <li>🥗 Refeições completas</li>
+                <li>🥤 Bebidas geladas</li>
+            </ul>
+
+            <div class="popup-status aberto">
+                🕒 Aberto agora · 07h–22h
+            </div>
+
+            <div class="popup-acoes">
+                <button class="btn-primario">📍 Como chegar</button>
+                <button class="btn-secundario">📞 Ligar</button>
+                <button class="btn-secundario">⭐ Ver detalhes</button>
+            </div>
+        `
     },
+
     "Minaçaí": {
         img: "documents/imgs/minacai-icon.jpg",
-        desc: "Salgados variados, sucos naturais e café. Aberto das 07h às 22h."
+        desc: `
+            <ul class="popup-lista">
+                <li>🍧 Açaí e cremes gelados</li>
+                <li>🍓 Acompanhamentos variados</li>
+                <li>🥤 Bebidas naturais</li>
+            </ul>
+
+            <div class="popup-status aberto">
+                🕒 Aberto agora · 07h–22h
+            </div>
+
+            <div class="popup-acoes">
+                <button class="btn-primario">📍 Como chegar</button>
+                <button class="btn-secundario">📞 Ligar</button>
+                <button class="btn-secundario">⭐ Ver detalhes</button>
+            </div>
+        `
     },
+
     "Pizzaria": {
         img: "documents/imgs/pizzaria-icon.jpg",
-        desc: "Salgados variados, sucos naturais e café. Aberto das 07h às 22h."
+        desc: `
+            <ul class="popup-lista">
+                <li>🍕 Pizzas artesanais</li>
+                <li>🍔 Lanches rápidos</li>
+                <li>🥤 Bebidas</li>
+            </ul>
+
+            <div class="popup-status aberto">
+                🕒 Aberto agora · 07h–22h
+            </div>
+
+            <div class="popup-acoes">
+                <button class="btn-primario">📍 Como chegar</button>
+                <button class="btn-secundario">📞 Ligar</button>
+                <button class="btn-secundario">⭐ Ver detalhes</button>
+            </div>
+        `
     },
+
     "Comércio - Museu": {
         img: "documents/imgs/comercio-museu-icon.jpg",
-        desc: "Salgados variados, sucos naturais e café. Aberto das 07h às 22h."
+        desc: `
+            <ul class="popup-lista">
+                <li>🥪 Lanches rápidos</li>
+                <li>🥤 Bebidas</li>
+                <li>🛍️ Souvenirs</li>
+            </ul>
+
+            <div class="popup-status aberto">
+                🕒 Aberto agora · 07h–22h
+            </div>
+
+            <div class="popup-acoes">
+                <button class="btn-primario">📍 Como chegar</button>
+                <button class="btn-secundario">📞 Ligar</button>
+                <button class="btn-secundario">⭐ Ver detalhes</button>
+            </div>
+        `
     }
 };
+
+
+
 
 var camadaComercios = L.layerGroup();
 var camadaRota = L.layerGroup().addTo(map);
@@ -89,8 +194,3 @@ fetch('documents/data/pontos_unipe.geojson')
         console.log(`${locais.length} locais carregados.`);
     })
     .catch(err => console.error("Erro ao carregar locais:", err));
-
-
-
-
-
