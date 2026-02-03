@@ -1,6 +1,5 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import InstituicaoRoutes from './routes/InstituicaoRoutes.ts';
 import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -39,8 +38,6 @@ app.get('/graphhopper/api', async (req, res) => {
         res.status(500).json({ error: 'Erro ao calcular rota' });
     }
 });
-
-app.use('/instituicoes', InstituicaoRoutes);
 
 app.listen(PORT, () => {
     console.log(`🚀 Servidor rodando em http://localhost:${PORT}`);

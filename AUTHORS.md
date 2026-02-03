@@ -9,8 +9,3 @@ Este projeto foi desenvolvido como parte da disciplina Análise e Projeto de Sis
 * **José Victor Da Silva Nascimento** - *Frontend & Design* - [Github](https://github.com/Josevictor125)
 * **Matheus Rodrigues Florêncio** - *Frontend & Design* - [Github](https://github.com/beltrano)
 * **Maycon Douglas dos Santos** - *Frontend* - [Github](https://github.com/)
-
-
-## Agradecimentos Especiais
-
-* Prof. Orientador [Nome]

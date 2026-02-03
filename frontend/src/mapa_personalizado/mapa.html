@@ -19,17 +19,66 @@
             <span style="font-size: 24px;"></span><br>
             <strong>Você chegou!</strong>
         </div>
-        <button id="painel-chegada-button" onclick="encerrarNavegacao()" style="margin-top:10px; padding:5px 10px; cursor:pointer;">
+        <button id="painel-chegada-button" onclick="finishNavigation()" style="margin-top:10px; padding:5px 10px; cursor:pointer;">
             Encerrar navegação
         </button>
     </div>
 
+    <div style="position: absolute; top: 10px; left: 50px; z-index: 2000; background: white; padding: 10px; border-radius: 5px; box-shadow: 0 0 10px rgba(0,0,0,0.2);">
+        <h4 style="margin: 0 0 5px 0;">Navegação - TESTE</h4>
+        
+        <select id="seletorLocais" style="padding: 5px; width: 200px;">
+            <option value="">Selecione um destino</option>
+        </select>
+        
+        <button onclick="goToSelected()" style="padding: 5px; background: #3553C1; color: white; border: none; cursor: pointer;">IR</button>
+        
+        <hr style="margin: 10px 0;">
+        
+        <small>Camadas:</small><br>
+        <button onclick="changeFloor(0)">Térreo</button>
+        <button onclick="changeFloor(1)">1º Andar</button>
+        <button onclick="changeFloor(2)">2º Andar</button>
+    </div>
+
+
+    <!-- Listagem de locais para o menu -->
+    <script>
+        setTimeout(() => {
+            const select = document.getElementById('seletorLocais');
+            
+            if(typeof locais !== 'undefined' && locais.length > 0) {
+                locais.forEach(local => {
+                    const option = document.createElement('option');
+                    option.value = local.properties.nome;
+                    option.text = `${local.properties.nome} (P${local.properties.level})`;
+                    select.appendChild(option);
+                });
+            } else {
+                console.warn("Ainda não carregou os locais ou variável 'locais' não existe.");
+            }
+        }, 1000);
+
+        function goToSelected() {
+            const nomeSala = document.getElementById('seletorLocais').value;
+            if(nomeSala) {
+                selectLocation(nomeSala);
+            } else {
+                alert("Selecione alguma sala na lista!");
+            }
+        }
+    </script>
+
     <div id="map"></div>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
-    <script src="./scripts/inicializacao-mapa.js"></script>
-    <script src="./scripts/navegacao.js"></script>
+    <script src="https://unpkg.com/@mapbox/leaflet-pip@latest/leaflet-pip.min.js"></script>
+    
+    <script src="./scripts/functions.js"></script>
+    <script src="./scripts/initializer.js"></script>
+    <script src="./scripts/navigation.js"></script>
+    <script src="./scripts/dev-functions.js"></script>
+    
 
 </body>
 </html>
