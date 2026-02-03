@@ -11,7 +11,7 @@
 { "type": "Feature", "properties": { "id": 1, "level": 0, "nome": "Comercio do Museu", "tipo": "comercio" }, "geometry": { "type": "Point", "coordinates": [ -34.853439937482044, -7.160425778281414 ] } },
 { "type": "Feature", "properties": { "id": 1, "level": 0, "nome": "Praça das Pedras", "tipo": "turismo" }, "geometry": { "type": "Point", "coordinates": [ -34.853289181386621, -7.159362543283183 ] } },
 { "type": "Feature", "properties": { "id": 1, "level": 0, "nome": "Reitoria", "tipo": "reitoria" }, "geometry": { "type": "Point", "coordinates": [ -34.852561420454293, -7.15936717281162 ] } },
-{ "type": "Feature", "properties": { "id": 1, "level": 0, "nome": "Eva", "tipo": null }, "geometry": { "type": "Point", "coordinates": [ -34.854450680511448, -7.160416025304069 ] } },
+{ "type": "Feature", "properties": { "id": 1, "level": 0, "nome": "Eva", "tipo": "eva" }, "geometry": { "type": "Point", "coordinates": [ -34.854450680511448, -7.160416025304069 ] } },
 { "type": "Feature", "properties": { "id": 1, "level": 0, "nome": "Biblioteca", "tipo": "biblioteca" }, "geometry": { "type": "Point", "coordinates": [ -34.853936218990299, -7.160239473469627 ] } },
 { "type": "Feature", "properties": { "id": 1, "level": 0, "nome": "Museu", "tipo": "museu" }, "geometry": { "type": "Point", "coordinates": [ -34.853203591167365, -7.159949889023838 ] } },
 { "type": "Feature", "properties": { "id": 1, "level": 0, "nome": "Achados e Perdidos", "tipo": "achados_e_perdidos" }, "geometry": { "type": "Point", "coordinates": [ -34.854236621370376, -7.161076945780327 ] } },
