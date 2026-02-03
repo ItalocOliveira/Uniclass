@@ -27,6 +27,32 @@ POPUP COMÉRCIO
     border: 1px solid #ddd;
     border-radius: 12px;
 }
+
+/* ===============================
+POPUP REITORIA
+=============================== */
+.popup-reitoria {
+    text-align: center;
+    width: 230px;
+    font-family: Arial, sans-serif;
+}
+
+.popup-reitoria h3 {
+    margin: 6px 0 8px;
+    color: #3553C1;
+    font-size: 16px;
+}
+
+.popup-reitoria img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    margin-bottom: 6px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+}
+
+
 /* ===============================
 POPUP TURISMO
    =============================== */
@@ -44,6 +70,102 @@ POPUP TURISMO
 }
 
 .popup-turismo img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    margin-bottom: 6px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+}
+
+/* ===============================
+POPUP ESTACIONAMENTO
+=============================== */
+.popup-estacionamento {
+    text-align: center;
+    width: 230px;
+    font-family: Arial, sans-serif;
+}
+
+.popup-estacionamento h3 {
+    margin: 6px 0 8px;
+    color: #3553C1; /* mesma cor dos outros popups */
+    font-size: 16px;
+}
+
+.popup-estacionamento img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    margin-bottom: 6px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+}
+
+/* ===============================
+POPUP BIBLIOTECA
+=============================== */
+.popup-biblioteca {
+    text-align: center;
+    width: 230px;
+    font-family: Arial, sans-serif;
+}
+
+.popup-biblioteca h3 {
+    margin: 6px 0 8px;
+    color: #3553C1; /* mesma cor dos outros popups */
+    font-size: 16px;
+}
+
+.popup-biblioteca img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    margin-bottom: 6px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+}
+
+/* ===============================
+POPUP MUSEU
+=============================== */
+.popup-museu {
+    text-align: center;
+    width: 230px;
+    font-family: Arial, sans-serif;
+}
+
+.popup-museu h3 {
+    margin: 6px 0 8px;
+    color: #3553C1;
+    font-size: 16px;
+}
+
+.popup-museu img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    margin-bottom: 6px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+}
+
+/* ===============================
+POPUP AUDITORIO
+=============================== */
+.popup-auditorio {
+    text-align: center;
+    width: 230px;
+    font-family: Arial, sans-serif;
+}
+
+.popup-auditorio h3 {
+    margin: 6px 0 8px;
+    color: #3553C1;
+    font-size: 16px;
+}
+
+.popup-auditorio img {
     width: 100%;
     height: 120px;
     object-fit: cover;
