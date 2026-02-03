@@ -45,6 +45,8 @@ function renderLabels(features) {
         var isEstacionamento = (props.tipo && props.tipo.toLowerCase() === "estacionamento")
         var isMuseu = (props.tipo && props.tipo.toLowerCase() === "museu")
         var isAuditorio = (props.tipo && props.tipo.toLowerCase() === "auditorio")
+        var isEva = (props.tipo && props.tipo.toLowerCase() === "eva")
+        var isGinasio = (props.tipo && props.tipo.toLowerCase() === "ginasio")
         
         
         if(isComercio){
@@ -219,6 +221,7 @@ function renderLabels(features) {
             camadaComercios.addLayer(labelMarker);
         }
         
+        
         if(isAuditorio){
             var dadosExtras = detalhesAuditorio[props.nome];
             // Placeholders
@@ -247,6 +250,66 @@ function renderLabels(features) {
 
             camadaComercios.addLayer(labelMarker);
         }
+
+        if(isEva){
+            var dadosExtras = detalhesEva[props.nome];
+            // Placeholders
+            var imageFinal= dadosExtras ? dadosExtras.img : "documents/imgs/no-image.jpg";
+            var descFinal = dadosExtras ? dadosExtras.desc : "Sem descrição disponível.";
+
+            var popupContent = `
+                <div class="popup-eva">
+                    <h3>${props.nome}</h3>
+                    <img src="${imageFinal}" alt="${props.nome}"/>
+                    <p>${descFinal}</p>
+                </div>
+            `;
+
+            labelMarker = L.marker(latLng, {
+                icon: L.icon({
+                    iconUrl: 'documents/imgs/assets/eva-icon.png', 
+                    iconSize: [48, 48], 
+                    iconAnchor: [24, 42],
+                    popupAnchor: [0, -32]
+                }),
+                interactive: true 
+            });
+
+            labelMarker.bindPopup(popupContent);
+
+            camadaComercios.addLayer(labelMarker);
+        }
+
+        if(isGinasio){
+            var dadosExtras = detalhesGinasio[props.nome];
+            // Placeholders
+            var imageFinal= dadosExtras ? dadosExtras.img : "documents/imgs/no-image.jpg";
+            var descFinal = dadosExtras ? dadosExtras.desc : "Sem descrição disponível.";
+
+            var popupContent = `
+                <div class="popup-ginasio">
+                    <h3>${props.nome}</h3>
+                    <img src="${imageFinal}" alt="${props.nome}"/>
+                    <p>${descFinal}</p>
+                </div>
+            `;
+
+            labelMarker = L.marker(latLng, {
+                icon: L.icon({
+                    iconUrl: 'documents/imgs/assets/ginasio.png', 
+                    iconSize: [48, 48], 
+                    iconAnchor: [24, 42],
+                    popupAnchor: [0, -32]
+                }),
+                interactive: true 
+            });
+
+            labelMarker.bindPopup(popupContent);
+
+            camadaComercios.addLayer(labelMarker);
+        }
+
+        
 
         else{
             var htmlIcon = `
