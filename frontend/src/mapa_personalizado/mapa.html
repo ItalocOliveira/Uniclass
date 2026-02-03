@@ -31,7 +31,7 @@
             <option value="">Selecione um destino</option>
         </select>
         
-        <button onclick="irParaSelecionado()" style="padding: 5px; background: #3553C1; color: white; border: none; cursor: pointer;">IR</button>
+        <button onclick="goToSelected()" style="padding: 5px; background: #3553C1; color: white; border: none; cursor: pointer;">IR</button>
         
         <hr style="margin: 10px 0;">
         
@@ -41,6 +41,8 @@
         <button onclick="changeFloor(2)">2º Andar</button>
     </div>
 
+
+    <!-- Listagem de locais para o menu -->
     <script>
         setTimeout(() => {
             const select = document.getElementById('seletorLocais');
@@ -49,7 +51,7 @@
                 locais.forEach(local => {
                     const option = document.createElement('option');
                     option.value = local.properties.nome;
-                    option.text = `${local.properties.nome} (Lvl ${local.properties.level})`;
+                    option.text = `${local.properties.nome} (P${local.properties.level})`;
                     select.appendChild(option);
                 });
             } else {
@@ -57,7 +59,7 @@
             }
         }, 1000);
 
-        function irParaSelecionado() {
+        function goToSelected() {
             const nomeSala = document.getElementById('seletorLocais').value;
             if(nomeSala) {
                 selectLocation(nomeSala);

@@ -9,7 +9,7 @@ var limitesDoCampus = L.latLngBounds(
 var map = L.map('map', {
     center: [-7.159, -34.855],
     zoom: 18,
-    minZoom: 17,
+    minZoom: 18,
     maxZoom: 21,
     maxBounds: limitesDoCampus, 
     maxBoundsViscosity: 1.0,
@@ -18,7 +18,7 @@ var map = L.map('map', {
 
 // Renderização do mapa
 L.tileLayer('documents/tiles/level_0/base/{z}/{x}/{y}.png', {
-    minZoom: 17,
+    minZoom: 18,
     maxZoom: 21,
     tms: false,
     attribution: '© Unitech - Mapa UNIPÊ'
@@ -27,15 +27,15 @@ L.tileLayer('documents/tiles/level_0/base/{z}/{x}/{y}.png', {
 // Camadas
 var camadasIndoor = {
     0: L.tileLayer('documents/tiles/level_0/classes/{z}/{x}/{y}.png', { 
-        minZoom: 17, maxZoom: 21, tms: false, 
+        minZoom: 18, maxZoom: 21, tms: false, 
         opacity: 0.75, maxBounds: limitesDoCampus, maxBoundsViscosity: 1.0
     }),
     1: L.tileLayer('documents/tiles/level_1/{z}/{x}/{y}.png', { 
-        minZoom: 17, maxZoom: 21, tms: false, 
+        minZoom: 18, maxZoom: 21, tms: false, 
         opacity: 0.75, maxBounds: limitesDoCampus, maxBoundsViscosity: 1.0
     }),
     2: L.tileLayer('documents/tiles/level_2/{z}/{x}/{y}.png', { 
-        minZoom: 17, maxZoom: 21, tms: false, 
+        minZoom: 18, maxZoom: 21, tms: false, 
         opacity: 0.75, maxBounds: limitesDoCampus, maxBoundsViscosity: 1.0
     }),
 };
@@ -172,9 +172,32 @@ const detalhesComercios = {
         `
     }
 };
+const detalhesTurismo = {
+    "museu": {
+        img: "documents/imgs/museu-icon.jpg",
+        desc: `
+            <div class="popup-status aberto">
+                🕒 Aberto agora · 07h–22h
+            </div>
 
-
-
+            <div class="popup-acoes">
+                <button class="btn-primario">📍 Como chegar</button>
+                <button class="btn-secundario">📞 Ligar</button>
+                <button class="btn-secundario">⭐ Ver detalhes</button>
+            </div>
+        `
+    },
+    "praca_das_pedras": {
+        img: "documents/imgs/praca-icon.jpg",
+        desc: `
+            <div class="popup-acoes">
+                <button class="btn-primario">📍 Como chegar</button>
+                <button class="btn-secundario">⭐ Ver detalhes</button>
+            </div>
+        `
+    },
+    
+}
 
 var camadaComercios = L.layerGroup();
 var camadaRota = L.layerGroup().addTo(map);

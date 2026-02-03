@@ -1,4 +1,4 @@
-datareader.import.date=2026-02-02T23:50:29Z
+datareader.import.date=2026-02-03T00:19:47Z
 profiles=vehicle|-1728347739,pedestrian|85408732,universal|694882474
 graph.em.version=4
 graph.em.bytes_for_flags=7

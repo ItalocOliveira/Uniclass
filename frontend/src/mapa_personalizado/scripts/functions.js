@@ -10,7 +10,7 @@ function changeFloor(floor){
     });
     if (map.hasLayer(camadaComercios)) map.removeLayer(camadaComercios);
 
-    if (map.getZoom() >= 17) {
+    if (map.getZoom() >= 18) {
         camadaComercios.addTo(map);
     }
     if (map.getZoom() < 19) {
@@ -39,6 +39,7 @@ function renderLabels(features) {
 
         // Verificar se o ponto é de comercio
         var isComercio = (props.tipo && props.tipo.toLowerCase() === "comercio");
+        var isTurismo = (props.tipo && props.tipo.toLowerCase() === "turismo");
         if(isComercio){
             var dadosExtras = detalhesComercios[props.nome];
 
@@ -68,6 +69,34 @@ function renderLabels(features) {
 
             camadaComercios.addLayer(labelMarker);
         }   
+        if(isTurismo){
+            var dadosExtras = detalhesTurismo[props.nome];
+            // Placeholders
+            var imageFinal= dadosExtras ? dadosExtras.img : "documents/imgs/no-image.jpg";
+            var descFinal = dadosExtras ? dadosExtras.desc : "Sem descrição disponível.";
+
+            var popupContent = `
+                <div class="popup-turismo">
+                    <h3>${props.nome}</h3>
+                    <img src="${imageFinal}" alt="${props.nome}"/>
+                    <p>${descFinal}</p>
+                </div>
+            `;
+
+            labelMarker = L.marker(latLng, {
+                icon: L.icon({
+                    iconUrl: 'documents/imgs/assets/parque-das-pedras.png', 
+                    iconSize: [48, 48], 
+                    iconAnchor: [24, 24],
+                    popupAnchor: [0, -32]
+                }),
+                interactive: true 
+            });
+
+            labelMarker.bindPopup(popupContent);
+
+            camadaComercios.addLayer(labelMarker);
+        }
         else{
             var htmlIcon = `
                 <div class="ponto-interesse"></div>
