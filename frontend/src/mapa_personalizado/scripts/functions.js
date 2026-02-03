@@ -40,6 +40,13 @@ function renderLabels(features) {
         // Verificação de pontos
         var isComercio = (props.tipo && props.tipo.toLowerCase() === "comercio");
         var isTurismo = (props.tipo && props.tipo.toLowerCase() === "turismo");
+        var isReitoria = (props.tipo && props.tipo.toLowerCase() === "reitoria")
+        var isBiblioteca = (props.tipo && props.tipo.toLowerCase() === "biblioteca")
+        var isEstacionamento = (props.tipo && props.tipo.toLowerCase() === "estacionamento")
+        var isMuseu = (props.tipo && props.tipo.toLowerCase() === "museu")
+        var isAuditorio = (props.tipo && props.tipo.toLowerCase() === "auditorio")
+        
+        
         if(isComercio){
             var dadosExtras = detalhesComercios[props.nome];
 
@@ -97,6 +104,150 @@ function renderLabels(features) {
 
             camadaComercios.addLayer(labelMarker);
         }
+        if(isReitoria){
+            var dadosExtras = detalhesReitoria[props.nome];
+            // Placeholders
+            var imageFinal= dadosExtras ? dadosExtras.img : "documents/imgs/no-image.jpg";
+            var descFinal = dadosExtras ? dadosExtras.desc : "Sem descrição disponível.";
+
+            var popupContent = `
+                <div class="popup-reitoria">
+                    <h3>${props.nome}</h3>
+                    <img src="${imageFinal}" alt="${props.nome}"/>
+                    <p>${descFinal}</p>
+                </div>
+            `;
+
+            labelMarker = L.marker(latLng, {
+                icon: L.icon({
+                    iconUrl: 'documents/imgs/assets/reitoria-icon.png', 
+                    iconSize: [48, 48], 
+                    iconAnchor: [24, 24],
+                    popupAnchor: [0, -32]
+                }),
+                interactive: true 
+            });
+
+            labelMarker.bindPopup(popupContent);
+
+            camadaComercios.addLayer(labelMarker);
+        }
+        if(isBiblioteca){
+            var dadosExtras = detalhesBiblioteca[props.nome];
+            // Placeholders
+            var imageFinal= dadosExtras ? dadosExtras.img : "documents/imgs/no-image.jpg";
+            var descFinal = dadosExtras ? dadosExtras.desc : "Sem descrição disponível.";
+
+            var popupContent = `
+                <div class="popup-biblioteca">
+                    <h3>${props.nome}</h3>
+                    <img src="${imageFinal}" alt="${props.nome}"/>
+                    <p>${descFinal}</p>
+                </div>
+            `;
+
+            labelMarker = L.marker(latLng, {
+                icon: L.icon({
+                    iconUrl: 'documents/imgs/assets/biblioteca-icon.png', 
+                    iconSize: [48, 48], 
+                    iconAnchor: [27, 29],
+                    popupAnchor: [0, -32]
+                }),
+                interactive: true 
+            });
+
+            labelMarker.bindPopup(popupContent);
+
+            camadaComercios.addLayer(labelMarker);
+        }
+        if(isMuseu){
+            var dadosExtras = detalhesMuseu[props.nome];
+            // Placeholders
+            var imageFinal= dadosExtras ? dadosExtras.img : "documents/imgs/no-image.jpg";
+            var descFinal = dadosExtras ? dadosExtras.desc : "Sem descrição disponível.";
+
+            var popupContent = `
+                <div class="popup-museu">
+                    <h3>${props.nome}</h3>
+                    <img src="${imageFinal}" alt="${props.nome}"/>
+                    <p>${descFinal}</p>
+                </div>
+            `;
+
+            labelMarker = L.marker(latLng, {
+                icon: L.icon({
+                    iconUrl: 'documents/imgs/assets/museu-icon.png', 
+                    iconSize: [48, 48], 
+                    iconAnchor: [18, 26],
+                    popupAnchor: [0, -32]
+                }),
+                interactive: true 
+            });
+
+            labelMarker.bindPopup(popupContent);
+
+            camadaComercios.addLayer(labelMarker);
+        }
+
+
+        if(isEstacionamento){
+            var dadosExtras = detalhesEstacionamento[props.nome];
+            // Placeholders
+            var imageFinal= dadosExtras ? dadosExtras.img : "documents/imgs/no-image.jpg";
+            var descFinal = dadosExtras ? dadosExtras.desc : "Sem descrição disponível.";
+
+            var popupContent = `
+                <div class="popup-estacionamento">
+                    <h3>${props.nome}</h3>
+                    <img src="${imageFinal}" alt="${props.nome}"/>
+                    <p>${descFinal}</p>
+                </div>
+            `;
+
+            labelMarker = L.marker(latLng, {
+                icon: L.icon({
+                    iconUrl: 'documents/imgs/assets/estacionamento-icon.png', 
+                    iconSize: [48, 48], 
+                    iconAnchor: [18, 38],
+                    popupAnchor: [0, -32]
+                }),
+                interactive: true 
+            });
+
+            labelMarker.bindPopup(popupContent);
+
+            camadaComercios.addLayer(labelMarker);
+        }
+        
+        if(isAuditorio){
+            var dadosExtras = detalhesAuditorio[props.nome];
+            // Placeholders
+            var imageFinal= dadosExtras ? dadosExtras.img : "documents/imgs/no-image.jpg";
+            var descFinal = dadosExtras ? dadosExtras.desc : "Sem descrição disponível.";
+
+            var popupContent = `
+                <div class="popup-auditorio">
+                    <h3>${props.nome}</h3>
+                    <img src="${imageFinal}" alt="${props.nome}"/>
+                    <p>${descFinal}</p>
+                </div>
+            `;
+
+            labelMarker = L.marker(latLng, {
+                icon: L.icon({
+                    iconUrl: 'documents/imgs/assets/auditorio-icon.png', 
+                    iconSize: [48, 48], 
+                    iconAnchor: [18, 38],
+                    popupAnchor: [0, -32]
+                }),
+                interactive: true 
+            });
+
+            labelMarker.bindPopup(popupContent);
+
+            camadaComercios.addLayer(labelMarker);
+        }
+
         else{
             var htmlIcon = `
                 <div class="ponto-interesse"></div>
@@ -118,7 +269,7 @@ function renderLabels(features) {
             }
         }
     });
-}
+    }
 
 
 // Paineis

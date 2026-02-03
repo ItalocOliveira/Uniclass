@@ -199,6 +199,119 @@ const detalhesTurismo = {
     
 }
 
+    const detalhesReitoria = {
+        "reitoria": {
+            img: "documents/imgs/reitoria-icon.webp",
+            desc: `
+                <ul class="popup-lista">
+                    <li>🏢 Administração</li>
+                    <li>📄 Secretarias</li>
+                    <li>🕒 Atendimento 08h–18h</li>
+                </ul>
+
+                <div class="popup-status aberto">
+                    🕒 Aberto agora
+                </div>
+
+                <div class="popup-acoes">
+                    <button class="btn-primario">📍 Como chegar</button>
+                    <button class="btn-secundario">⭐ Ver detalhes</button>
+                </div>
+            `
+        },
+
+    }
+
+    const detalhesBiblioteca = {
+        "biblioteca": {
+            img: "documents/imgs/biblioteca-icon.webp",
+            desc: `
+                <ul class="popup-lista">
+                    <li>📚 Acervo de livros e periódicos</li>
+                    <li>💻 Espaço de estudo e computadores</li>
+                    <li>🕒 Funcionamento 07h–22h</li>
+                </ul>
+
+                <div class="popup-status aberto">
+                    🕒 Aberto agora
+                </div>
+
+                <div class="popup-acoes">
+                    <button class="btn-primario">📍 Como chegar</button>
+                    <button class="btn-secundario">⭐ Ver detalhes</button>
+                </div>
+            `
+        }
+    };
+
+    const detalhesMuseu = {
+        "museu": {
+            img: "documents/imgs/museu-icon.jpg",
+            desc: `
+                <ul class="popup-lista">
+                    <li>🏛️ Exposições permanentes e temporárias</li>
+                    <li>🖼️ Acervo de arte e história</li>
+                    <li>🕒 Funcionamento 08h–20h</li>
+                </ul>
+
+                <div class="popup-status aberto">
+                    🕒 Aberto agora
+                </div>
+
+                <div class="popup-acoes">
+                    <button class="btn-primario">📍 Como chegar</button>
+                    <button class="btn-secundario">⭐ Ver detalhes</button>
+                </div>
+            `
+        }
+    };
+
+    const detalhesEstacionamento = {
+        "estacionamento": {
+            img: "documents/imgs/museu-icon.jpg",
+            desc: `
+                <ul class="popup-lista">
+                    <li>🚗 Vagas para carros</li>
+                    <li>🅿️ Área de estacionamento coberta</li>
+                    <li>🕒 Funcionamento 06h–23h</li>
+                </ul>
+
+                <div class="popup-status aberto">
+                    🕒 Aberto agora
+                </div>
+
+                <div class="popup-acoes">
+                    <button class="btn-primario">📍 Como chegar</button>
+                    <button class="btn-secundario">⭐ Ver detalhes</button>
+                </div>
+            `
+        }
+    };
+
+    const detalhesAuditorio = {
+        "auditorio": {
+            img: "documents/imgs/auditorio-icon.webp",
+            desc: `
+                <ul class="popup-lista">
+                    <li>🎤 Espaço para palestras e eventos</li>
+                    <li>💺 Capacidade para até 300 pessoas</li>
+                    <li>🕒 Funcionamento 08h–22h</li>
+                </ul>
+
+                <div class="popup-status aberto">
+                    🕒 Aberto agora
+                </div>
+
+                <div class="popup-acoes">
+                    <button class="btn-primario">📍 Como chegar</button>
+                    <button class="btn-secundario">⭐ Ver detalhes</button>
+                </div>
+            `
+        }
+    };
+
+
+
 var camadaComercios = L.layerGroup();
 var camadaRota = L.layerGroup().addTo(map);
 
