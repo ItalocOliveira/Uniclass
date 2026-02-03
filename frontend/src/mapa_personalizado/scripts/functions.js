@@ -37,7 +37,7 @@ function renderLabels(features) {
         var props = local.properties;
         var andar = props.level || 0;            
 
-        // Verificar se o ponto é de comercio
+        // Verificação de pontos
         var isComercio = (props.tipo && props.tipo.toLowerCase() === "comercio");
         var isTurismo = (props.tipo && props.tipo.toLowerCase() === "turismo");
         if(isComercio){
