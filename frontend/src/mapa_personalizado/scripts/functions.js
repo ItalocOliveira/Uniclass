@@ -8,22 +8,16 @@ function changeFloor(floor){
     Object.values(camadasLabels).forEach(layer => {
         if (map.hasLayer(layer)) map.removeLayer(layer);
     });
-    if (map.hasLayer(camadaComercios)) map.removeLayer(camadaComercios);
+    if (map.hasLayer(markers)) map.removeLayer(markers);
 
-    if (map.getZoom() >= 18) {
-        camadaComercios.addTo(map);
-    }
-    if (map.getZoom() < 19) {
-        console.log("Zoom insuficiente para detalhes internos, mantendo apenas gerais.");
-        return; 
-    }
+    markers.addTo(map);
 
-    if (camadasIndoor[floor]) {
-        camadasIndoor[floor].addTo(map);
-    }
-    if (camadasLabels[floor]) {
-        camadasLabels[floor].addTo(map);
-    }
+    // if (camadasIndoor[floor]) {
+    //     camadasIndoor[floor].addTo(map);
+    // }
+    // if (camadasLabels[floor]) {
+    //     camadasLabels[floor].addTo(map);
+    // }
 
     console.log(`Andar atualizado: Andar ${floor}`);
 }
@@ -47,7 +41,6 @@ function renderLabels(features) {
         var isAuditorio = (props.tipo && props.tipo.toLowerCase() === "auditorio")
         var isEva = (props.tipo && props.tipo.toLowerCase() === "eva")
         var isGinasio = (props.tipo && props.tipo.toLowerCase() === "ginasio")
-        
         
         if(isComercio){
             var dadosExtras = detalhesComercios[props.nome];
@@ -76,9 +69,9 @@ function renderLabels(features) {
 
             labelMarker.bindPopup(popupContent);
 
-            camadaComercios.addLayer(labelMarker);
+            markers.addLayer(labelMarker);
         }   
-        if(isTurismo){
+        if(isTurismo && props.nome.toLowerCase() === "praça das pedras"){
             var dadosExtras = detalhesTurismo[props.nome];
             // Placeholders
             var imageFinal= dadosExtras ? dadosExtras.img : "documents/imgs/no-image.jpg";
@@ -104,9 +97,36 @@ function renderLabels(features) {
 
             labelMarker.bindPopup(popupContent);
 
-            camadaComercios.addLayer(labelMarker);
+            markers.addLayer(labelMarker);
         }
-        
+        if(isTurismo && props.nome.toLowerCase() === "museu"){
+            var dadosExtras = detalhesTurismo[props.nome];
+            // Placeholders
+            var imageFinal= dadosExtras ? dadosExtras.img : "documents/imgs/no-image.jpg";
+            var descFinal = dadosExtras ? dadosExtras.desc : "Sem descrição disponível.";
+
+            var popupContent = `
+                <div class="popup-turismo">
+                    <h3>${props.nome}</h3>
+                    <img src="${imageFinal}" alt="${props.nome}"/>
+                    <p>${descFinal}</p>
+                </div>
+            `;
+
+            labelMarker = L.marker(latLng, {
+                icon: L.icon({
+                    iconUrl: 'documents/imgs/assets/museu-icon.png', 
+                    iconSize: [48, 48], 
+                    iconAnchor: [24, 24],
+                    popupAnchor: [0, -32]
+                }),
+                interactive: true 
+            });
+
+            labelMarker.bindPopup(popupContent);
+
+            markers.addLayer(labelMarker);
+        }
         if(isReitoria){
             var dadosExtras = detalhesReitoria[props.nome];
             // Placeholders
@@ -133,7 +153,7 @@ function renderLabels(features) {
 
             labelMarker.bindPopup(popupContent);
 
-            camadaComercios.addLayer(labelMarker);
+            markers.addLayer(labelMarker);
         }
         if(isBiblioteca){
             var dadosExtras = detalhesBiblioteca[props.nome];
@@ -161,7 +181,7 @@ function renderLabels(features) {
 
             labelMarker.bindPopup(popupContent);
 
-            camadaComercios.addLayer(labelMarker);
+            markers.addLayer(labelMarker);
         }
         if(isMuseu){
             var dadosExtras = detalhesMuseu[props.nome];
@@ -189,10 +209,8 @@ function renderLabels(features) {
 
             labelMarker.bindPopup(popupContent);
 
-            camadaComercios.addLayer(labelMarker);
+            markers.addLayer(labelMarker);
         }
-
-
         if(isEstacionamento){
             var dadosExtras = detalhesEstacionamento[props.nome];
             // Placeholders
@@ -219,10 +237,8 @@ function renderLabels(features) {
 
             labelMarker.bindPopup(popupContent);
 
-            camadaComercios.addLayer(labelMarker);
+            markers.addLayer(labelMarker);
         }
-        
-        
         if(isAuditorio){
             var dadosExtras = detalhesAuditorio[props.nome];
             // Placeholders
@@ -249,9 +265,8 @@ function renderLabels(features) {
 
             labelMarker.bindPopup(popupContent);
 
-            camadaComercios.addLayer(labelMarker);
+            markers.addLayer(labelMarker);
         }
-
         if(isEva){
             var dadosExtras = detalhesEva[props.nome];
             // Placeholders
@@ -278,9 +293,8 @@ function renderLabels(features) {
 
             labelMarker.bindPopup(popupContent);
 
-            camadaComercios.addLayer(labelMarker);
+            markers.addLayer(labelMarker);
         }
-
         if(isGinasio){
             var dadosExtras = detalhesGinasio[props.nome];
             // Placeholders
@@ -307,11 +321,8 @@ function renderLabels(features) {
 
             labelMarker.bindPopup(popupContent);
 
-            camadaComercios.addLayer(labelMarker);
+            markers.addLayer(labelMarker);
         }
-
-        
-
         else{
             var htmlIcon = `
                 <div class="ponto-interesse"></div>
@@ -332,9 +343,10 @@ function renderLabels(features) {
                 camadasLabels[andar].addLayer(labelMarker);
             }
         }
-    });
-    }
 
+        
+    });
+}
 
 // Paineis
 function dynamicPanel(meters) {
@@ -394,7 +406,6 @@ function selectLocation(searchTerm){
 
 var lastVisitedPlace = null;
 function geofencer(position) {
-    console.log("GEOFENCER CHAMADO");
     if(!prediosComInterior) return;
 
     var poligons = leafletPip.pointInLayer(position, prediosComInterior);
