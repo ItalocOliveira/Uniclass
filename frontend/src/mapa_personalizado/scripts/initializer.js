@@ -304,7 +304,6 @@ const detalhesAuditorio = {
         `
     }
 };
-
 const detalhesEva = {
     "EVA": {
         img: "documents/imgs/eva.webp",
@@ -326,7 +325,6 @@ const detalhesEva = {
         `
     }
 };
-
 const detalhesGinasio = {
     "Ginasio": {
         img: "documents/imgs/ginasio-unipe.png",
@@ -350,15 +348,14 @@ const detalhesGinasio = {
     }
 };
 
-
-
-
-var camadaComercios = L.layerGroup();
+var markers = L.layerGroup();
 var camadaRota = L.layerGroup().addTo(map);
 
 // Variáveis de controle
 var andarAtual = 0;
 var locais = [];
+var prediosComInterior = null;
+var focusedBuilding = null;
 
 fetch('documents/data/pontos_unipe.geojson')
     .then(response => response.json())
@@ -372,7 +369,7 @@ fetch('documents/data/pontos_unipe.geojson')
     })
     .catch(err => console.error("Erro ao carregar locais:", err));
 
-var prediosComInterior = null;
+
 fetch('documents/data/predios_com_interior.geojson')
     .then(response => response.json())
     .then(data => {
