@@ -306,7 +306,7 @@ const detalhesAuditorio = {
 };
 
 const detalhesEva = {
-    "Eva": {
+    "EVA": {
         img: "documents/imgs/eva.webp",
         desc: `
             <ul class="popup-lista">

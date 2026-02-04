@@ -41,6 +41,7 @@ function renderLabels(features) {
         var isComercio = (props.tipo && props.tipo.toLowerCase() === "comercio");
         var isTurismo = (props.tipo && props.tipo.toLowerCase() === "turismo");
         var isReitoria = (props.tipo && props.tipo.toLowerCase() === "reitoria")
+        var isBloco = (props.tipo && props.tipo.toLowerCase() === "bloco")
         var isBiblioteca = (props.tipo && props.tipo.toLowerCase() === "biblioteca")
         var isEstacionamento = (props.tipo && props.tipo.toLowerCase() === "estacionamento")
         var isMuseu = (props.tipo && props.tipo.toLowerCase() === "museu")
@@ -67,8 +68,8 @@ function renderLabels(features) {
             labelMarker = L.marker(latLng, {
                 icon: L.icon({
                     iconUrl: 'documents/imgs/assets/comercio-icon.png', 
-                    iconSize: [44, 44], 
-                    iconAnchor: [24, 38],
+                    iconSize: [60, 60], 
+                    iconAnchor: [31, 43],
                     popupAnchor: [0, -32]
                 }),
                 interactive: true 
@@ -95,8 +96,8 @@ function renderLabels(features) {
             labelMarker = L.marker(latLng, {
                 icon: L.icon({
                     iconUrl: 'documents/imgs/assets/parque-das-pedras.png', 
-                    iconSize: [48, 48], 
-                    iconAnchor: [24, 24],
+                    iconSize: [66, 66], 
+                    iconAnchor: [28, 42],
                     popupAnchor: [0, -32]
                 }),
                 interactive: true 
@@ -124,8 +125,8 @@ function renderLabels(features) {
             labelMarker = L.marker(latLng, {
                 icon: L.icon({
                     iconUrl: 'documents/imgs/assets/reitoria-icon.png', 
-                    iconSize: [48, 48], 
-                    iconAnchor: [24, 24],
+                    iconSize: [66, 66], 
+                    iconAnchor: [34, 42],
                     popupAnchor: [0, -32]
                 }),
                 interactive: true 
@@ -152,8 +153,8 @@ function renderLabels(features) {
             labelMarker = L.marker(latLng, {
                 icon: L.icon({
                     iconUrl: 'documents/imgs/assets/biblioteca-icon.png', 
-                    iconSize: [48, 48], 
-                    iconAnchor: [27, 29],
+                    iconSize: [66, 66], 
+                    iconAnchor: [34, 42],
                     popupAnchor: [0, -32]
                 }),
                 interactive: true 
@@ -180,8 +181,8 @@ function renderLabels(features) {
             labelMarker = L.marker(latLng, {
                 icon: L.icon({
                     iconUrl: 'documents/imgs/assets/museu-icon.png', 
-                    iconSize: [48, 48], 
-                    iconAnchor: [18, 26],
+                    iconSize: [66, 66], 
+                    iconAnchor: [32, 42],
                     popupAnchor: [0, -32]
                 }),
                 interactive: true 
@@ -191,8 +192,6 @@ function renderLabels(features) {
 
             camadaComercios.addLayer(labelMarker);
         }
-
-
         if(isEstacionamento){
             var dadosExtras = detalhesEstacionamento[props.nome];
             // Placeholders
@@ -210,8 +209,8 @@ function renderLabels(features) {
             labelMarker = L.marker(latLng, {
                 icon: L.icon({
                     iconUrl: 'documents/imgs/assets/estacionamento-icon.png', 
-                    iconSize: [48, 48], 
-                    iconAnchor: [18, 38],
+                    iconSize: [66, 66], 
+                    iconAnchor: [30, 41],
                     popupAnchor: [0, -32]
                 }),
                 interactive: true 
@@ -221,8 +220,6 @@ function renderLabels(features) {
 
             camadaComercios.addLayer(labelMarker);
         }
-        
-        
         if(isAuditorio){
             var dadosExtras = detalhesAuditorio[props.nome];
             // Placeholders
@@ -240,8 +237,8 @@ function renderLabels(features) {
             labelMarker = L.marker(latLng, {
                 icon: L.icon({
                     iconUrl: 'documents/imgs/assets/auditorio-icon.png', 
-                    iconSize: [48, 48], 
-                    iconAnchor: [18, 38],
+                    iconSize: [66, 66], 
+                    iconAnchor: [31,41],
                     popupAnchor: [0, -32]
                 }),
                 interactive: true 
@@ -251,7 +248,6 @@ function renderLabels(features) {
 
             camadaComercios.addLayer(labelMarker);
         }
-
         if(isEva){
             var dadosExtras = detalhesEva[props.nome];
             // Placeholders
@@ -269,8 +265,8 @@ function renderLabels(features) {
             labelMarker = L.marker(latLng, {
                 icon: L.icon({
                     iconUrl: 'documents/imgs/assets/eva-icon.png', 
-                    iconSize: [48, 48], 
-                    iconAnchor: [24, 42],
+                    iconSize: [66, 66],
+                    iconAnchor: [34, 43],
                     popupAnchor: [0, -32]
                 }),
                 interactive: true 
@@ -280,7 +276,6 @@ function renderLabels(features) {
 
             camadaComercios.addLayer(labelMarker);
         }
-
         if(isGinasio){
             var dadosExtras = detalhesGinasio[props.nome];
             // Placeholders
@@ -298,8 +293,8 @@ function renderLabels(features) {
             labelMarker = L.marker(latLng, {
                 icon: L.icon({
                     iconUrl: 'documents/imgs/assets/ginasio.png', 
-                    iconSize: [48, 48], 
-                    iconAnchor: [24, 42],
+                                        iconSize: [66, 66], 
+                    iconAnchor: [33, 40],
                     popupAnchor: [0, -32]
                 }),
                 interactive: true 
@@ -309,9 +304,44 @@ function renderLabels(features) {
 
             camadaComercios.addLayer(labelMarker);
         }
+        if(isBloco) {
+            if(props.nome && props.nome.toLowerCase() === "bloco a1"){
 
-        
+                var htmlLabel = `
+                    <h3>A1</h3>
+                `;
 
+                labelMarker = L.marker(latLng, {
+                    icon: L.divIcon({
+                        className: 'label-bloco',
+                        html: htmlLabel,
+                        iconSize: [90, 40],
+                        iconAnchor: [39, 32] 
+                    }),
+                    interactive: false
+                });
+
+                labelMarker.bindPopup(popupContent);
+
+                camadaComercios.addLayer(labelMarker);
+            }
+            if (props.nome && props.nome.toLowerCase() === "Bloco A2")return
+            if (props.nome && props.nome.toLowerCase() === "Bloco B1")return
+            if (props.nome && props.nome.toLowerCase() === "Bloco B2")return
+            if (props.nome && props.nome.toLowerCase() === "Bloco C1")return
+            if (props.nome && props.nome.toLowerCase() === "Bloco C2")return
+            if (props.nome && props.nome.toLowerCase() === "Bloco D")return
+            if (props.nome && props.nome.toLowerCase() === "Bloco E")return
+            if (props.nome && props.nome.toLowerCase() === "Bloco F1")return
+            if (props.nome && props.nome.toLowerCase() === "Bloco G")return
+            if (props.nome && props.nome.toLowerCase() === "Bloco H")return
+            if (props.nome && props.nome.toLowerCase() === "Bloco I")return
+            if (props.nome && props.nome.toLowerCase() === "Bloco J")return
+            if (props.nome && props.nome.toLowerCase() === "Bloco K")return
+            if (props.nome && props.nome.toLowerCase() === "Bloco F2")return
+            if (props.nome && props.nome.toLowerCase() === "Bloco L")return
+            
+        }
         else{
             var htmlIcon = `
                 <div class="ponto-interesse"></div>
@@ -332,6 +362,8 @@ function renderLabels(features) {
                 camadasLabels[andar].addLayer(labelMarker);
             }
         }
+
+
     });
     }
 
