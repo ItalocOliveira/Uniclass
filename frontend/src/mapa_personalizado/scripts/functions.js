@@ -67,7 +67,7 @@ function renderLabels(features) {
             labelMarker = L.marker(latLng, {
                 icon: L.icon({
                     iconUrl: 'documents/imgs/assets/comercio-icon.png', 
-                    iconSize: [44, 44], 
+                    iconSize: [56, 56], 
                     iconAnchor: [24, 38],
                     popupAnchor: [0, -32]
                 }),
@@ -95,7 +95,7 @@ function renderLabels(features) {
             labelMarker = L.marker(latLng, {
                 icon: L.icon({
                     iconUrl: 'documents/imgs/assets/parque-das-pedras.png', 
-                    iconSize: [48, 48], 
+                    iconSize: [56, 56], 
                     iconAnchor: [24, 24],
                     popupAnchor: [0, -32]
                 }),
@@ -123,8 +123,8 @@ function renderLabels(features) {
             labelMarker = L.marker(latLng, {
                 icon: L.icon({
                     iconUrl: 'documents/imgs/assets/reitoria-icon.png', 
-                    iconSize: [48, 48], 
-                    iconAnchor: [24, 24],
+                    iconSize: [66, 66], 
+                    iconAnchor: [30, 29],
                     popupAnchor: [0, -32]
                 }),
                 interactive: true 
@@ -151,8 +151,8 @@ function renderLabels(features) {
             labelMarker = L.marker(latLng, {
                 icon: L.icon({
                     iconUrl: 'documents/imgs/assets/biblioteca-icon.png', 
-                    iconSize: [48, 48], 
-                    iconAnchor: [27, 29],
+                    iconSize: [68, 68], 
+                    iconAnchor: [30, 32],
                     popupAnchor: [0, -32]
                 }),
                 interactive: true 
@@ -179,8 +179,8 @@ function renderLabels(features) {
             labelMarker = L.marker(latLng, {
                 icon: L.icon({
                     iconUrl: 'documents/imgs/assets/museu-icon.png', 
-                    iconSize: [48, 48], 
-                    iconAnchor: [18, 26],
+                    iconSize: [66, 66], 
+                    iconAnchor: [29, 32],
                     popupAnchor: [0, -32]
                 }),
                 interactive: true 
@@ -209,7 +209,7 @@ function renderLabels(features) {
             labelMarker = L.marker(latLng, {
                 icon: L.icon({
                     iconUrl: 'documents/imgs/assets/estacionamento-icon.png', 
-                    iconSize: [48, 48], 
+                    iconSize: [56, 56], 
                     iconAnchor: [18, 38],
                     popupAnchor: [0, -32]
                 }),
@@ -239,7 +239,7 @@ function renderLabels(features) {
             labelMarker = L.marker(latLng, {
                 icon: L.icon({
                     iconUrl: 'documents/imgs/assets/auditorio-icon.png', 
-                    iconSize: [48, 48], 
+                    iconSize: [66, 66], 
                     iconAnchor: [18, 38],
                     popupAnchor: [0, -32]
                 }),
@@ -268,8 +268,8 @@ function renderLabels(features) {
             labelMarker = L.marker(latLng, {
                 icon: L.icon({
                     iconUrl: 'documents/imgs/assets/eva-icon.png', 
-                    iconSize: [48, 48], 
-                    iconAnchor: [24, 42],
+                    iconSize: [68, 68], 
+                    iconAnchor: [32, 39],
                     popupAnchor: [0, -32]
                 }),
                 interactive: true 
@@ -290,15 +290,15 @@ function renderLabels(features) {
                 <div class="popup-ginasio">
                     <h3>${props.nome}</h3>
                     <img src="${imageFinal}" alt="${props.nome}"/>
-                    <p>${descFinal}</p>
+                    <p>${descFinal}</p>'
                 </div>
             `;
 
             labelMarker = L.marker(latLng, {
                 icon: L.icon({
                     iconUrl: 'documents/imgs/assets/ginasio.png', 
-                    iconSize: [48, 48], 
-                    iconAnchor: [24, 42],
+                    iconSize: [66, 66], 
+                    iconAnchor: [34, 40],
                     popupAnchor: [0, -32]
                 }),
                 interactive: true 
