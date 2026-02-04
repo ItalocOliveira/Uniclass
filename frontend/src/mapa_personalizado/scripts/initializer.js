@@ -46,8 +46,8 @@ var camadasLabels = {
 };
 
 const detalhesComercios = {
-    "Cantina_CT": {
-        img: "documents/imgs/cantina-ct-icon.jpg",
+    "Cantina CT": {
+        img: "documents/imgs/cantina-ct.jpg",
         desc: `
             <ul class="popup-lista">
                 <li>🥐 Salgados variados</li>
@@ -173,8 +173,8 @@ const detalhesComercios = {
     }
 };
 const detalhesTurismo = {
-    "museu": {
-        img: "documents/imgs/museu-icon.jpg",
+    "Praça das Pedras": {
+        img: "documents/imgs/praca.jpg",
         desc: `
             <div class="popup-status aberto">
                 🕒 Aberto agora · 07h–22h
@@ -198,6 +198,160 @@ const detalhesTurismo = {
     },
     
 }
+const detalhesReitoria = {
+    "Reitoria": {
+        img: "documents/imgs/reitoria.webp",
+        desc: `
+            <ul class="popup-lista">
+                <li>🏢 Administração</li>
+                <li>📄 Secretarias</li>
+                <li>🕒 Atendimento 08h–18h</li>
+            </ul>
+
+            <div class="popup-status aberto">
+                🕒 Aberto agora
+            </div>
+
+            <div class="popup-acoes">
+                <button class="btn-primario">📍 Como chegar</button>
+                <button class="btn-secundario">⭐ Ver detalhes</button>
+            </div>
+        `
+    },
+
+}
+const detalhesBiblioteca = {
+    "Biblioteca": {
+        img: "documents/imgs/biblioteca.webp",
+        desc: `
+            <ul class="popup-lista">
+                <li>📚 Acervo de livros e periódicos</li>
+                <li>💻 Espaço de estudo e computadores</li>
+                <li>🕒 Funcionamento 07h–22h</li>
+            </ul>
+
+            <div class="popup-status aberto">
+                🕒 Aberto agora
+            </div>
+
+            <div class="popup-acoes">
+                <button class="btn-primario">📍 Como chegar</button>
+                <button class="btn-secundario">⭐ Ver detalhes</button>
+            </div>
+        `
+    }
+};
+const detalhesMuseu = {
+    "Museu": {
+        img: "documents/imgs/museu.jpg",
+        desc: `
+            <ul class="popup-lista">
+                <li>🏛️ Exposições permanentes e temporárias</li>
+                <li>🖼️ Acervo de arte e história</li>
+                <li>🕒 Funcionamento 08h–20h</li>
+            </ul>
+
+            <div class="popup-status aberto">
+                🕒 Aberto agora
+            </div>
+
+            <div class="popup-acoes">
+                <button class="btn-primario">📍 Como chegar</button>
+                <button class="btn-secundario">⭐ Ver detalhes</button>
+            </div>
+        `
+    }
+};
+const detalhesEstacionamento = {
+    "estacionamento": {
+        img: "documents/imgs/estacionamento-icon.jpg",
+        desc: `
+            <ul class="popup-lista">
+                <li>🚗 Vagas para carros</li>
+                <li>🅿️ Área de estacionamento coberta</li>
+                <li>🕒 Funcionamento 06h–23h</li>
+            </ul>
+
+            <div class="popup-status aberto">
+                🕒 Aberto agora
+            </div>
+
+            <div class="popup-acoes">
+                <button class="btn-primario">📍 Como chegar</button>
+                <button class="btn-secundario">⭐ Ver detalhes</button>
+            </div>
+        `
+    }
+};
+const detalhesAuditorio = {
+    "Auditório": {
+        img: "documents/imgs/auditorio.webp",
+        desc: `
+            <ul class="popup-lista">
+                <li>🎤 Espaço para palestras e eventos</li>
+                <li>💺 Capacidade para até 300 pessoas</li>
+                <li>🕒 Funcionamento 08h–22h</li>
+            </ul>
+
+            <div class="popup-status aberto">
+                🕒 Aberto agora
+            </div>
+
+            <div class="popup-acoes">
+                <button class="btn-primario">📍 Como chegar</button>
+                <button class="btn-secundario">⭐ Ver detalhes</button>
+            </div>
+        `
+    }
+};
+
+const detalhesEva = {
+    "Eva": {
+        img: "documents/imgs/eva.webp",
+        desc: `
+            <ul class="popup-lista">
+                <li>🎤 Espaço para palestras e eventos</li>
+                <li>💺 Capacidade para até 300 pessoas</li>
+                <li>🕒 Funcionamento 08h–22h</li>
+            </ul>
+
+            <div class="popup-status aberto">
+                🕒 Aberto agora
+            </div>
+
+            <div class="popup-acoes">
+                <button class="btn-primario">📍 Como chegar</button>
+                <button class="btn-secundario">⭐ Ver detalhes</button>
+            </div>
+        `
+    }
+};
+
+const detalhesGinasio = {
+    "Ginasio": {
+        img: "documents/imgs/ginasio-unipe.png",
+        desc: `
+            <ul class="popup-lista">
+                <li>🏀 Quadra poliesportiva</li>
+                <li>👥 Capacidade para até 800 pessoas</li>
+                <li>🏋️ Espaço para atividades esportivas e eventos</li>
+                <li>🕒 Funcionamento 07h–23h</li>
+            </ul>
+
+            <div class="popup-status aberto">
+                🕒 Aberto agora
+            </div>
+
+            <div class="popup-acoes">
+                <button class="btn-primario">📍 Como chegar</button>
+                <button class="btn-secundario">⭐ Ver detalhes</button>
+            </div>
+        `
+    }
+};
+
+
+
 
 var camadaComercios = L.layerGroup();
 var camadaRota = L.layerGroup().addTo(map);

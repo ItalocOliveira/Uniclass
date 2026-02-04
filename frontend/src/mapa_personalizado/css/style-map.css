@@ -2,6 +2,61 @@
     height: 100vh; 
     width: 100%; 
 }
+/*
+POP UP DE NAVEGAÇÃO 
+*/
+
+.popup-navegacao {
+    /* Sem títulos, o container pode ser bem compacto */
+    width: 100%;
+    padding: 8px;
+    background: #ffffff;
+    border-radius: 14px;
+    text-align: center;
+    
+    /* Sombra de elevação para destacar do mapa */
+    box-shadow: 0 10px 20px rgba(38, 3, 194, 0.445);
+    
+    /* Garante que o triângulo do balão apareça se a lib de mapa usar */
+    position: relative;
+}
+
+/* Estilo do Botão IR */
+.btn-ir {
+    width: 100%;
+    height: 37px;
+    background: linear-gradient(135deg, #4F6BFF 0%, #3D59E6 100%);
+    color: #ffffff;
+    border: none;
+    border-radius: 14px;
+    
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 12px rgba(79, 107, 255, 0.3);
+    
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+}
+
+.btn-ir:active {
+    transform: scale(0.92);
+    box-shadow: 0 2px 6px rgba(79, 107, 255, 0.2);
+    filter: brightness(0.9);
+}
+
+/*Quando tiver testando na máquina*/
+@media (hover: hover) {
+    .btn-ir:hover {
+        filter: brightness(1.1);
+        transform: translateY(-1px);
+    }
+}
+
 
 /* ===============================
 POPUP COMÉRCIO
@@ -27,6 +82,32 @@ POPUP COMÉRCIO
     border: 1px solid #ddd;
     border-radius: 12px;
 }
+
+/* ===============================
+POPUP REITORIA
+=============================== */
+.popup-reitoria {
+    text-align: center;
+    width: 230px;
+    font-family: Arial, sans-serif;
+}
+
+.popup-reitoria h3 {
+    margin: 6px 0 8px;
+    color: #3553C1;
+    font-size: 16px;
+}
+
+.popup-reitoria img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    margin-bottom: 6px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+}
+
+
 /* ===============================
 POPUP TURISMO
    =============================== */
@@ -44,6 +125,150 @@ POPUP TURISMO
 }
 
 .popup-turismo img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    margin-bottom: 6px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+}
+
+/* ===============================
+POPUP ESTACIONAMENTO
+=============================== */
+.popup-estacionamento {
+    text-align: center;
+    width: 230px;
+    font-family: Arial, sans-serif;
+}
+
+.popup-estacionamento h3 {
+    margin: 6px 0 8px;
+    color: #3553C1; /* mesma cor dos outros popups */
+    font-size: 16px;
+}
+
+.popup-estacionamento img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    margin-bottom: 6px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+}
+
+/* ===============================
+POPUP BIBLIOTECA
+=============================== */
+.popup-biblioteca {
+    text-align: center;
+    width: 230px;
+    font-family: Arial, sans-serif;
+}
+
+.popup-biblioteca h3 {
+    margin: 6px 0 8px;
+    color: #3553C1; /* mesma cor dos outros popups */
+    font-size: 16px;
+}
+
+.popup-biblioteca img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    margin-bottom: 6px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+}
+
+/* ===============================
+POPUP MUSEU
+=============================== */
+.popup-museu {
+    text-align: center;
+    width: 230px;
+    font-family: Arial, sans-serif;
+}
+
+.popup-museu h3 {
+    margin: 6px 0 8px;
+    color: #3553C1;
+    font-size: 16px;
+}
+
+.popup-museu img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    margin-bottom: 6px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+}
+
+/* ===============================
+POPUP AUDITORIO
+=============================== */
+.popup-auditorio {
+    text-align: center;
+    width: 230px;
+    font-family: Arial, sans-serif;
+}
+
+.popup-auditorio h3 {
+    margin: 6px 0 8px;
+    color: #3553C1;
+    font-size: 16px;
+}
+
+.popup-auditorio img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    margin-bottom: 6px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+}
+
+/* ===============================
+POPUP EVA
+=============================== */
+.popup-eva {
+    text-align: center;
+    width: 230px;
+    font-family: Arial, sans-serif;
+}
+
+.popup-eva h3 {
+    margin: 6px 0 8px;
+    color: #3553C1;
+    font-size: 16px;
+}
+
+.popup-eva img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    margin-bottom: 6px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+}
+
+/* ===============================
+POPUP GINASIO
+=============================== */
+.popup-ginasio {
+    text-align: center;
+    width: 230px;
+    font-family: Arial, sans-serif;
+}
+
+.popup-ginasio h3 {
+    margin: 6px 0 8px;
+    color: #3553C1;
+    font-size: 16px;
+}
+
+.popup-ginasio img {
     width: 100%;
     height: 120px;
     object-fit: cover;
@@ -121,6 +346,10 @@ POPUP TURISMO
 .leaflet-popup-content-wrapper {
     border-radius: 18px;
     padding: 10px;
+}
+
+.leaflet-popup-close-button {
+    display: none !important;
 }
 
 .leaflet-popup-content {
