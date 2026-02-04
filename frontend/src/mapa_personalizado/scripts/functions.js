@@ -97,6 +97,7 @@ function renderLabels(features) {
 
             camadaComercios.addLayer(labelMarker);
         }
+        
         else{
             var htmlIcon = `
                 <div class="ponto-interesse"></div>
@@ -175,4 +176,45 @@ function selectLocation(searchTerm){
     } else {
         alert("Aguardando localização GPS...");
     }
+}
+
+var lastVisitedPlace = null;
+function geofencer(position) {
+    console.log("GEOFENCER CHAMADO");
+    if(!prediosComInterior) return;
+
+    var poligons = leafletPip.pointInLayer(position, prediosComInterior);
+
+    if(poligons.length > 0){
+        var standingOnPoligon = poligons[0];
+        var props = standingOnPoligon.feature.properties;
+        var currentPlace = props.name || "Área sem nome";
+
+        if (lastVisitedPlace !== currentPlace) {
+            enterPlace(currentPlace);
+            lastVisitedPlace = currentPlace;
+        }
+    }
+    else {
+        if (lastVisitedPlace !== null) {
+            exitPlace(lastVisitedPlace);
+            lastVisitedPlace = null;
+        }
+    }
+}
+
+function enterPlace(place) {
+    console.log(`>>> TRIGGER: Entrou em ${place}`);
+    // if (propriedades.tipo === "comercio") {
+    //     console.log("Abrindo cardápio...");
+    //     // abrirModalComercio(propriedades.nome);
+    // }
+
+    // if (propriedades.layer === "areas_restritas") {
+    //     alert("⚠️ ÁREA RESTRITA! APENAS FUNCIONÁRIOS.");
+    // }
+}
+
+function exitPlace(place) {
+    console.log(`<<< TRIGGER: Saiu de ${place}`);
 }

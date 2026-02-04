@@ -109,6 +109,7 @@ setInterval(function() {
         userMarker.setLatLng(posicaoUsuario);
         
         map.panTo(posicaoUsuario); 
+        geofencer(posicaoUsuario);
 
         if (posicaoDestino) {
             var dist = 0;

@@ -217,3 +217,12 @@ fetch('documents/data/pontos_unipe.geojson')
         console.log(`${locais.length} locais carregados.`);
     })
     .catch(err => console.error("Erro ao carregar locais:", err));
+
+var prediosComInterior = null;
+fetch('documents/data/predios_com_interior.geojson')
+    .then(response => response.json())
+    .then(data => {
+        prediosComInterior = L.geoJSON(data);
+        console.log(`Camada de Geofencing criada com sucesso.`);
+    })
+    .catch(err => console.error("Erro ao carregar predios:", err));
