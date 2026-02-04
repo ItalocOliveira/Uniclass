@@ -13,7 +13,7 @@
 { "type": "Feature", "properties": { "id": 1, "level": 0, "nome": "Reitoria", "tipo": "reitoria" }, "geometry": { "type": "Point", "coordinates": [ -34.852561420454293, -7.15936717281162 ] } },
 { "type": "Feature", "properties": { "id": 1, "level": 0, "nome": "EVA", "tipo": "eva" }, "geometry": { "type": "Point", "coordinates": [ -34.854450680511448, -7.160416025304069 ] } },
 { "type": "Feature", "properties": { "id": 1, "level": 0, "nome": "Biblioteca", "tipo": "biblioteca" }, "geometry": { "type": "Point", "coordinates": [ -34.853936218990299, -7.160239473469627 ] } },
-{ "type": "Feature", "properties": { "id": 1, "level": 0, "nome": "Museu", "tipo": "turismo" }, "geometry": { "type": "Point", "coordinates": [ -34.853203591167365, -7.159949889023838 ] } },
+{ "type": "Feature", "properties": { "id": 1, "level": 0, "nome": "Museu", "tipo": "museu" }, "geometry": { "type": "Point", "coordinates": [ -34.853203591167365, -7.159949889023838 ] } },
 { "type": "Feature", "properties": { "id": 1, "level": 0, "nome": "Achados e Perdidos", "tipo": "achados_e_perdidos" }, "geometry": { "type": "Point", "coordinates": [ -34.854270855710858, -7.161085796388705 ] } },
 { "type": "Feature", "properties": { "id": 1, "level": 0, "nome": "Fisioterapia", "tipo": "fisioterapia" }, "geometry": { "type": "Point", "coordinates": [ -34.854905852103933, -7.157890841494035 ] } },
 { "type": "Feature", "properties": { "id": 1, "level": 0, "nome": "Fonoaudiologia", "tipo": "fonoaudiologia" }, "geometry": { "type": "Point", "coordinates": [ -34.855682498288367, -7.158216989470679 ] } },

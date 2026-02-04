@@ -72,6 +72,21 @@ POP UP DE NAVEGAÇÃO
     }
 }
 
+/* ===============================
+POPUP COMÉRCIO
+   =============================== */
+
+.label-bloco {
+    color: white;
+    width: 230px;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    .icon {
+  transform: rotate(120deg);
+}
+
+}
 
 /* ===============================
 POPUP COMÉRCIO
