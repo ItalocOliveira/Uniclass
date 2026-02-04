@@ -24,29 +24,14 @@ map.on('click', function(e) {
         posicaoDestino = e.latlng;
 
         // Confirmação de destino
-        var conteudoPopup = `
-            <div style="text-align: center;">
-                <p style="margin: 5px 0;">Navegar até aqui?</p>
-                <button class="btn-ir" onclick="confirmarNavegacao()">IR</button>
-            </div>
-            <style>
-                .btn-ir {
-                    background-color: #3553C1; /* Verde */
-                    border: none;
-                    color: white;
-                    padding: 8px 20px;
-                    text-align: center;
-                    text-decoration: none;
-                    display: inline-block;
-                    font-size: 14px;
-                    margin: 4px 2px;
-                    cursor: pointer;
-                    border-radius: 4px;
-                    font-weight: bold;
-                }
-            </style>
-            
-            `;
+    var conteudoPopup = `
+        <div class="popup-navegacao" style="margin:0; padding:0;">
+            <button class="btn-ir" onclick="confirmarNavegacao()">
+                IR
+            </button>
+        </div>
+        `;
+
 
         L.popup()
             .setLatLng(posicaoDestino)
