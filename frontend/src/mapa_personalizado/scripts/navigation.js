@@ -1,8 +1,3 @@
-var userMarker = null;      // Marcador do usuário
-var posicaoUsuario = null;  // {lat, lng} atual
-var posicaoDestino = null;  // {lat, lng} do destino
-var ultimaPosicaoCalc = null;
-
 // Icon do usuário
 var iconGPS = L.divIcon({
     className: 'css-icon',
@@ -14,7 +9,7 @@ var iconGPS = L.divIcon({
 // API java
 function drawRoute(ghaphResponse, pontoB){
     // Limpa rota anterior
-    camadaRota.clearLayers();
+    routesLayer.clearLayers();
 
     var paths = ghaphResponse.paths[0];
     var coordinates = paths.points.coordinates;
@@ -28,7 +23,7 @@ function drawRoute(ghaphResponse, pontoB){
         weight: 4,
         opacity: 1,
         lineJoin: 'round'
-    }).addTo(camadaRota);
+    }).addTo(routesLayer);
 
     if (!ultimaPosicaoCalc) {
         map.fitBounds(desenhoRota.getBounds(), {
@@ -39,12 +34,12 @@ function drawRoute(ghaphResponse, pontoB){
     }
 
     // Adiciona marcador final fixo no final da rota
-    if (pontoB) L.marker(pontoB).addTo(camadaRota);
+    if (pontoB) L.marker(pontoB).addTo(routesLayer);
 }
 
 function calculateRoute(pontoA, pontoB) {
     // URL da API local do GraphHopper
-    let modoAtual = 'vehicle'
+    let modoAtual = 'pedestrian'
     const baseUrl = "/graphhopper/api"
 
     var url =   `${baseUrl}?` +
@@ -63,6 +58,8 @@ function calculateRoute(pontoA, pontoB) {
             }
 
             drawRoute(data, pontoB);
+            onRoute = true;
+            verifyDestination(pontoB);
 
             var distanciaMetros = data.paths[0].distance;
             dynamicPanel(distanciaMetros);
@@ -71,19 +68,40 @@ function calculateRoute(pontoA, pontoB) {
         .catch(err => console.error("Erro ao conectar com GraphHopper:", err));
 }
 
+function verifyDestination(pontoB) {
+    destinationBuilding = null;
+
+    if(!buildingWithInterior) return;
+
+    const pipCoord = [pontoB.lng, pontoB.lat];
+    var poligons = leafletPip.pointInLayer(pipCoord, buildingWithInterior);
+
+    if (poligons.length > 0) {
+        var props = poligons[0].feature.properties;
+        var nomePredioDestino = props.nome;
+        
+        destinationBuilding = nomePredioDestino;
+
+        if (!lastVisitedPlace) {
+            enterPlace(destinationBuilding);
+        }
+    } else {
+        if (focusedBuilding && !lastVisitedPlace) {
+            exitPlace(focusedBuilding);
+        }
+    }
+}
+
 function finishNavigation() {
-    camadaRota.clearLayers();
+    routesLayer.clearLayers();
     document.getElementById('painel-chegada').style.display = 'none';
     document.getElementById('painel-distancia').style.display = 'none';
 
     // Reseta variaveis de controle
     posicaoDestino = null;
     ultimaPosicaoCalc = null;
+    onRoute = false;
 }
-
-map.on('zoomend', function() {
-    changeFloor(andarAtual);
-});
 
 // --- MONITORAMENTO GPS ---
 // if (navigator.geolocation) {
