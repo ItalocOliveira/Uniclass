@@ -5,7 +5,7 @@
 "features": [
 { "type": "Feature", "properties": { "id": 1, "level": 0, "nome": "Cantina CT", "tipo": "comercio" }, "geometry": { "type": "Point", "coordinates": [ -34.855945911439065, -7.159409207466834 ] } },
 { "type": "Feature", "properties": { "id": 1, "level": 0, "nome": "Tapiocabana", "tipo": "comercio" }, "geometry": { "type": "Point", "coordinates": [ -34.855272022663677, -7.159352910604063 ] } },
-{ "type": "Feature", "properties": { "id": 1, "level": 0, "nome": "Restaurante - Piscina", "tipo": "comercio" }, "geometry": { "type": "Point", "coordinates": [ -34.855832889407559, -7.158614059021055 ] } },
+{ "type": "Feature", "properties": { "id": 1, "level": 0, "nome": "Restaurante Dona Xica", "tipo": "comercio" }, "geometry": { "type": "Point", "coordinates": [ -34.855832889407559, -7.158614059021055 ] } },
 { "type": "Feature", "properties": { "id": 1, "level": 0, "nome": "Minaçaí", "tipo": "comercio" }, "geometry": { "type": "Point", "coordinates": [ -34.854698147504422, -7.158417404076986 ] } },
 { "type": "Feature", "properties": { "id": 1, "level": 0, "nome": "Pizzaria", "tipo": "comercio" }, "geometry": { "type": "Point", "coordinates": [ -34.853571521879772, -7.158436039440653 ] } },
 { "type": "Feature", "properties": { "id": 1, "level": 0, "nome": "Comercio do Museu", "tipo": "comercio" }, "geometry": { "type": "Point", "coordinates": [ -34.853439937482044, -7.160425778281414 ] } },
