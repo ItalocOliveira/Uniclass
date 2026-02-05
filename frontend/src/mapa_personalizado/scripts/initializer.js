@@ -77,36 +77,93 @@ const detalhesComercios = {
         `
     },
 
-    "Tapiocabana": {
-        img: "documents/imgs/tapiocabana-icon.png",
-        desc: `
-            <ul class="popup-lista">
-                <li><i class="bi bi-egg-fried"></i> Tapiocas doces e salgadas</li>
-                <li><i class="bi bi-cheese"></i> Recheios variados</li>
-                <li><i class="bi bi-cup-straw"></i> Bebidas naturais</li>
-            </ul>
+"Tapiocabana": {
+    img: "documents/imgs/tapiocabana-icon.png",
+    desc: `
+        <ul class="popup-lista">
+            <li><i class="bi bi-egg-fried"></i> Tapiocas doces e salgadas</li>
+            <li><i class="bi bi-cheese"></i> Recheios variados</li>
+            <li><i class="bi bi-cup-straw"></i> Bebidas naturais</li>
+        </ul>
 
-            <div class="popup-status aberto">
-                <i class="bi bi-clock"></i>
-                Aberto agora · 07h–22h
+        <div class="popup-status aberto">
+            <i class="bi bi-clock"></i>
+            Aberto agora · 07h–22h
+        </div>
+
+        <div class="popup-acoes">
+            <button class="btn-primario">
+                <i class="bi bi-geo-alt-fill"></i>
+                Como chegar
+            </button>
+            <button class="btn-secundario" onclick="togglePopupContent('Tapiocabana', 'menu')">
+                <i class="bi bi-menu-down"></i>
+                Cardápio
+            </button>
+            <button class="btn-secundario">
+                <i class="bi bi-eye"></i>
+                Ver detalhes
+            </button>
+        </div>
+    `,
+//CARDAPIO. LEMBRANDO QUE O NOSSO É NOSSO E DELES É O DELES
+    cardapioHTML: `
+        <div class="popup-cardapio-container" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+            <div class="header-cardapio" style="display:flex; align-items:center; gap:10px; margin-bottom:15px;">
+                <button onclick="togglePopupContent('Tapiocabana', 'home')" style="background:none; border:none; color:#3553C1; cursor:pointer; font-size:18px; padding:0;">
+                    <i class="bi bi-arrow-left"></i>
+                </button>
+                <h3 style="margin:0; color:#3553C1; font-size:18px; width:100%; text-align:center; padding-right:25px;">Cardápio</h3>
             </div>
 
-            <div class="popup-acoes">
-                <button class="btn-primario">
-                    <i class="bi bi-geo-alt-fill"></i>
-                    Como chegar
-                </button>
-                <button class="btn-secundario">
-                    <i class="bi bi-menu-down"></i>
-                    Cardápio
-                </button>
-                <button class="btn-secundario">
-                    <i class="bi bi-eye"></i>
-                    Ver detalhes
-                </button>
+            <div class="categorias-scroll" style="display:flex; gap:8px; margin-bottom:15px; overflow-x:auto; padding-bottom:5px;">
+                <span style="background:#f0f7f0; color:#3553C1;border:1px solid #3553C1; padding:4px 12px; border-radius:8px; font-size:12px; white-space:nowrap;">Salgados</span>
+                <span style="background:#f5f5f5; color:#666; padding:4px 12px; border-radius:20px; font-size:12px; white-space:nowrap;">Doces</span>
+                <span style="background:#f5f5f5; color:#666; padding:4px 12px; border-radius:20px; font-size:12px; white-space:nowrap;">Bebidas</span>
             </div>
-        `
-    },
+
+            <div class="lista-itens" style="display:flex; flex-direction:column; gap:12px; max-height:250px; overflow-y:auto; padding-right:5px;">
+                
+                <div class="item-card" style="display:flex; gap:10px; background:#fff; border-radius:12px; overflow:hidden; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+                    <img src="documents/imgs/receita-de-tapioca-com-frango-requeijao.webp" style="width:70px; height:70px; object-fit:cover; border-radius:10px;" />
+                    <div style="flex:1;">
+                        <div style="display:flex; justify-content:space-between; align-items:start;">
+                            <span style="font-weight:600; font-size:14px; color:#111;">Frango com Catupiry</span>
+                            <i class="bi bi-plus-circle" style="color:#3553C1; font-size:16px;"></i>
+                        </div>
+                        <p style="margin:2px 0; font-size:11px; color:#777;">Frango desfiado e cremoso</p>
+                        <span style="color:#2e7d32; font-weight:700; font-size:14px;">R$ 22,00</span>
+                    </div>
+                </div>
+
+                <div class="item-card" style="display:flex; gap:10px; background:#fff; border-radius:12px; overflow:hidden; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+                    <img src="documents/imgs/tapioca-de-carne.jpg" style="width:70px; height:70px; object-fit:cover; border-radius:10px;" />
+                    <div style="flex:1;">
+                        <div style="display:flex; justify-content:space-between; align-items:start;">
+                            <span style="font-weight:600; font-size:14px; color:#111;">Carne de Sol com Queijo</span>
+                            <i class="bi bi-plus-circle" style="color:#3553C1; font-size:16px;"></i>
+                        </div>
+                        <p style="margin:2px 0; font-size:11px; color:#777;">Carne seca e queijo coalho</p>
+                        <span style="color:#2e7d32; font-weight:700; font-size:14px;">R$ 25,00</span>
+                    </div>
+                </div>
+
+                <div class="item-card" style="display:flex; gap:10px; background:#fff; border-radius:12px; overflow:hidden; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+                    <img src="documents/imgs/tapioca-doce.jpg" style="width:70px; height:70px; object-fit:cover; border-radius:10px;" />
+                    <div style="flex:1;">
+                        <div style="display:flex; justify-content:space-between; align-items:start;">
+                            <span style="font-weight:600; font-size:14px; color:#111;">Tapioca Doce</span>
+                            <i class="bi bi-plus-circle" style="color:#3553C1; font-size:16px;"></i>
+                        </div>
+                        <p style="margin:2px 0; font-size:11px; color:#777;">Tapioca com leite ninho</p>
+                        <span style="color:#2e7d32; font-weight:700; font-size:14px;">R$ 21,00</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    `
+},
 
     "Restaurante - Piscina": {
         img: "documents/imgs/restaurante-piscina-icon.jpg",

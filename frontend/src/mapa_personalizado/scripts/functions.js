@@ -21,6 +21,29 @@ function changeFloor(floor){
 
     console.log(`Andar atualizado: Andar ${floor}`);
 }
+function togglePopupContent(nomeLoja, destino) {
+    if (window.popupTemplates && window.popupTemplates[nomeLoja]) {
+        const novoConteudo = window.popupTemplates[nomeLoja][destino];
+        const popup = map._popup;
+
+        if (popup) {
+            // Desativa temporariamente o fechamento automático e o movimento do mapa
+            const oldAutoPan = popup.options.autoPan;
+            popup.options.autoPan = false;
+
+            popup.setContent(novoConteudo);
+            
+            // Força o Leaflet a reconhecer o novo tamanho sem mover o mapa
+            popup.update();
+
+            // Pequeno delay para reativar as opções originais
+            setTimeout(() => {
+                popup.options.autoPan = oldAutoPan;
+            }, 100);
+        }
+    }
+}
+
 
 // Labels customizadas
 function renderLabels(features) {
@@ -43,35 +66,59 @@ function renderLabels(features) {
         var isEva = (props.tipo && props.tipo.toLowerCase() === "eva")
         var isGinasio = (props.tipo && props.tipo.toLowerCase() === "ginasio")
 
-        if(isComercio){
-            var dadosExtras = detalhesComercios[props.nome];
+if(isComercio){
+    var dadosExtras = detalhesComercios[props.nome];
 
-            // Placeholders
-            var imageFinal= dadosExtras ? dadosExtras.img : "documents/imgs/no-image.jpg";
-            var descFinal = dadosExtras ? dadosExtras.desc : "Sem descrição disponível.";
+    // Placeholders
+    var imageFinal = dadosExtras ? dadosExtras.img : "documents/imgs/no-image.jpg";
+    var descFinal = dadosExtras ? dadosExtras.desc : "Sem descrição disponível.";
+    // Pegamos o HTML do cardápio que está no seu initializer
+    var cardapioFinal = dadosExtras ? dadosExtras.cardapioHTML : "<p>Cardápio indisponível.</p>";
 
-            var popupContent = `
-                <div class="popup-comercio">
-                    <h3>${props.nome}</h3>
-                    <img src="${imageFinal}" alt="${props.nome}"/>
-                    <p>${descFinal}</p>
-                </div>
-            `;
+    // O seu popupContent agora é a "Home"
+    var popupContent = `
+        <div class="popup-comercio">
+            <h3>${props.nome}</h3>
+            <img src="${imageFinal}" alt="${props.nome}"/>
+            ${descFinal}
+        </div>
+    `;
 
-            labelMarker = L.marker(latLng, {
-                icon: L.icon({
-                    iconUrl: 'documents/imgs/assets/comercio-icon.png', 
-                    iconSize: [60, 60], 
-                    iconAnchor: [31, 43],
-                    popupAnchor: [0, -32]
-                }),
-                interactive: true 
-            });
+    // --- LOGICA DE TROCA ---
+    window.popupTemplates = window.popupTemplates || {};
+    window.popupTemplates[props.nome] = {
+        home: popupContent,
+        menu: cardapioFinal
+    };
+    // -----------------------
 
-            labelMarker.bindPopup(popupContent);
+    labelMarker = L.marker(latLng, {
+        icon: L.icon({
+            iconUrl: 'documents/imgs/assets/comercio-icon.png', 
+            iconSize: [60, 60], 
+            iconAnchor: [31, 43],
+            popupAnchor: [0, -32]
+        }),
+        interactive: true 
+    });
 
-            markers.addLayer(labelMarker);
-        }   
+    // --- CORREÇÃO AQUI ---
+    // Adicionamos maxWidth, minWidth e desativamos o closeOnClick
+    labelMarker.bindPopup(popupContent, {
+        maxWidth: 250,
+        minWidth: 250,
+        closeOnClick: false, // Impede que clicar no mapa feche o popup
+        autoPan: true        // Mantém o mapa centralizando o popup se necessário
+    });
+
+    markers.addLayer(labelMarker);
+
+    // ESSA LINHA É O "PULO DO GATO": 
+    // Impede que o clique dentro do popup chegue ao mapa e o feche
+    labelMarker.on('popupopen', function(e) {
+        L.DomEvent.disableClickPropagation(e.popup._container);
+    });
+}
         if(isTurismo && props.nome.toLowerCase() === "praça das pedras"){
             var dadosExtras = detalhesTurismo[props.nome];
             // Placeholders

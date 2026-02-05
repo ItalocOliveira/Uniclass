@@ -72,41 +72,38 @@ POPUP COMÉRCIO
 }
 
 }
+/* CONTAINER DO CARDÁPIO */
 
-/* CONTAINER DO CARDÁPIO (TELA 2) */
+
 .popup-cardapio-container {
-    width: 230px; /* Mesma largura dos outros popups */
-    font-family: Arial, sans-serif;
+    width: 280px; 
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
-/* CABEÇALHO DO CARDÁPIO */
+
+/* CABEÇALHO COM BOTÃO VOLTAR */
 .header-cardapio {
     display: flex;
     align-items: center;
-    gap: 8px;
-    margin-bottom: 12px;
+    gap: 10px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #f0f0f0;
     padding-bottom: 8px;
-    border-bottom: 1px solid #eee;
+
 }
 
-.header-cardapio span {
-    color: #3553C1; /* Mesma cor dos seus H3 */
-    font-weight: 700;
-    font-size: 14px;
-}
-
-/* BOTÃO VOLTAR */
 .btn-voltar {
-    background: #f0f2f5;
+    background: #f0f2f5; /* Fundo cinza suave */
     border: none;
-    border-radius: 50%;
+    border-radius: 50%; /* Botão circular */
     width: 30px;
     height: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    color: #3553C1;
+    color: #3553C1; /* Cor padrão que você usa no h3 */
     transition: background 0.2s;
 }
 
@@ -114,27 +111,46 @@ POPUP COMÉRCIO
     background: #e4e6e9;
 }
 
-/* LISTA DE ITENS */
+/* LISTA DE ITENS DO CARDÁPIO */
 .lista-itens-cardapio {
     list-style: none;
     padding: 0;
     margin: 0;
-    max-height: 200px;
-    overflow-y: auto; /* Scroll caso o cardápio seja grande */
+    max-height: 180px; /* Altura máxima com scroll para não ficar gigante no mapa */
+    overflow-y: auto;
 }
 
 .lista-itens-cardapio li {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 8px 4px;
-    border-bottom: 1px dotted #ddd;
+    padding: 8px 0;
+    border-bottom: 1px dotted #eee;
     font-size: 13px;
     color: #444;
 }
 
 .lista-itens-cardapio li strong {
-    color: #2e7d32; /* Cor verde para o preço */
+    color: #2e7d32; /* Um verde discreto para o preço */
+}
+
+/* Customizando o scrollbar da lista (opcional, para ficar mais elegante) */
+.lista-itens-cardapio::-webkit-scrollbar {
+    width: 4px;
+}
+.lista-itens-cardapio::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+}
+
+.item-card {
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.item-card span,
+.item-card p {
+    word-break: break-word;
 }
 
 
@@ -268,6 +284,7 @@ POPUP COMÉRCIO
 }
 
 .leaflet-popup-content {
+    pointer-events: auto !important;
     margin: 0;
 }
 

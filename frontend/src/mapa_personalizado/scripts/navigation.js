@@ -81,8 +81,17 @@ function finishNavigation() {
     ultimaPosicaoCalc = null;
 }
 
+
 map.on('zoomend', function() {
     changeFloor(andarAtual);
+});
+
+
+map.on('popupopen', function(e) {
+    
+    var container = e.popup._container;
+
+    L.DomEvent.disableClickPropagation(container);
 });
 
 // --- MONITORAMENTO GPS ---
