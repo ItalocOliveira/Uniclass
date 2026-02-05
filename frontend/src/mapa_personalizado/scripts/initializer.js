@@ -263,8 +263,88 @@ const detalhesMuseu = {
     }
 };
 const detalhesEstacionamento = {
-    "estacionamento": {
-        img: "documents/imgs/estacionamento-icon.jpg",
+    "Estacionamento do EVA": {
+        img: "documents/imgs/estacionamento.png",
+        desc: `
+            <ul class="popup-lista">
+                <li>🚗 Vagas para carros</li>
+                <li>🅿️ Área de estacionamento coberta</li>
+                <li>🕒 Funcionamento 06h–23h</li>
+            </ul>
+
+            <div class="popup-status aberto">
+                🕒 Aberto agora
+            </div>
+
+            <div class="popup-acoes">
+                <button class="btn-primario">📍 Como chegar</button>
+                <button class="btn-secundario">⭐ Ver detalhes</button>
+            </div>
+        `
+    },
+
+    "Estacionamento do Auditório": {
+        img: "documents/imgs/estacionamento.png",
+        desc: `
+            <ul class="popup-lista">
+                <li>🚗 Vagas para carros</li>
+                <li>🅿️ Área de estacionamento coberta</li>
+                <li>🕒 Funcionamento 06h–23h</li>
+            </ul>
+
+            <div class="popup-status aberto">
+                🕒 Aberto agora
+            </div>
+
+            <div class="popup-acoes">
+                <button class="btn-primario">📍 Como chegar</button>
+                <button class="btn-secundario">⭐ Ver detalhes</button>
+            </div>
+        `
+    },
+
+        "Estacionamento do Primeiros Socorros": {
+        img: "documents/imgs/estacionamento.png",
+        desc: `
+            <ul class="popup-lista">
+                <li>🚗 Vagas para carros</li>
+                <li>🅿️ Área de estacionamento coberta</li>
+                <li>🕒 Funcionamento 06h–23h</li>
+            </ul>
+
+            <div class="popup-status aberto">
+                🕒 Aberto agora
+            </div>
+
+            <div class="popup-acoes">
+                <button class="btn-primario">📍 Como chegar</button>
+                <button class="btn-secundario">⭐ Ver detalhes</button>
+            </div>
+        `
+    },
+
+        "Estacionamento de Psicologia": {
+        img: "documents/imgs/estacionamento.png",
+        desc: `
+            <ul class="popup-lista">
+                <li>🚗 Vagas para carros</li>
+                <li>🅿️ Área de estacionamento coberta</li>
+                <li>🕒 Funcionamento 06h–23h</li>
+            </ul>
+
+            <div class="popup-status aberto">
+                🕒 Aberto agora
+            </div>
+
+            <div class="popup-acoes">
+                <button class="btn-primario">📍 Como chegar</button>
+                <button class="btn-secundario">⭐ Ver detalhes</button>
+            </div>
+        `
+    },
+
+        "Estacionamento da Reitoria": {
+        img: "documents/imgs/estacionamento.png",
         desc: `
             <ul class="popup-lista">
                 <li>🚗 Vagas para carros</li>
@@ -283,6 +363,7 @@ const detalhesEstacionamento = {
         `
     }
 };
+
 const detalhesAuditorio = {
     "Auditório": {
         img: "documents/imgs/auditorio.webp",
