@@ -72,225 +72,141 @@ POPUP COMÉRCIO
 }
 
 }
+/* CONTAINER DO CARDÁPIO */
 
-/* ===============================
-POPUP COMÉRCIO
-   =============================== */
 
-.popup-comercio {
-    text-align: center;
-    width: 230px;
-    font-family: Arial, sans-serif;
+.popup-cardapio-container {
+    width: 280px; 
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
-.popup-comercio h3 {
-    margin: 6px 0 8px;
-    color: #3553C1;
-    font-size: 16px;
+
+/* CABEÇALHO COM BOTÃO VOLTAR */
+.header-cardapio {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #f0f0f0;
+    padding-bottom: 8px;
+
 }
 
-.popup-comercio img {
+.btn-voltar {
+    background: #f0f2f5; /* Fundo cinza suave */
+    border: none;
+    border-radius: 50%; /* Botão circular */
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #3553C1; /* Cor padrão que você usa no h3 */
+    transition: background 0.2s;
+}
+
+.btn-voltar:hover {
+    background: #e4e6e9;
+}
+
+/* LISTA DE ITENS DO CARDÁPIO */
+.lista-itens-cardapio {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 180px; /* Altura máxima com scroll para não ficar gigante no mapa */
+    overflow-y: auto;
+}
+
+.lista-itens-cardapio li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px dotted #eee;
+    font-size: 13px;
+    color: #444;
+}
+
+.lista-itens-cardapio li strong {
+    color: #2e7d32; /* Um verde discreto para o preço */
+}
+
+/* Customizando o scrollbar da lista (opcional, para ficar mais elegante) */
+.lista-itens-cardapio::-webkit-scrollbar {
+    width: 4px;
+}
+.lista-itens-cardapio::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+}
+
+.item-card {
+    box-sizing: border-box;
     width: 100%;
-    height: 120px;
-    object-fit: cover;
-    margin-bottom: 6px;
-    border: 1px solid #ddd;
-    border-radius: 12px;
 }
 
-/* ===============================
-POPUP REITORIA
-=============================== */
-.popup-reitoria {
-    text-align: center;
-    width: 230px;
-    font-family: Arial, sans-serif;
-}
-
-.popup-reitoria h3 {
-    margin: 6px 0 8px;
-    color: #3553C1;
-    font-size: 16px;
-}
-
-.popup-reitoria img {
-    width: 100%;
-    height: 120px;
-    object-fit: cover;
-    margin-bottom: 6px;
-    border: 1px solid #ddd;
-    border-radius: 12px;
+.item-card span,
+.item-card p {
+    word-break: break-word;
 }
 
 
-/* ===============================
-POPUP TURISMO
-   =============================== */
+/* POP UP ICONS */
 
-.popup-turismo {
-    text-align: center;
-    width: 230px;
-    font-family: Arial, sans-serif;
-}
-
-.popup-turismo h3 {
-    margin: 6px 0 8px;
-    color: #3553C1;
-    font-size: 16px;
-}
-
-.popup-turismo img {
-    width: 100%;
-    height: 120px;
-    object-fit: cover;
-    margin-bottom: 6px;
-    border: 1px solid #ddd;
-    border-radius: 12px;
-}
-
-/* ===============================
-POPUP ESTACIONAMENTO
-=============================== */
-.popup-estacionamento {
-    text-align: center;
-    width: 230px;
-    font-family: Arial, sans-serif;
-}
-
-.popup-estacionamento h3 {
-    margin: 6px 0 8px;
-    color: #3553C1; /* mesma cor dos outros popups */
-    font-size: 16px;
-}
-
-.popup-estacionamento img {
-    width: 100%;
-    height: 120px;
-    object-fit: cover;
-    margin-bottom: 6px;
-    border: 1px solid #ddd;
-    border-radius: 12px;
-}
-
-/* ===============================
-POPUP BIBLIOTECA
-=============================== */
-.popup-biblioteca {
-    text-align: center;
-    width: 230px;
-    font-family: Arial, sans-serif;
-}
-
-.popup-biblioteca h3 {
-    margin: 6px 0 8px;
-    color: #3553C1; /* mesma cor dos outros popups */
-    font-size: 16px;
-}
-
-.popup-biblioteca img {
-    width: 100%;
-    height: 120px;
-    object-fit: cover;
-    margin-bottom: 6px;
-    border: 1px solid #ddd;
-    border-radius: 12px;
-}
-
-/* ===============================
-POPUP MUSEU
-=============================== */
-.popup-museu {
-    text-align: center;
-    width: 230px;
-    font-family: Arial, sans-serif;
-}
-
-.popup-museu h3 {
-    margin: 6px 0 8px;
-    color: #3553C1;
-    font-size: 16px;
-}
-
-.popup-museu img {
-    width: 100%;
-    height: 120px;
-    object-fit: cover;
-    margin-bottom: 6px;
-    border: 1px solid #ddd;
-    border-radius: 12px;
-}
-
-/* ===============================
-POPUP AUDITORIO
-=============================== */
-.popup-auditorio {
-    text-align: center;
-    width: 230px;
-    font-family: Arial, sans-serif;
-}
-
-.popup-auditorio h3 {
-    margin: 6px 0 8px;
-    color: #3553C1;
-    font-size: 16px;
-}
-
-.popup-auditorio img {
-    width: 100%;
-    height: 120px;
-    object-fit: cover;
-    margin-bottom: 6px;
-    border: 1px solid #ddd;
-    border-radius: 12px;
-}
-
-/* ===============================
-POPUP EVA
-=============================== */
-.popup-eva {
-    text-align: center;
-    width: 230px;
-    font-family: Arial, sans-serif;
-}
-
-.popup-eva h3 {
-    margin: 6px 0 8px;
-    color: #3553C1;
-    font-size: 16px;
-}
-
-.popup-eva img {
-    width: 100%;
-    height: 120px;
-    object-fit: cover;
-    margin-bottom: 6px;
-    border: 1px solid #ddd;
-    border-radius: 12px;
-}
-
-/* ===============================
-POPUP GINASIO
-=============================== */
+.popup-comercio,
+.popup-reitoria,
+.popup-eva,
+.popup-estacionamento,
+.popup-turismo,
+.popup-biblioteca,
+.popup-museu,
+.popup-auditorio,
 .popup-ginasio {
-    text-align: center;
     width: 230px;
     font-family: Arial, sans-serif;
+    background-color: #fff;
+    border-radius: 14px;
+    padding: 10px;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
 }
 
+.popup-comercio h3,
+.popup-reitoria h3,
+.popup-eva h3,
+.popup-estacionamento h3,
+.popup-turismo h3,
+.popup-biblioteca h3,
+.popup-museu h3,
+.popup-auditorio h3,
 .popup-ginasio h3 {
-    margin: 6px 0 8px;
+    margin: 8px 0 10px;
     color: #3553C1;
     font-size: 16px;
+    font-weight: 700;
+    text-align: center;
 }
 
+.popup-comercio img,
+.popup-reitoria img,
+.popup-eva img,
+.popup-estacionamento img,
+.popup-turismo img,
+.popup-biblioteca img,
+.popup-museu img,
+.popup-auditorio img,
 .popup-ginasio img {
     width: 100%;
     height: 120px;
     object-fit: cover;
-    margin-bottom: 6px;
-    border: 1px solid #ddd;
-    border-radius: 12px;
+    border-radius: 10px;
+    margin-bottom: 10px;
 }
+
+
+/*-----------------*/
 
 /* Lista rica da descrição */
 .popup-lista {
@@ -335,7 +251,7 @@ POPUP GINASIO
 .popup-acoes button {
     flex: 1 1 auto;
     border: none;
-    border-radius: 12px;
+    border-radius: 7px;
     padding: 6px 8px;
     font-size: 12px;
     cursor: pointer;
@@ -348,13 +264,13 @@ POPUP GINASIO
 }
 
 .btn-secundario {
-    background-color: #f1f3f4;
+    background-color: #d6d6d6;
     color: #333;
 }
 
 .btn-primario:hover,
 .btn-secundario:hover {
-    opacity: 0.9;
+    opacity: 1.2;
 }
 
 /* Wrapper do popup Leaflet */
@@ -368,6 +284,7 @@ POPUP GINASIO
 }
 
 .leaflet-popup-content {
+    pointer-events: auto !important;
     margin: 0;
 }
 

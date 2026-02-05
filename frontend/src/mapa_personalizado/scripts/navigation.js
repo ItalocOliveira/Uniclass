@@ -44,7 +44,7 @@ function drawRoute(ghaphResponse, pontoB){
 
 function calculateRoute(pontoA, pontoB) {
     // URL da API local do GraphHopper
-    let modoAtual = 'vehicle'
+    let modoAtual = 'pedestrian'
     const baseUrl = "/graphhopper/api"
 
     var url =   `${baseUrl}?` +
@@ -81,8 +81,17 @@ function finishNavigation() {
     ultimaPosicaoCalc = null;
 }
 
+
 map.on('zoomend', function() {
     changeFloor(andarAtual);
+});
+
+
+map.on('popupopen', function(e) {
+    
+    var container = e.popup._container;
+
+    L.DomEvent.disableClickPropagation(container);
 });
 
 // --- MONITORAMENTO GPS ---
