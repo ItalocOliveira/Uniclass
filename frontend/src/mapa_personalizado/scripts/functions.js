@@ -27,22 +27,24 @@ function togglePopupContent(nomeLoja, destino) {
         const popup = map._popup;
 
         if (popup) {
-            // Desativa temporariamente o fechamento automático e o movimento do mapa
             const oldAutoPan = popup.options.autoPan;
             popup.options.autoPan = false;
 
             popup.setContent(novoConteudo);
-            
-            // Força o Leaflet a reconhecer o novo tamanho sem mover o mapa
             popup.update();
 
-            // Pequeno delay para reativar as opções originais
+            // ⬇️ ESSENCIAL: reaplicar após trocar conteúdo
             setTimeout(() => {
+                if (popup._container) {
+                    L.DomEvent.disableClickPropagation(popup._container);
+                    L.DomEvent.disableScrollPropagation(popup._container);
+                }
                 popup.options.autoPan = oldAutoPan;
-            }, 100);
+            }, 0);
         }
     }
 }
+
 
 
 // Labels customizadas
@@ -85,39 +87,51 @@ if(isComercio){
     `;
 
     // --- LOGICA DE TROCA ---
-    window.popupTemplates = window.popupTemplates || {};
-    window.popupTemplates[props.nome] = {
-        home: popupContent,
-        menu: cardapioFinal
-    };
-    // -----------------------
+// --- LOGICA DE TROCA ---
+window.popupTemplates = window.popupTemplates || {};
+window.popupTemplates[props.nome] = {
+    home: popupContent,
+    menu: cardapioFinal
+};
+// -----------------------
 
-    labelMarker = L.marker(latLng, {
-        icon: L.icon({
-            iconUrl: 'documents/imgs/assets/comercio-icon.png', 
-            iconSize: [60, 60], 
-            iconAnchor: [31, 43],
-            popupAnchor: [0, -32]
-        }),
-        interactive: true 
+labelMarker = L.marker(latLng, {
+    icon: L.icon({
+        iconUrl: 'documents/imgs/assets/comercio-icon.png', 
+        iconSize: [60, 60], 
+        iconAnchor: [31, 43],
+        popupAnchor: [0, -32]
+    }),
+    interactive: true 
+});
+
+labelMarker.bindPopup(popupContent, {
+    maxWidth: 250,
+    minWidth: 250,
+    closeOnClick: false,
+    autoPan: true
+});
+
+markers.addLayer(labelMarker);
+
+// 🔒 BLINDAGEM TOTAL DO POPUP
+labelMarker.on('popupopen', function (e) {
+    const container = e.popup._container;
+
+    if (!container) return;
+
+    // Impede clique vazar pro mapa
+    L.DomEvent.disableClickPropagation(container);
+
+    // Impede scroll arrastar o mapa
+    L.DomEvent.disableScrollPropagation(container);
+
+    // Opcional: garante que cliques internos não fechem nada
+    container.addEventListener('click', function (ev) {
+        ev.stopPropagation();
     });
+});
 
-    // --- CORREÇÃO AQUI ---
-    // Adicionamos maxWidth, minWidth e desativamos o closeOnClick
-    labelMarker.bindPopup(popupContent, {
-        maxWidth: 250,
-        minWidth: 250,
-        closeOnClick: false, // Impede que clicar no mapa feche o popup
-        autoPan: true        // Mantém o mapa centralizando o popup se necessário
-    });
-
-    markers.addLayer(labelMarker);
-
-    // ESSA LINHA É O "PULO DO GATO": 
-    // Impede que o clique dentro do popup chegue ao mapa e o feche
-    labelMarker.on('popupopen', function(e) {
-        L.DomEvent.disableClickPropagation(e.popup._container);
-    });
 }
         if(isTurismo && props.nome.toLowerCase() === "praça das pedras"){
             var dadosExtras = detalhesTurismo[props.nome];
