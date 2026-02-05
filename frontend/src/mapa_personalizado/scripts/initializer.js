@@ -263,8 +263,88 @@ const detalhesMuseu = {
     }
 };
 const detalhesEstacionamento = {
-    "estacionamento": {
-        img: "documents/imgs/estacionamento-icon.jpg",
+    "Estacionamento do EVA": {
+        img: "documents/imgs/estacionamento.png",
+        desc: `
+            <ul class="popup-lista">
+                <li>🚗 Vagas para carros</li>
+                <li>🅿️ Área de estacionamento coberta</li>
+                <li>🕒 Funcionamento 06h–23h</li>
+            </ul>
+
+            <div class="popup-status aberto">
+                🕒 Aberto agora
+            </div>
+
+            <div class="popup-acoes">
+                <button class="btn-primario">📍 Como chegar</button>
+                <button class="btn-secundario">⭐ Ver detalhes</button>
+            </div>
+        `
+    },
+
+    "Estacionamento do Auditório": {
+        img: "documents/imgs/estacionamento.png",
+        desc: `
+            <ul class="popup-lista">
+                <li>🚗 Vagas para carros</li>
+                <li>🅿️ Área de estacionamento coberta</li>
+                <li>🕒 Funcionamento 06h–23h</li>
+            </ul>
+
+            <div class="popup-status aberto">
+                🕒 Aberto agora
+            </div>
+
+            <div class="popup-acoes">
+                <button class="btn-primario">📍 Como chegar</button>
+                <button class="btn-secundario">⭐ Ver detalhes</button>
+            </div>
+        `
+    },
+
+        "Estacionamento do Primeiros Socorros": {
+        img: "documents/imgs/estacionamento.png",
+        desc: `
+            <ul class="popup-lista">
+                <li>🚗 Vagas para carros</li>
+                <li>🅿️ Área de estacionamento coberta</li>
+                <li>🕒 Funcionamento 06h–23h</li>
+            </ul>
+
+            <div class="popup-status aberto">
+                🕒 Aberto agora
+            </div>
+
+            <div class="popup-acoes">
+                <button class="btn-primario">📍 Como chegar</button>
+                <button class="btn-secundario">⭐ Ver detalhes</button>
+            </div>
+        `
+    },
+
+        "Estacionamento de Psicologia": {
+        img: "documents/imgs/estacionamento.png",
+        desc: `
+            <ul class="popup-lista">
+                <li>🚗 Vagas para carros</li>
+                <li>🅿️ Área de estacionamento coberta</li>
+                <li>🕒 Funcionamento 06h–23h</li>
+            </ul>
+
+            <div class="popup-status aberto">
+                🕒 Aberto agora
+            </div>
+
+            <div class="popup-acoes">
+                <button class="btn-primario">📍 Como chegar</button>
+                <button class="btn-secundario">⭐ Ver detalhes</button>
+            </div>
+        `
+    },
+
+        "Estacionamento da Reitoria": {
+        img: "documents/imgs/estacionamento.png",
         desc: `
             <ul class="popup-lista">
                 <li>🚗 Vagas para carros</li>
@@ -283,6 +363,7 @@ const detalhesEstacionamento = {
         `
     }
 };
+
 const detalhesAuditorio = {
     "Auditório": {
         img: "documents/imgs/auditorio.webp",
@@ -304,9 +385,8 @@ const detalhesAuditorio = {
         `
     }
 };
-
 const detalhesEva = {
-    "Eva": {
+    "EVA": {
         img: "documents/imgs/eva.webp",
         desc: `
             <ul class="popup-lista">
@@ -326,7 +406,6 @@ const detalhesEva = {
         `
     }
 };
-
 const detalhesGinasio = {
     "Ginasio": {
         img: "documents/imgs/ginasio-unipe.png",
@@ -350,15 +429,14 @@ const detalhesGinasio = {
     }
 };
 
-
-
-
-var camadaComercios = L.layerGroup();
+var markers = L.layerGroup();
 var camadaRota = L.layerGroup().addTo(map);
 
 // Variáveis de controle
 var andarAtual = 0;
 var locais = [];
+var prediosComInterior = null;
+var focusedBuilding = null;
 
 fetch('documents/data/pontos_unipe.geojson')
     .then(response => response.json())
@@ -371,3 +449,12 @@ fetch('documents/data/pontos_unipe.geojson')
         console.log(`${locais.length} locais carregados.`);
     })
     .catch(err => console.error("Erro ao carregar locais:", err));
+
+
+fetch('documents/data/predios_com_interior.geojson')
+    .then(response => response.json())
+    .then(data => {
+        prediosComInterior = L.geoJSON(data);
+        console.log(`Camada de Geofencing criada com sucesso.`);
+    })
+    .catch(err => console.error("Erro ao carregar predios:", err));

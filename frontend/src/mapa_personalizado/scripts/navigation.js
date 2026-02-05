@@ -44,7 +44,7 @@ function drawRoute(ghaphResponse, pontoB){
 
 function calculateRoute(pontoA, pontoB) {
     // URL da API local do GraphHopper
-    let modoAtual = 'pedestrian'
+    let modoAtual = 'vehicle'
     const baseUrl = "/graphhopper/api"
 
     var url =   `${baseUrl}?` +

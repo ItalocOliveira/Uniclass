@@ -8,22 +8,16 @@ function changeFloor(floor){
     Object.values(camadasLabels).forEach(layer => {
         if (map.hasLayer(layer)) map.removeLayer(layer);
     });
-    if (map.hasLayer(camadaComercios)) map.removeLayer(camadaComercios);
+    if (map.hasLayer(markers)) map.removeLayer(markers);
 
-    if (map.getZoom() >= 18) {
-        camadaComercios.addTo(map);
-    }
-    if (map.getZoom() < 19) {
-        console.log("Zoom insuficiente para detalhes internos, mantendo apenas gerais.");
-        return; 
-    }
+    markers.addTo(map);
 
-    if (camadasIndoor[floor]) {
-        camadasIndoor[floor].addTo(map);
-    }
-    if (camadasLabels[floor]) {
-        camadasLabels[floor].addTo(map);
-    }
+    // if (camadasIndoor[floor]) {
+    //     camadasIndoor[floor].addTo(map);
+    // }
+    // if (camadasLabels[floor]) {
+    //     camadasLabels[floor].addTo(map);
+    // }
 
     console.log(`Andar atualizado: Andar ${floor}`);
 }
@@ -41,14 +35,14 @@ function renderLabels(features) {
         var isComercio = (props.tipo && props.tipo.toLowerCase() === "comercio");
         var isTurismo = (props.tipo && props.tipo.toLowerCase() === "turismo");
         var isReitoria = (props.tipo && props.tipo.toLowerCase() === "reitoria")
+        var isBloco = (props.tipo && props.tipo.toLowerCase() === "bloco")
         var isBiblioteca = (props.tipo && props.tipo.toLowerCase() === "biblioteca")
         var isEstacionamento = (props.tipo && props.tipo.toLowerCase() === "estacionamento")
         var isMuseu = (props.tipo && props.tipo.toLowerCase() === "museu")
         var isAuditorio = (props.tipo && props.tipo.toLowerCase() === "auditorio")
         var isEva = (props.tipo && props.tipo.toLowerCase() === "eva")
         var isGinasio = (props.tipo && props.tipo.toLowerCase() === "ginasio")
-        
-        
+
         if(isComercio){
             var dadosExtras = detalhesComercios[props.nome];
 
@@ -67,8 +61,13 @@ function renderLabels(features) {
             labelMarker = L.marker(latLng, {
                 icon: L.icon({
                     iconUrl: 'documents/imgs/assets/comercio-icon.png', 
+<<<<<<< HEAD
                     iconSize: [56, 56], 
                     iconAnchor: [24, 38],
+=======
+                    iconSize: [60, 60], 
+                    iconAnchor: [31, 43],
+>>>>>>> 0e9315d58566cc287f616b0a10497133c347bf31
                     popupAnchor: [0, -32]
                 }),
                 interactive: true 
@@ -76,9 +75,9 @@ function renderLabels(features) {
 
             labelMarker.bindPopup(popupContent);
 
-            camadaComercios.addLayer(labelMarker);
+            markers.addLayer(labelMarker);
         }   
-        if(isTurismo){
+        if(isTurismo && props.nome.toLowerCase() === "praça das pedras"){
             var dadosExtras = detalhesTurismo[props.nome];
             // Placeholders
             var imageFinal= dadosExtras ? dadosExtras.img : "documents/imgs/no-image.jpg";
@@ -95,7 +94,39 @@ function renderLabels(features) {
             labelMarker = L.marker(latLng, {
                 icon: L.icon({
                     iconUrl: 'documents/imgs/assets/parque-das-pedras.png', 
+<<<<<<< HEAD
                     iconSize: [56, 56], 
+=======
+                    iconSize: [66, 66], 
+                    iconAnchor: [28, 42],
+                    popupAnchor: [0, -32]
+                }),
+                interactive: true 
+            });
+
+            labelMarker.bindPopup(popupContent);
+
+            markers.addLayer(labelMarker);
+        }
+        if(isTurismo && props.nome.toLowerCase() === "museu"){
+            var dadosExtras = detalhesTurismo[props.nome];
+            // Placeholders
+            var imageFinal= dadosExtras ? dadosExtras.img : "documents/imgs/no-image.jpg";
+            var descFinal = dadosExtras ? dadosExtras.desc : "Sem descrição disponível.";
+
+            var popupContent = `
+                <div class="popup-turismo">
+                    <h3>${props.nome}</h3>
+                    <img src="${imageFinal}" alt="${props.nome}"/>
+                    <p>${descFinal}</p>
+                </div>
+            `;
+
+            labelMarker = L.marker(latLng, {
+                icon: L.icon({
+                    iconUrl: 'documents/imgs/assets/museu-icon.png', 
+                    iconSize: [48, 48], 
+>>>>>>> 0e9315d58566cc287f616b0a10497133c347bf31
                     iconAnchor: [24, 24],
                     popupAnchor: [0, -32]
                 }),
@@ -104,7 +135,7 @@ function renderLabels(features) {
 
             labelMarker.bindPopup(popupContent);
 
-            camadaComercios.addLayer(labelMarker);
+            markers.addLayer(labelMarker);
         }
         if(isReitoria){
             var dadosExtras = detalhesReitoria[props.nome];
@@ -124,7 +155,11 @@ function renderLabels(features) {
                 icon: L.icon({
                     iconUrl: 'documents/imgs/assets/reitoria-icon.png', 
                     iconSize: [66, 66], 
+<<<<<<< HEAD
                     iconAnchor: [30, 29],
+=======
+                    iconAnchor: [34, 42],
+>>>>>>> 0e9315d58566cc287f616b0a10497133c347bf31
                     popupAnchor: [0, -32]
                 }),
                 interactive: true 
@@ -132,7 +167,7 @@ function renderLabels(features) {
 
             labelMarker.bindPopup(popupContent);
 
-            camadaComercios.addLayer(labelMarker);
+            markers.addLayer(labelMarker);
         }
         if(isBiblioteca){
             var dadosExtras = detalhesBiblioteca[props.nome];
@@ -151,8 +186,13 @@ function renderLabels(features) {
             labelMarker = L.marker(latLng, {
                 icon: L.icon({
                     iconUrl: 'documents/imgs/assets/biblioteca-icon.png', 
+<<<<<<< HEAD
                     iconSize: [68, 68], 
                     iconAnchor: [30, 32],
+=======
+                    iconSize: [66, 66], 
+                    iconAnchor: [34, 42],
+>>>>>>> 0e9315d58566cc287f616b0a10497133c347bf31
                     popupAnchor: [0, -32]
                 }),
                 interactive: true 
@@ -160,7 +200,7 @@ function renderLabels(features) {
 
             labelMarker.bindPopup(popupContent);
 
-            camadaComercios.addLayer(labelMarker);
+            markers.addLayer(labelMarker);
         }
         if(isMuseu){
             var dadosExtras = detalhesMuseu[props.nome];
@@ -180,7 +220,11 @@ function renderLabels(features) {
                 icon: L.icon({
                     iconUrl: 'documents/imgs/assets/museu-icon.png', 
                     iconSize: [66, 66], 
+<<<<<<< HEAD
                     iconAnchor: [29, 32],
+=======
+                    iconAnchor: [32, 42],
+>>>>>>> 0e9315d58566cc287f616b0a10497133c347bf31
                     popupAnchor: [0, -32]
                 }),
                 interactive: true 
@@ -188,10 +232,8 @@ function renderLabels(features) {
 
             labelMarker.bindPopup(popupContent);
 
-            camadaComercios.addLayer(labelMarker);
+            markers.addLayer(labelMarker);
         }
-
-
         if(isEstacionamento){
             var dadosExtras = detalhesEstacionamento[props.nome];
             // Placeholders
@@ -209,8 +251,13 @@ function renderLabels(features) {
             labelMarker = L.marker(latLng, {
                 icon: L.icon({
                     iconUrl: 'documents/imgs/assets/estacionamento-icon.png', 
+<<<<<<< HEAD
                     iconSize: [56, 56], 
                     iconAnchor: [18, 38],
+=======
+                    iconSize: [66, 66], 
+                    iconAnchor: [30, 41],
+>>>>>>> 0e9315d58566cc287f616b0a10497133c347bf31
                     popupAnchor: [0, -32]
                 }),
                 interactive: true 
@@ -218,10 +265,8 @@ function renderLabels(features) {
 
             labelMarker.bindPopup(popupContent);
 
-            camadaComercios.addLayer(labelMarker);
+            markers.addLayer(labelMarker);
         }
-        
-        
         if(isAuditorio){
             var dadosExtras = detalhesAuditorio[props.nome];
             // Placeholders
@@ -240,7 +285,11 @@ function renderLabels(features) {
                 icon: L.icon({
                     iconUrl: 'documents/imgs/assets/auditorio-icon.png', 
                     iconSize: [66, 66], 
+<<<<<<< HEAD
                     iconAnchor: [18, 38],
+=======
+                    iconAnchor: [31,41],
+>>>>>>> 0e9315d58566cc287f616b0a10497133c347bf31
                     popupAnchor: [0, -32]
                 }),
                 interactive: true 
@@ -248,9 +297,8 @@ function renderLabels(features) {
 
             labelMarker.bindPopup(popupContent);
 
-            camadaComercios.addLayer(labelMarker);
+            markers.addLayer(labelMarker);
         }
-
         if(isEva){
             var dadosExtras = detalhesEva[props.nome];
             // Placeholders
@@ -268,8 +316,13 @@ function renderLabels(features) {
             labelMarker = L.marker(latLng, {
                 icon: L.icon({
                     iconUrl: 'documents/imgs/assets/eva-icon.png', 
+<<<<<<< HEAD
                     iconSize: [68, 68], 
                     iconAnchor: [32, 39],
+=======
+                    iconSize: [66, 66],
+                    iconAnchor: [34, 43],
+>>>>>>> 0e9315d58566cc287f616b0a10497133c347bf31
                     popupAnchor: [0, -32]
                 }),
                 interactive: true 
@@ -277,9 +330,8 @@ function renderLabels(features) {
 
             labelMarker.bindPopup(popupContent);
 
-            camadaComercios.addLayer(labelMarker);
+            markers.addLayer(labelMarker);
         }
-
         if(isGinasio){
             var dadosExtras = detalhesGinasio[props.nome];
             // Placeholders
@@ -297,8 +349,13 @@ function renderLabels(features) {
             labelMarker = L.marker(latLng, {
                 icon: L.icon({
                     iconUrl: 'documents/imgs/assets/ginasio.png', 
+<<<<<<< HEAD
                     iconSize: [66, 66], 
                     iconAnchor: [34, 40],
+=======
+                                        iconSize: [66, 66], 
+                    iconAnchor: [33, 40],
+>>>>>>> 0e9315d58566cc287f616b0a10497133c347bf31
                     popupAnchor: [0, -32]
                 }),
                 interactive: true 
@@ -306,11 +363,8 @@ function renderLabels(features) {
 
             labelMarker.bindPopup(popupContent);
 
-            camadaComercios.addLayer(labelMarker);
+            markers.addLayer(labelMarker);
         }
-
-        
-
         else{
             var htmlIcon = `
                 <div class="ponto-interesse"></div>
@@ -332,8 +386,7 @@ function renderLabels(features) {
             }
         }
     });
-    }
-
+}
 
 // Paineis
 function dynamicPanel(meters) {
@@ -389,4 +442,44 @@ function selectLocation(searchTerm){
     } else {
         alert("Aguardando localização GPS...");
     }
+}
+
+var lastVisitedPlace = null;
+function geofencer(position) {
+    if(!prediosComInterior) return;
+
+    var poligons = leafletPip.pointInLayer(position, prediosComInterior);
+
+    if(poligons.length > 0){
+        var standingOnPoligon = poligons[0];
+        var props = standingOnPoligon.feature.properties;
+        var currentPlace = props.name || "Área sem nome";
+
+        if (lastVisitedPlace !== currentPlace) {
+            enterPlace(currentPlace);
+            lastVisitedPlace = currentPlace;
+        }
+    }
+    else {
+        if (lastVisitedPlace !== null) {
+            exitPlace(lastVisitedPlace);
+            lastVisitedPlace = null;
+        }
+    }
+}
+
+function enterPlace(place) {
+    console.log(`>>> TRIGGER: Entrou em ${place}`);
+    // if (propriedades.tipo === "comercio") {
+    //     console.log("Abrindo cardápio...");
+    //     // abrirModalComercio(propriedades.nome);
+    // }
+
+    // if (propriedades.layer === "areas_restritas") {
+    //     alert("⚠️ ÁREA RESTRITA! APENAS FUNCIONÁRIOS.");
+    // }
+}
+
+function exitPlace(place) {
+    console.log(`<<< TRIGGER: Saiu de ${place}`);
 }
