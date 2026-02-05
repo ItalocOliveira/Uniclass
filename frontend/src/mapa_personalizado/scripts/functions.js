@@ -42,7 +42,7 @@ function renderLabels(features) {
         var isAuditorio = (props.tipo && props.tipo.toLowerCase() === "auditorio")
         var isEva = (props.tipo && props.tipo.toLowerCase() === "eva")
         var isGinasio = (props.tipo && props.tipo.toLowerCase() === "ginasio")
-        
+
         if(isComercio){
             var dadosExtras = detalhesComercios[props.nome];
 
@@ -324,44 +324,6 @@ function renderLabels(features) {
 
             markers.addLayer(labelMarker);
         }
-        if(isBloco) {
-            if(props.nome && props.nome.toLowerCase() === "bloco a1"){
-
-                var htmlLabel = `
-                    <h3>A1</h3>
-                `;
-
-                labelMarker = L.marker(latLng, {
-                    icon: L.divIcon({
-                        className: 'label-bloco',
-                        html: htmlLabel,
-                        iconSize: [90, 40],
-                        iconAnchor: [39, 32] 
-                    }),
-                    interactive: false
-                });
-
-                labelMarker.bindPopup(popupContent);
-
-                camadaComercios.addLayer(labelMarker);
-            }
-            if (props.nome && props.nome.toLowerCase() === "Bloco A2")return
-            if (props.nome && props.nome.toLowerCase() === "Bloco B1")return
-            if (props.nome && props.nome.toLowerCase() === "Bloco B2")return
-            if (props.nome && props.nome.toLowerCase() === "Bloco C1")return
-            if (props.nome && props.nome.toLowerCase() === "Bloco C2")return
-            if (props.nome && props.nome.toLowerCase() === "Bloco D")return
-            if (props.nome && props.nome.toLowerCase() === "Bloco E")return
-            if (props.nome && props.nome.toLowerCase() === "Bloco F1")return
-            if (props.nome && props.nome.toLowerCase() === "Bloco G")return
-            if (props.nome && props.nome.toLowerCase() === "Bloco H")return
-            if (props.nome && props.nome.toLowerCase() === "Bloco I")return
-            if (props.nome && props.nome.toLowerCase() === "Bloco J")return
-            if (props.nome && props.nome.toLowerCase() === "Bloco K")return
-            if (props.nome && props.nome.toLowerCase() === "Bloco F2")return
-            if (props.nome && props.nome.toLowerCase() === "Bloco L")return
-            
-        }
         else{
             var htmlIcon = `
                 <div class="ponto-interesse"></div>
@@ -382,12 +344,6 @@ function renderLabels(features) {
                 camadasLabels[andar].addLayer(labelMarker);
             }
         }
-
-
-    });
-    }
-
-        
     });
 }
 
