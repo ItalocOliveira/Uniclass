@@ -183,11 +183,12 @@ const detalhesComercios = {
                 <button class="btn-primario">
                     <i class="bi bi-geo-alt-fill"></i>
                     Como chegar
-                </button>
-                <button class="btn-secundario">
+                <button class="btn-secundario"
+                        onclick="togglePopupContent('Restaurante Dona Xica', 'menu')">
                     <i class="bi bi-menu-down"></i>
                     Cardápio
                 </button>
+
                 <button class="btn-secundario">
                     <i class="bi bi-eye"></i>
                     Ver detalhes
@@ -219,20 +220,17 @@ const detalhesComercios = {
                             <span style="font-weight:600; font-size:14px; color:#111;">Self Service</span>
                             <i class="bi bi-plus-circle" style="color:#3553C1; font-size:16px;"></i>
                         </div>
-                        <p style="margin:2px 0; font-size:11px; color:#777;"Crie seu prato!</p>
+                        <p style="margin:2px 0; font-size:11px; color:#777;">Crie seu prato!</p>
                         <span style="color:#2e7d32; font-weight:700; font-size:14px;">R$ 23,00</span>
                     </div>
                 </div>
 
-
             </div>
-        </div>
-    `
-    
+        </div>`
     },
 
     "Minaçaí": {
-        img: "documents/imgs/minacai-icon.jpg",
+        img: "documents/imgs/minacai-icon.png",
         desc: `
             <ul class="popup-lista">
                 <li><i class="bi bi-snow"></i> Açaí e cremes gelados</li>
