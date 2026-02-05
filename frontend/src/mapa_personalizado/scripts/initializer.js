@@ -50,40 +50,60 @@ const detalhesComercios = {
         img: "documents/imgs/cantina-ct.jpg",
         desc: `
             <ul class="popup-lista">
-                <li>🥐 Salgados variados</li>
-                <li>🧃 Sucos naturais</li>
-                <li>☕ Café</li>
+                <li><i class="bi bi-cup-hot"></i> Salgados variados</li>
+                <li><i class="bi bi-cup-straw"></i> Sucos naturais</li>
+                <li><i class="bi bi-cup-hot-fill"></i> Café</li>
             </ul>
 
             <div class="popup-status aberto">
-                🕒 Aberto agora · 07h–22h
+                <i class="bi bi-clock"></i>
+                Aberto agora · 07h–22h
             </div>
 
             <div class="popup-acoes">
-                <button class="btn-primario">📍 Como chegar</button>
-                <button class="btn-secundario">📞 Ligar</button>
-                <button class="btn-secundario">⭐ Ver detalhes</button>
+                <button class="btn-primario">
+                    <i class="bi bi-geo-alt-fill"></i>
+                    Como chegar
+                </button>
+                <button class="btn-secundario">
+                    <i class="bi bi-menu-down"></i>
+                    Cardápio
+                </button>
+                <button class="btn-secundario">
+                    <i class="bi bi-eye"></i>
+                    Ver detalhes
+                </button>
             </div>
         `
     },
 
     "Tapiocabana": {
-        img: "documents/imgs/tapiocabana-icon.jpg",
+        img: "documents/imgs/tapiocabana-icon.png",
         desc: `
             <ul class="popup-lista">
-                <li>🌮 Tapiocas doces e salgadas</li>
-                <li>🧀 Recheios variados</li>
-                <li>🥤 Bebidas naturais</li>
+                <li><i class="bi bi-egg-fried"></i> Tapiocas doces e salgadas</li>
+                <li><i class="bi bi-cheese"></i> Recheios variados</li>
+                <li><i class="bi bi-cup-straw"></i> Bebidas naturais</li>
             </ul>
 
             <div class="popup-status aberto">
-                🕒 Aberto agora · 07h–22h
+                <i class="bi bi-clock"></i>
+                Aberto agora · 07h–22h
             </div>
 
             <div class="popup-acoes">
-                <button class="btn-primario">📍 Como chegar</button>
-                <button class="btn-secundario">📞 Ligar</button>
-                <button class="btn-secundario">⭐ Ver detalhes</button>
+                <button class="btn-primario">
+                    <i class="bi bi-geo-alt-fill"></i>
+                    Como chegar
+                </button>
+                <button class="btn-secundario">
+                    <i class="bi bi-menu-down"></i>
+                    Cardápio
+                </button>
+                <button class="btn-secundario">
+                    <i class="bi bi-eye"></i>
+                    Ver detalhes
+                </button>
             </div>
         `
     },
@@ -92,19 +112,29 @@ const detalhesComercios = {
         img: "documents/imgs/restaurante-piscina-icon.jpg",
         desc: `
             <ul class="popup-lista">
-                <li>🍽️ Pratos executivos</li>
-                <li>🥗 Refeições completas</li>
-                <li>🥤 Bebidas geladas</li>
+                <li><i class="bi bi-egg-fried"></i> Pratos executivos</li>
+                <li><i class="bi bi-bowl-hot"></i> Refeições completas</li>
+                <li><i class="bi bi-cup-straw"></i> Bebidas geladas</li>
             </ul>
 
             <div class="popup-status aberto">
-                🕒 Aberto agora · 07h–22h
+                <i class="bi bi-clock"></i>
+                Aberto agora · 07h–22h
             </div>
 
             <div class="popup-acoes">
-                <button class="btn-primario">📍 Como chegar</button>
-                <button class="btn-secundario">📞 Ligar</button>
-                <button class="btn-secundario">⭐ Ver detalhes</button>
+                <button class="btn-primario">
+                    <i class="bi bi-geo-alt-fill"></i>
+                    Como chegar
+                </button>
+                <button class="btn-secundario">
+                    <i class="bi bi-menu-down"></i>
+                    Cardápio
+                </button>
+                <button class="btn-secundario">
+                    <i class="bi bi-eye"></i>
+                    Ver detalhes
+                </button>
             </div>
         `
     },
@@ -113,19 +143,29 @@ const detalhesComercios = {
         img: "documents/imgs/minacai-icon.jpg",
         desc: `
             <ul class="popup-lista">
-                <li>🍧 Açaí e cremes gelados</li>
-                <li>🍓 Acompanhamentos variados</li>
-                <li>🥤 Bebidas naturais</li>
+                <li><i class="bi bi-snow"></i> Açaí e cremes gelados</li>
+                <li><i class="bi bi-strawberry"></i> Acompanhamentos variados</li>
+                <li><i class="bi bi-cup-straw"></i> Bebidas naturais</li>
             </ul>
 
             <div class="popup-status aberto">
-                🕒 Aberto agora · 07h–22h
+                <i class="bi bi-clock"></i>
+                Aberto agora · 07h–22h
             </div>
 
             <div class="popup-acoes">
-                <button class="btn-primario">📍 Como chegar</button>
-                <button class="btn-secundario">📞 Ligar</button>
-                <button class="btn-secundario">⭐ Ver detalhes</button>
+                <button class="btn-primario">
+                    <i class="bi bi-geo-alt-fill"></i>
+                    Como chegar
+                </button>
+                <button class="btn-secundario">
+                    <i class="bi bi-menu-down"></i>
+                    Cardápio
+                </button>
+                <button class="btn-secundario">
+                    <i class="bi bi-eye"></i>
+                    Ver detalhes
+                </button>
             </div>
         `
     },
@@ -134,19 +174,29 @@ const detalhesComercios = {
         img: "documents/imgs/pizzaria-icon.jpg",
         desc: `
             <ul class="popup-lista">
-                <li>🍕 Pizzas artesanais</li>
-                <li>🍔 Lanches rápidos</li>
-                <li>🥤 Bebidas</li>
+                <li><i class="bi bi-pizza"></i> Pizzas artesanais</li>
+                <li><i class="bi bi-burger"></i> Lanches rápidos</li>
+                <li><i class="bi bi-cup-straw"></i> Bebidas</li>
             </ul>
 
             <div class="popup-status aberto">
-                🕒 Aberto agora · 07h–22h
+                <i class="bi bi-clock"></i>
+                Aberto agora · 07h–22h
             </div>
 
             <div class="popup-acoes">
-                <button class="btn-primario">📍 Como chegar</button>
-                <button class="btn-secundario">📞 Ligar</button>
-                <button class="btn-secundario">⭐ Ver detalhes</button>
+                <button class="btn-primario">
+                    <i class="bi bi-geo-alt-fill"></i>
+                    Como chegar
+                </button>
+                <button class="btn-secundario">
+                    <i class="bi bi-menu-down"></i>
+                    Cardápio
+                </button>
+                <button class="btn-secundario">
+                    <i class="bi bi-eye"></i>
+                    Ver detalhes
+                </button>
             </div>
         `
     },
@@ -155,66 +205,101 @@ const detalhesComercios = {
         img: "documents/imgs/comercio-museu-icon.jpg",
         desc: `
             <ul class="popup-lista">
-                <li>🥪 Lanches rápidos</li>
-                <li>🥤 Bebidas</li>
-                <li>🛍️ Souvenirs</li>
+                <li><i class="bi bi-bread-slice"></i> Lanches rápidos</li>
+                <li><i class="bi bi-cup-straw"></i> Bebidas</li>
+                <li><i class="bi bi-bag"></i> Souvenirs</li>
             </ul>
 
             <div class="popup-status aberto">
-                🕒 Aberto agora · 07h–22h
+                <i class="bi bi-clock"></i>
+                Aberto agora · 07h–22h
             </div>
 
             <div class="popup-acoes">
-                <button class="btn-primario">📍 Como chegar</button>
-                <button class="btn-secundario">📞 Ligar</button>
-                <button class="btn-secundario">⭐ Ver detalhes</button>
+                <button class="btn-primario">
+                    <i class="bi bi-geo-alt-fill"></i>
+                    Como chegar
+                </button>
+                <button class="btn-secundario">
+                    <i class="bi bi-menu-down"></i>
+                    Cardápio
+                </button>
+                <button class="btn-secundario">
+                    <i class="bi bi-eye"></i>
+                    Ver detalhes
+                </button>
             </div>
         `
     }
 };
+
 const detalhesTurismo = {
     "Praça das Pedras": {
         img: "documents/imgs/praca.jpg",
         desc: `
             <div class="popup-status aberto">
-                🕒 Aberto agora · 07h–22h
+                <i class="bi bi-clock"></i>
+                Aberto agora · 07h–22h
             </div>
 
             <div class="popup-acoes">
-                <button class="btn-primario">📍 Como chegar</button>
-                <button class="btn-secundario">📞 Ligar</button>
-                <button class="btn-secundario">⭐ Ver detalhes</button>
+                <button class="btn-primario">
+                    <i class="bi bi-geo-alt-fill"></i>
+                    Como chegar
+                </button>
+                <button class="btn-secundario">
+                    <i class="bi bi-telephone"></i>
+                    Ligar
+                </button>
+                <button class="btn-secundario">
+                    <i class="bi bi-eye"></i>
+                    Ver detalhes
+                </button>
             </div>
         `
     },
+
     "praca_das_pedras": {
         img: "documents/imgs/praca-icon.jpg",
         desc: `
             <div class="popup-acoes">
-                <button class="btn-primario">📍 Como chegar</button>
-                <button class="btn-secundario">⭐ Ver detalhes</button>
+                <button class="btn-primario">
+                    <i class="bi bi-geo-alt-fill"></i>
+                    Como chegar
+                </button>
+                <button class="btn-secundario">
+                    <i class="bi bi-eye"></i>
+                    Ver detalhes
+                </button>
             </div>
         `
-    },
-    
-}
+    }
+};
+
 const detalhesReitoria = {
     "Reitoria": {
         img: "documents/imgs/reitoria.webp",
         desc: `
             <ul class="popup-lista">
-                <li>🏢 Administração</li>
-                <li>📄 Secretarias</li>
-                <li>🕒 Atendimento 08h–18h</li>
+                <li><i class="bi bi-building"></i> Administração</li>
+                <li><i class="bi bi-folder2"></i> Secretarias</li>
+                <li><i class="bi bi-clock"></i> Atendimento 08h–18h</li>
             </ul>
 
             <div class="popup-status aberto">
-                🕒 Aberto agora
+                <i class="bi bi-check-circle-fill"></i>
+                Aberto agora
             </div>
 
             <div class="popup-acoes">
-                <button class="btn-primario">📍 Como chegar</button>
-                <button class="btn-secundario">⭐ Ver detalhes</button>
+                <button class="btn-primario">
+                    <i class="bi bi-geo-alt-fill"></i>
+                    Como chegar
+                </button>
+                <button class="btn-secundario">
+                    <i class="bi bi-eye"></i>
+                    Ver detalhes
+                </button>
             </div>
         `
     },
@@ -225,183 +310,171 @@ const detalhesBiblioteca = {
         img: "documents/imgs/biblioteca.webp",
         desc: `
             <ul class="popup-lista">
-                <li>📚 Acervo de livros e periódicos</li>
-                <li>💻 Espaço de estudo e computadores</li>
-                <li>🕒 Funcionamento 07h–22h</li>
+                <li><i class="bi bi-book"></i> Acervo de livros e periódicos</li>
+                <li><i class="bi bi-laptop"></i> Espaço de estudo e computadores</li>
+                <li><i class="bi bi-clock"></i> Funcionamento 07h–22h</li>
             </ul>
 
             <div class="popup-status aberto">
-                🕒 Aberto agora
+                <i class="bi bi-check-circle-fill"></i>
+                Aberto agora
             </div>
 
             <div class="popup-acoes">
-                <button class="btn-primario">📍 Como chegar</button>
-                <button class="btn-secundario">⭐ Ver detalhes</button>
+                <button class="btn-primario">
+                    <i class="bi bi-geo-alt-fill"></i>
+                    Como chegar
+                </button>
+                <button class="btn-secundario">
+                    <i class="bi bi-eye"></i>
+                    Ver detalhes
+                </button>
             </div>
         `
     }
 };
+
 const detalhesMuseu = {
     "Museu": {
         img: "documents/imgs/museu.jpg",
         desc: `
             <ul class="popup-lista">
-                <li>🏛️ Exposições permanentes e temporárias</li>
-                <li>🖼️ Acervo de arte e história</li>
-                <li>🕒 Funcionamento 08h–20h</li>
+                <li><i class="bi bi-bank"></i> Exposições permanentes e temporárias</li>
+                <li><i class="bi bi-palette"></i> Acervo de arte e história</li>
+                <li><i class="bi bi-clock"></i> Funcionamento 08h–20h</li>
             </ul>
 
             <div class="popup-status aberto">
-                🕒 Aberto agora
+                <i class="bi bi-check-circle-fill"></i>
+                Aberto agora
             </div>
 
             <div class="popup-acoes">
-                <button class="btn-primario">📍 Como chegar</button>
-                <button class="btn-secundario">⭐ Ver detalhes</button>
+                <button class="btn-primario">
+                    <i class="bi bi-geo-alt-fill"></i>
+                    Como chegar
+                </button>
+                <button class="btn-secundario">
+                    <i class="bi bi-eye"></i>
+                    Ver detalhes
+                </button>
             </div>
         `
     }
 };
+
+function gerarDescEstacionamento() {
+    return `
+        <ul class="popup-lista">
+            <li><i class="bi bi-car-front-fill"></i> Vagas para carros</li>
+            <li><i class="bi bi-p-square-fill"></i> Área de estacionamento coberta</li>
+            <li><i class="bi bi-clock"></i> Funcionamento 06h–23h</li>
+        </ul>
+
+        <div class="popup-status aberto">
+            <i class="bi bi-check-circle-fill"></i>
+            Aberto agora
+        </div>
+
+        <div class="popup-acoes">
+            <button class="btn-primario">
+                <i class="bi bi-geo-alt-fill"></i>
+                Como chegar
+            </button>
+            <button class="btn-secundario">
+                <i class="bi bi-eye"></i>
+                Ver detalhes
+            </button>
+        </div>
+    `;
+}
+
 const detalhesEstacionamento = {
     "Estacionamento do EVA": {
         img: "documents/imgs/estacionamento.png",
-        desc: `
-            <ul class="popup-lista">
-                <li>🚗 Vagas para carros</li>
-                <li>🅿️ Área de estacionamento coberta</li>
-                <li>🕒 Funcionamento 06h–23h</li>
-            </ul>
-
-            <div class="popup-status aberto">
-                🕒 Aberto agora
-            </div>
-
-            <div class="popup-acoes">
-                <button class="btn-primario">📍 Como chegar</button>
-                <button class="btn-secundario">⭐ Ver detalhes</button>
-            </div>
-        `
+        desc: gerarDescEstacionamento()
     },
-
     "Estacionamento do Auditório": {
         img: "documents/imgs/estacionamento.png",
-        desc: `
-            <ul class="popup-lista">
-                <li>🚗 Vagas para carros</li>
-                <li>🅿️ Área de estacionamento coberta</li>
-                <li>🕒 Funcionamento 06h–23h</li>
-            </ul>
-
-            <div class="popup-status aberto">
-                🕒 Aberto agora
-            </div>
-
-            <div class="popup-acoes">
-                <button class="btn-primario">📍 Como chegar</button>
-                <button class="btn-secundario">⭐ Ver detalhes</button>
-            </div>
-        `
+        desc: gerarDescEstacionamento()
     },
-
-        "Estacionamento do Primeiros Socorros": {
+    "Estacionamento do Primeiros Socorros": {
         img: "documents/imgs/estacionamento.png",
-        desc: `
-            <ul class="popup-lista">
-                <li>🚗 Vagas para carros</li>
-                <li>🅿️ Área de estacionamento coberta</li>
-                <li>🕒 Funcionamento 06h–23h</li>
-            </ul>
-
-            <div class="popup-status aberto">
-                🕒 Aberto agora
-            </div>
-
-            <div class="popup-acoes">
-                <button class="btn-primario">📍 Como chegar</button>
-                <button class="btn-secundario">⭐ Ver detalhes</button>
-            </div>
-        `
+        desc: gerarDescEstacionamento()
     },
-
-        "Estacionamento de Psicologia": {
+    "Estacionamento de Psicologia": {
         img: "documents/imgs/estacionamento.png",
-        desc: `
-            <ul class="popup-lista">
-                <li>🚗 Vagas para carros</li>
-                <li>🅿️ Área de estacionamento coberta</li>
-                <li>🕒 Funcionamento 06h–23h</li>
-            </ul>
-
-            <div class="popup-status aberto">
-                🕒 Aberto agora
-            </div>
-
-            <div class="popup-acoes">
-                <button class="btn-primario">📍 Como chegar</button>
-                <button class="btn-secundario">⭐ Ver detalhes</button>
-            </div>
-        `
+        desc: gerarDescEstacionamento()
     },
-
-        "Estacionamento da Reitoria": {
+    "Estacionamento da Reitoria": {
         img: "documents/imgs/estacionamento.png",
-        desc: `
-            <ul class="popup-lista">
-                <li>🚗 Vagas para carros</li>
-                <li>🅿️ Área de estacionamento coberta</li>
-                <li>🕒 Funcionamento 06h–23h</li>
-            </ul>
-
-            <div class="popup-status aberto">
-                🕒 Aberto agora
-            </div>
-
-            <div class="popup-acoes">
-                <button class="btn-primario">📍 Como chegar</button>
-                <button class="btn-secundario">⭐ Ver detalhes</button>
-            </div>
-        `
+        desc: gerarDescEstacionamento()
     }
 };
+
 
 const detalhesAuditorio = {
     "Auditório": {
         img: "documents/imgs/auditorio.webp",
         desc: `
             <ul class="popup-lista">
-                <li>🎤 Espaço para palestras e eventos</li>
-                <li>💺 Capacidade para até 300 pessoas</li>
-                <li>🕒 Funcionamento 08h–22h</li>
+                <li><i class="bi bi-mic"></i> Espaço para palestras e eventos</li>
+                <li><i class="bi bi-person-video3"></i> Capacidade para até 300 pessoas</li>
+                <li><i class="bi bi-clock"></i> Funcionamento 08h–22h</li>
             </ul>
 
             <div class="popup-status aberto">
-                🕒 Aberto agora
+                <i class="bi bi-check-circle-fill"></i>
+                Aberto agora
             </div>
 
             <div class="popup-acoes">
-                <button class="btn-primario">📍 Como chegar</button>
-                <button class="btn-secundario">⭐ Ver detalhes</button>
+                <button class="btn-primario">
+                    <i class="bi bi-geo-alt-fill"></i>
+                    Como chegar
+                </button>
+                <button class="btn-secundario">
+                    <i class="bi bi-eye"></i>
+                    Ver detalhes
+                </button>
             </div>
         `
     }
 };
+
 const detalhesEva = {
     "EVA": {
         img: "documents/imgs/eva.webp",
         desc: `
             <ul class="popup-lista">
-                <li>🎤 Espaço para palestras e eventos</li>
-                <li>💺 Capacidade para até 300 pessoas</li>
-                <li>🕒 Funcionamento 08h–22h</li>
+                <li>
+                    <i class="bi bi-mic"></i>
+                    Espaço para palestras e eventos
+                </li>
+                <li>
+                    <i class="bi bi-people"></i>
+                    Capacidade para até 300 pessoas
+                </li>
+                <li>
+                    <i class="bi bi-clock"></i>
+                    Funcionamento 08h–22h
+                </li>
             </ul>
 
             <div class="popup-status aberto">
-                🕒 Aberto agora
+                <i class="bi bi-check-circle-fill"></i>
+                Aberto agora
             </div>
 
             <div class="popup-acoes">
-                <button class="btn-primario">📍 Como chegar</button>
-                <button class="btn-secundario">⭐ Ver detalhes</button>
+                <button class="btn-primario">
+                    <i class="bi bi-geo-alt-fill"></i>
+                    Como chegar
+                </button>
+                <button class="btn-secundario">
+                    <i class="bi bi-eye"></i>
+                    Ver detalhes
+                </button>
             </div>
         `
     }
@@ -411,23 +484,31 @@ const detalhesGinasio = {
         img: "documents/imgs/ginasio-unipe.png",
         desc: `
             <ul class="popup-lista">
-                <li>🏀 Quadra poliesportiva</li>
-                <li>👥 Capacidade para até 800 pessoas</li>
-                <li>🏋️ Espaço para atividades esportivas e eventos</li>
-                <li>🕒 Funcionamento 07h–23h</li>
+                <li><i class="bi bi-dribbble"></i> Quadra poliesportiva</li>
+                <li><i class="bi bi-people"></i> Capacidade para até 800 pessoas</li>
+                <li><i class="bi bi-lightning-charge"></i> Atividades esportivas e eventos</li>
+                <li><i class="bi bi-clock"></i> Funcionamento 07h–23h</li>
             </ul>
 
             <div class="popup-status aberto">
-                🕒 Aberto agora
+                <i class="bi bi-check-circle-fill"></i>
+                Aberto agora
             </div>
 
             <div class="popup-acoes">
-                <button class="btn-primario">📍 Como chegar</button>
-                <button class="btn-secundario">⭐ Ver detalhes</button>
+                <button class="btn-primario">
+                    <i class="bi bi-geo-alt-fill"></i>
+                    Como chegar
+                </button>
+                <button class="btn-secundario">
+                    <i class="bi bi-eye"></i>
+                    Ver detalhes
+                </button>
             </div>
         `
     }
 };
+
 
 var markers = L.layerGroup();
 var camadaRota = L.layerGroup().addTo(map);
