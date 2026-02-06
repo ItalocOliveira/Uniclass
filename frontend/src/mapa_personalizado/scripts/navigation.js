@@ -103,6 +103,13 @@ function finishNavigation() {
     onRoute = false;
 }
 
+map.on('popupopen', function(e) {
+    
+    var container = e.popup._container;
+
+    L.DomEvent.disableClickPropagation(container);
+});
+
 // --- MONITORAMENTO GPS ---
 // if (navigator.geolocation) {
 //     navigator.geolocation.watchPosition(

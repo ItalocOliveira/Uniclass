@@ -66,13 +66,11 @@ POPUP
     width: 230px;
     font-family: Arial, sans-serif;
 }
-
 .popup h3 {
     margin: 6px 0 8px;
     color: #3553C1;
     font-size: 16px;
 }
-
 .popup img {
     width: 100%;
     height: 120px;
@@ -81,6 +79,100 @@ POPUP
     border: 1px solid #ddd;
     border-radius: 12px;
 }
+
+.label-bloco {
+    color: white;
+    width: 230px;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    .icon {
+    transform: rotate(120deg);
+}
+
+/* CONTAINER DO CARDÁPIO */
+
+
+.popup-cardapio-container {
+    width: 280px; 
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+
+/* CABEÇALHO COM BOTÃO VOLTAR */
+.header-cardapio {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #f0f0f0;
+    padding-bottom: 8px;
+
+}
+
+.btn-voltar {
+    background: #f0f2f5; /* Fundo cinza suave */
+    border: none;
+    border-radius: 50%; /* Botão circular */
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #3553C1; /* Cor padrão que você usa no h3 */
+    transition: background 0.2s;
+}
+
+.btn-voltar:hover {
+    background: #e4e6e9;
+}
+
+/* LISTA DE ITENS DO CARDÁPIO */
+.lista-itens-cardapio {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 180px; /* Altura máxima com scroll para não ficar gigante no mapa */
+    overflow-y: auto;
+}
+
+.lista-itens-cardapio li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px dotted #eee;
+    font-size: 13px;
+    color: #444;
+}
+
+.lista-itens-cardapio li strong {
+    color: #2e7d32; /* Um verde discreto para o preço */
+}
+
+/* Customizando o scrollbar da lista (opcional, para ficar mais elegante) */
+.lista-itens-cardapio::-webkit-scrollbar {
+    width: 4px;
+}
+.lista-itens-cardapio::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+}
+
+.item-card {
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.item-card span,
+.item-card p {
+    word-break: break-word;
+}
+
+
+/*-----------------*/
 
 /* Lista rica da descrição */
 .popup-lista {
@@ -125,7 +217,7 @@ POPUP
 .popup-acoes button {
     flex: 1 1 auto;
     border: none;
-    border-radius: 12px;
+    border-radius: 7px;
     padding: 6px 8px;
     font-size: 12px;
     cursor: pointer;
@@ -138,13 +230,13 @@ POPUP
 }
 
 .btn-secundario {
-    background-color: #f1f3f4;
+    background-color: #d6d6d6;
     color: #333;
 }
 
 .btn-primario:hover,
 .btn-secundario:hover {
-    opacity: 0.9;
+    opacity: 1.2;
 }
 
 /* Wrapper do popup Leaflet */
@@ -158,6 +250,7 @@ POPUP
 }
 
 .leaflet-popup-content {
+    pointer-events: auto !important;
     margin: 0;
 }
 
