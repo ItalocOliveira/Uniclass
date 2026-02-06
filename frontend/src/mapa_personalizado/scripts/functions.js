@@ -91,8 +91,6 @@ function togglePopupContent(nomeLoja, destino) {
     }
 }
 
-
-
 // Labels customizadas
 function renderLabels(features) {
     features.forEach(local => {

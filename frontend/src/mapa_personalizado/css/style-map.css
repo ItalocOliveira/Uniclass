@@ -87,7 +87,8 @@ POPUP
     font-family: Arial, Helvetica, sans-serif;
     font-size: 16px;
     .icon {
-    transform: rotate(120deg);
+        transform: rotate(120deg);
+    }
 }
 
 /* CONTAINER DO CARDÁPIO */
@@ -420,4 +421,3 @@ POPUP
     color: white;
     border-color: #3553C1;
 }
- 

@@ -275,7 +275,6 @@ const detalhesComercios = {
         `
     }
 };
-
 const detalhesPraca = {
     "Praça das Pedras": {
         img: "documents/imgs/praca.jpg",
@@ -331,7 +330,34 @@ const detalhesReitoria = {
     },
 
 }
+const detalhesBiblioteca = {
+    "Biblioteca": {
+        img: "documents/imgs/biblioteca.webp",
+        desc: `
+            <ul class="popup-lista">
+                <li><i class="bi bi-book"></i> Acervo de livros e periódicos</li>
+                <li><i class="bi bi-laptop"></i> Espaço de estudo e computadores</li>
+                <li><i class="bi bi-clock"></i> Funcionamento 07h–22h</li>
+            </ul>
 
+            <div class="popup-status aberto">
+                <i class="bi bi-check-circle-fill"></i>
+                Aberto agora
+            </div>
+
+            <div class="popup-acoes">
+                <button class="btn-primario">
+                    <i class="bi bi-geo-alt-fill"></i>
+                    Como chegar
+                </button>
+                <button class="btn-secundario">
+                    <i class="bi bi-eye"></i>
+                    Ver detalhes
+                </button>
+            </div>
+        `
+    }
+};
 const detalhesMuseu = {
     "Museu": {
         img: "documents/imgs/museu.jpg",
@@ -437,7 +463,6 @@ const detalhesAuditorio = {
         `
     }
 };
-
 const detalhesEva = {
     "EVA": {
         img: "documents/imgs/eva.webp",
