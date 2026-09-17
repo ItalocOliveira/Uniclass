@@ -529,8 +529,6 @@ const detalhesGinasio = {
         `
     }
 };
-
-
 const markerConfig = {
     'comercio': {
         dataSource: detalhesComercios, 

@@ -12,20 +12,15 @@ graphhopper:
   import.osm.nogeo: false
   import.osm.ignored_highways: ""
   prepare.min_network_size: 0
-  index.max_region_search: 8
-
-  index.max_region_search: 4
+  index.max_region_search: 16
+  prepare.min_one_way_network_size: 0
 
   graph.encoded_values: car_access, car_average_speed, foot_access, foot_average_speed, road_class
 
   profiles:
-    # ESTRADAS
+    # --- ESTRADAS (CARRO) ---
     - name: vehicle
       weighting: custom
-      turn_costs:
-        vehicle_types: [motorcar]
-        u_turn_costs: 60
-      
       custom_model:
         distance_influence: 70
         speed:
@@ -35,7 +30,7 @@ graphhopper:
           - if: "!car_access"
             multiply_by: 0
 
-    # CALÇADAS
+    # --- PEDESTRE (PADRÃO) ---
     - name: pedestrian
       weighting: custom
       custom_model:
@@ -46,26 +41,33 @@ graphhopper:
         priority:
           - if: "!foot_access"
             multiply_by: 0
-          - if: "road_class != FOOTWAY && road_class != STEPS"
-            multiply_by: 0
-          # - else_if: "road_class == SERVICE"
-          #   multiply_by: 0
 
+    # --- ACESSIBILIDADE (CADEIRANTE) ---
+    - name: accessibility
+      weighting: custom
+      custom_model:
+        distance_influence: 15
+        speed:
+          - if: "true"
+            limit_to: foot_average_speed
+        priority:
+          - if: "!foot_access"
+            multiply_by: 0
+          - if: "road_class == STEPS"
+            multiply_by: 0
+
+    # --- UNIVERSAL ---
     - name: universal
       weighting: custom
       custom_model:
         distance_influence: 30
-        
         speed:
           - if: "car_access"
             limit_to: car_average_speed
-
           - else_if: "foot_access"
             limit_to: foot_average_speed
-
           - else:
             limit_to: 5
-
         priority:
           - if: "car_access || foot_access"
             multiply_by: 1.0

@@ -25,7 +25,7 @@ function drawRoute(ghaphResponse, pontoB){
         lineJoin: 'round'
     }).addTo(routesLayer);
 
-    if (!ultimaPosicaoCalc) {
+    if (!lastCalculatedPosition) {
         map.fitBounds(desenhoRota.getBounds(), {
             padding: [50, 50],
             maxZoom: 20,
@@ -39,13 +39,13 @@ function drawRoute(ghaphResponse, pontoB){
 
 function calculateRoute(pontoA, pontoB) {
     // URL da API local do GraphHopper
-    let modoAtual = 'pedestrian'
+    let currentMode = 'pedestrian'
     const baseUrl = "/graphhopper/api"
 
     var url =   `${baseUrl}?` +
                 `point=${pontoA.lat},${pontoA.lng}` +
                 `&point=${pontoB.lat},${pontoB.lng}` +
-                `&profile=${modoAtual}` +
+                `&profile=${currentMode}` +
                 `&points_encoded=false` +
                 `&locale=pt_BR`;
 
@@ -68,24 +68,24 @@ function calculateRoute(pontoA, pontoB) {
         .catch(err => console.error("Erro ao conectar com GraphHopper:", err));
 }
 
-function verifyDestination(pontoB) {
+function verifyDestinationInterior(pontoB) {
     destinationBuilding = null;
 
     if(!buildingWithInterior) return;
 
-    const pipCoord = [pontoB.lng, pontoB.lat];
-    var poligons = leafletPip.pointInLayer(pipCoord, buildingWithInterior);
+    // Pegar informações do prédio na posição atual
+    const features = getBuildingAtPosition(pontoB);
 
-    if (poligons.length > 0) {
-        var props = poligons[0].feature.properties;
-        var nomePredioDestino = props.nome;
-        
-        destinationBuilding = nomePredioDestino;
+    // Verificar Geofence
+    if (verifyGeofence(pontoB)) {
+        var resultName = features.nome;
+        destinationBuilding = resultName;
 
         if (!lastVisitedPlace) {
             enterPlace(destinationBuilding);
         }
-    } else {
+    } 
+    else {
         if (focusedBuilding && !lastVisitedPlace) {
             exitPlace(focusedBuilding);
         }
@@ -97,9 +97,16 @@ function finishNavigation() {
     document.getElementById('painel-chegada').style.display = 'none';
     document.getElementById('painel-distancia').style.display = 'none';
 
+    // O DESTINO ESTÁ DENTRO DE UM PREDIO E O USUÁRIO NÃO? EXIT PLACE(DESTINO)
+    if(verifyGeofence(destinationPosition) && !verifyDestination(userPosition)){
+        Object.values(indoorLayers).forEach(layer => {
+            if (map.hasLayer(layer)) map.removeLayer(layer);
+        });
+    }
+
     // Reseta variaveis de controle
-    posicaoDestino = null;
-    ultimaPosicaoCalc = null;
+    destinationPosition = null;
+    lastCalculatedPosition = null;
     onRoute = false;
 }
 
